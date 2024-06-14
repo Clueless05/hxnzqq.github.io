@@ -1,4 +1,11 @@
 RewriteEngine On
+RewriteBase /
+
+# Pravidlo pro skrytí .html z URL
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [L]
+RewriteRule ^([^/]+)$ $1.html [L]
+
+# Přesměrování z URL s .html na URL bez .html
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
