@@ -34,7 +34,7 @@ header {
     text-align: center;
     margin-bottom: 20px;
     padding: 20px;
-    background: linear-gradient(45deg, #004a94, #8a1500);
+    background: linear-gradient(45deg, #940000, #7000b1);
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: #ffffff;
@@ -66,7 +66,7 @@ header {
 .pc-component:hover {
     transform: scale(1.05);
     background-color: #333;
-    box-shadow: 0 0 15px rgba(53, 17, 17, 0.7);
+    box-shadow: 0 0 15px rgba(71, 71, 71, 0.7);
 }
 
 .pc-component img {
