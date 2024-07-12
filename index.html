@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <!-- 
+██╗░░██╗██╗░░██╗███╗░░██╗███████╗░██████╗░░██████╗░©
+██║░░██║╚██╗██╔╝████╗░██║╚════██║██╔═══██╗██╔═══██╗
+███████║░╚███╔╝░██╔██╗██║░░███╔═╝██║██╗██║██║██╗██║
+██╔══██║░██╔██╗░██║╚████║██╔══╝░░╚██████╔╝╚██████╔╝
+██║░░██║██╔╝╚██╗██║░╚███║███████╗░╚═██╔═╝░░╚═██╔═╝░
+╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝╚══════╝░░░╚═╝░░░░░░╚═╝░░░ 
+What are you doing here? Don't copy my work-->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/TgGV5Rp/file.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .profile-pic-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: auto;
+        }
+
+        .profile-pic {
+            filter: contrast(110%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.185);
+            animation: bounceIn 2s;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        .light-mode .profile-pic {
+            filter: grayscale(100);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            animation: bounceIn 2s;
+        }
+
+        .profile-pic::before,
+        .profile-pic::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid pink;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+
+        .profile-pic::before {
+            animation: spin 4s linear infinite;
+        }
+
+        .profile-pic::after {
+            animation: spin 4s linear infinite reverse;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .social-buttons a {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+            }
+        }
+       @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
+    <title>Hxnzqq</title>
+
+</head>
+<main>
+<body class="dark-mode">
+    <div class="idktext" h1>My creations:</h1></div>
+    <div class="toggle-switch">
+        <label class="switch-label">
+            <input type="checkbox" class="checkbox" id="theme-switch">
+            <span class="slider"></span>
+        </label>
+        <span id="theme-text" class="theme-text">Light mode</span>
+    </div>
+ 
+    <div class="background-stars dark-mode"></div>
+    <div class="container dark-mode">
+        <div class="profile-pic-container">
+            <img src="https://i.ibb.co/gS6LBXJ/bb06623b-293d-4ab7-98a7-eed8a658d673-1-transformed-1-1-1-1.jpg" alt="Profilová fotografie Hxnzqq" class="profile-pic">
+        </div>
+        <p class="Hxnzqq">
+            <span>
+              Hxnzqq
+            </span>
+          </p>
+<a href="#menu" id="toggle"><span></span></a>
+<div id="menu">
+  <ul>
+    <li><a href="eshop.html">NEshop</a></li>
+    <li><a href="clock.html">Clock</a></li>
+    <li><a href="snake.html">Snake</a></li>
+    <li><a href="games.html">Completed games</a></li>
+    <li><a href="setup.html">My setup</a></li>
+  </ul>
+</div>
+        <div class="social-buttons">
+            <a href="instagram.html" class="Instagram button">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="steam.html" class="Steam button">
+                <i class="fab fa-steam"></i> Steam
+            </a>
+            <a href="discord.html" class="Discord button">
+                <i class="fab fa-discord"></i> Discord
+            </a>
+            <a href="tiktok.html" class="TikTok button">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="twitch.html" class="Twitch button">
+                <i class="fab fa-twitch"></i> Twitch
+            </a>
+            <a href="spotify.html" class="Spotify button">
+                <i class="fab fa-spotify"></i> Spotify
+            </a>
+			<a href="abt.html" class="SoundCloud button">
+                 <i class="fa fa-user" aria-hidden="true"></i>About me
+            </a>
+        </div>
+
+          
+    </div>
+</main>
+    <script src="script.js"></script>
+</body>
+</html>
