@@ -46,6 +46,8 @@ p {
     position: absolute 12px 13px;
     text-align: center;
     -webkit-text-fill-color: #505050;
+    animation: fadeIn 1.5s ease-in-out;
+    font-size: 14px;
 }
 .container {
     text-align: center;
