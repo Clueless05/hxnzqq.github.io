@@ -47,7 +47,7 @@ p {
     text-align: center;
     -webkit-text-fill-color: #505050;
     animation: fadeIn 1.5s ease-in-out;
-    font-size: 8px;
+    font-size: 12px;
 }
 .container {
     text-align: center;
