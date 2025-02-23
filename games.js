@@ -7,6 +7,8 @@ const completedGames = [
     "Assassins Creed Origins (2017)",
     "Assassins Creed Odyssey (2018)",
     "A Way Out (2018)",
+    "Call of Duty Modern Warfare III (2023)",
+    "Call of Duty Black Ops 6 (2024)",
     "Detroit: Become Human (2018)",
     "Far Cry 3 (2012)",
     "Far Cry 4 (2014)",
@@ -50,7 +52,6 @@ const completedGames = [
     "Uncharted 4 (2022)",
     "Watch Dogs (2014)",
     "Watch Dogs 2 (2016)",
-    
 ];
 
 const unfinishedGames = [
@@ -61,7 +62,7 @@ const unfinishedGames = [
     "Far Cry 6  (2023)",
     "Grand Theft Auto San Andreas (2004)",
     "Shadow of the Tomb Raider (2018)",
-    "Watch Dogs Legion (2023)"
+    "Watch Dogs Legion (2023)",
 ];
 
 const completedGamesList = document.getElementById('completed-games');
