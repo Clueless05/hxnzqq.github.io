@@ -5,7 +5,7 @@
   
   html,
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     background-color: #000;
     height: 100%;
   }
@@ -22,8 +22,9 @@
   }
   
   .score {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
     font-weight: bold;
     padding-top: 5px;
     text-align: center;
@@ -119,20 +120,21 @@
   }
 
   .howtoplay {
-    font-family: "Roboto", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: #4e4e4e;
+    color: #a6a6a6;
     position: absolute;
     top: 1%;
     left: 1%;
   }
   .text {
     color: #4e4e4e;
+    font-size: 12px;
     position: absolute;
     bottom: 1%;
     left: 1%;
-    font-family: "Roboto", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 400;
     font-style: normal;
     
@@ -140,7 +142,7 @@
 
   .button {
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     padding: 15px 20px;
     font-size: 16px;
     background: transparent;
