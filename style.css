@@ -45,7 +45,7 @@ p {
 .titlee {
     position: absolute 12px 13px;
     text-align: center;
-    -webkit-text-fill-color: #505050;
+    -webkit-text-fill-color: #737373;
     animation: fadeIn 1.5s ease-in-out;
     font-size: 13px;
 }
@@ -151,7 +151,7 @@ h1 {
 }
 
 body.dark-mode .social-buttons a:hover {
-    box-shadow: 0 10px 15px rgba(177, 0, 118, 0.548); /* Light Pink */
+    box-shadow: 0 10px 15px rgba(88, 88, 88, 0.548); /* Light Pink */
 }
 
 body.light-mode .social-buttons a:hover {
@@ -233,11 +233,11 @@ body.light-mode .social-buttons a:hover {
 
 
 body.dark-mode .background-stars span:nth-child(odd) {
-    background: #ff69b4; /* Light Pink */
+    background: #ffffff; /* Light Pink */
 }
 
 body.dark-mode .background-stars span:nth-child(even) {
-    background: #87cefa; /* Light Sky Blue */
+    background: #ffffff; /* Light Sky Blue */
 }
 
 body.light-mode .background-stars span:nth-child(odd) {
@@ -399,7 +399,25 @@ h1.light-mode, p.light-mode {
 }
 
 .Hxnzqq {
-    filter: contrast(150) blur(.5px)drop-shadow(8px 8px 10px rgba(167, 0, 130, 0.2));
+    filter: grayscale(100);
+    letter-spacing: .5em;
+    display: inline-block;
+    border-width: 4px 0;
+    padding: 1.5em 0em;
+    position: fixed;
+    top: 1%;
+    left: 50%;
+    width: 40em;
+    margin: 0 0 0 -20em;
+    letter-spacing: .5em;
+    display: inline-block;
+    border-width: 4px 0;
+    padding: 1.5em 0em;
+    position: fixed;
+    top: 1%;
+    left: 50%;
+    width: 40em;
+    margin: 0 0 0 -20em;
     letter-spacing: .5em;
     display: inline-block;
     border-width: 4px 0;
@@ -461,7 +479,6 @@ h1.light-mode, p.light-mode {
     width: 40em;
     margin: 0 0 0 -20em;
 }
-
 .light-mode .hxnzqq span {
     font: 700 4.2em/1 "Roboto", sans-serif;
     letter-spacing: 0;
@@ -529,7 +546,7 @@ h1.light-mode, p.light-mode {
   .dark-mode #toggle span:before {
     width: 100%;
     height: 5px;
-    background-color: #0087c5;
+    background-color: #ffffff;
     transition: all 0.3s;
     backface-visibility: hidden;
     border-radius: 2px;
@@ -592,8 +609,8 @@ h1.light-mode, p.light-mode {
   }
   .dark-mode li a:hover,
   .dark-mode  li a:focus {
-    background: #004e72;
-    color: #000000;
+    background: #272727;
+    color: #e8e8e8;
   }
   
   .light-mode #toggle {
@@ -626,7 +643,7 @@ h1.light-mode, p.light-mode {
   .light-mode #toggle span:before {
     width: 100%;
     height: 5px;
-    background-color: #646464;
+    background-color: #000000;
     transition: all 0.3s;
     backface-visibility: hidden;
     border-radius: 2px;
@@ -652,7 +669,7 @@ h1.light-mode, p.light-mode {
     position: fixed;
     top: 60px;
     left: 10px;
-    color: #4b4b4b;
+    color: #000000;
     width: 200px;
     
     margin: auto;
@@ -660,7 +677,7 @@ h1.light-mode, p.light-mode {
     text-align: center;
     border-radius: 4px;
     background: #ffffff;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
     /* just for this demo */
     opacity: 0;
     visibility: hidden;
@@ -689,6 +706,6 @@ h1.light-mode, p.light-mode {
   }
   .light-mode li a:hover,
   .light-mode  li a:focus {
-    background: #3a3a3a;
+    background: #2f2f2f;
     color: #ffffff;
   }
