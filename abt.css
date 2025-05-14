@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -73,7 +73,7 @@ p {
 
 
 .button {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
     padding: 15px 20px;
     font-size: 16px;
@@ -132,7 +132,7 @@ p {
   }
 
   .light-mode.button {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     padding: 15px 20px;
     font-size: 16px;
     background: transparent;
@@ -248,11 +248,11 @@ p {
 
 
 body.dark-mode .background-stars span:nth-child(odd) {
-    background: #ff69b4; /* Light Pink */
+    background: #ffffff; /* Light Pink */
 }
 
 body.dark-mode .background-stars span:nth-child(even) {
-    background: #87cefa; /* Light Sky Blue */
+    background: #ffffff; /* Light Sky Blue */
 }
 
 body.light-mode .background-stars span:nth-child(odd) {
@@ -406,7 +406,7 @@ h1.light-mode, p.light-mode {
 }
 
 .About {
-    letter-spacing: .5em;
+    filter: grayscale(100);
     display: inline-block;
     border-width: 4px 0;
     padding: 1.5em 0em;
@@ -418,7 +418,7 @@ h1.light-mode, p.light-mode {
 }
 
 .About span {
-    font: 700 3em/1 "Roboto", sans-serif;
+    font: 800 4em/1 'Poppins', sans-serif;
     letter-spacing: 0;
     padding: .25em 0 .325em;
     display: block;
@@ -456,6 +456,7 @@ h1.light-mode, p.light-mode {
 }
 
 .light-mode .About {
+    filter: grayscale(100), contrast(290%) drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
     letter-spacing: .5em;
     display: inline-block;
     border-width: 4px 0;
@@ -468,7 +469,7 @@ h1.light-mode, p.light-mode {
 }
 
 .light-mode .About span {
-    font: 700 3em/1 "Roboto", sans-serif;
+    font: 700 4em/1 "Poppins", sans-serif;
     letter-spacing: 0;
     padding: .25em 0 .325em;
     display: block;
