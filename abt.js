@@ -23,15 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, speed * 1000);
     }
 
-    function resetStar(star) {
-        star.style.transition = 'none';
-        star.style.transform = 'none';
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.left = `${Math.random() * 100}%`;
-        requestAnimationFrame(() => {
-            animateStar(star);
-        });
-    }
+
 
     const themeSwitch = document.getElementById('theme-switch');
     const themeText = document.getElementById('theme-text');
