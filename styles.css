@@ -41,7 +41,7 @@ header {
     filter: blur(30px);
     text-align: center;
     padding: 10px;
-    background: linear-gradient(45deg, #940000, #7000b1);
+    background: linear-gradient(45deg, #464646, #464646);
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: #ffffff;
