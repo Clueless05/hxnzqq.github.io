@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     background-color: #121212;
     color: #ffffff;
     overflow: auto; 
@@ -24,6 +24,12 @@ body {
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
+ 
+.component-name {
+   font-family: 'Poppins', sans-serif;
+   font-style: normal;
+   
+}
 
 .container::-webkit-scrollbar {
     width: 0; 
@@ -32,13 +38,14 @@ body {
 
 
 header {
+    filter: blur(30px);
     text-align: center;
-    margin-bottom: 20px;
-    padding: 20px;
+    padding: 10px;
     background: linear-gradient(45deg, #940000, #7000b1);
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: #ffffff;
+    margin-bottom: 5%;
     animation: headerFadeIn 1s ease-in-out;
 }
 
@@ -106,7 +113,7 @@ header {
     color: #ff6347;
 }
 .button {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
     padding: 15px 20px;
     font-size: 16px;
