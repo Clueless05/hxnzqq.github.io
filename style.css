@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,6 +12,7 @@ body {
 }
 /* Made by Hxnzqq */
 body.light-mode .social-buttons a {
+     font-family: "Montserrat", sans-serif;
     background: #fff;
     color: #000;
 }
@@ -132,6 +133,7 @@ h1 {
 
 
 .social-buttons a {
+     font-family: "Montserrat", sans-serif;
     display: inline-flex;
     align-items: center;
     margin: 3px;
@@ -399,6 +401,7 @@ h1.light-mode, p.light-mode {
 }
 
 .Hxnzqq {
+   
     filter: grayscale(100);
     letter-spacing: .5em;
     display: inline-block;
@@ -430,7 +433,7 @@ h1.light-mode, p.light-mode {
 }
 
 .Hxnzqq span {
-    font: 700 4.2em/1 "Roboto", sans-serif;
+    font: 700 4.2em/1 "Poppins", sans-serif;
     letter-spacing: 0;
     padding: .25em 0 .325em;
     display: block;
@@ -517,6 +520,7 @@ h1.light-mode, p.light-mode {
 }
 
 .dark-mode #toggle {
+    font-family: 'Nunito', sans-serif;
     display: block;
     width: 28px;
     height: 30px;
@@ -569,6 +573,7 @@ h1.light-mode, p.light-mode {
   
   /* menu appearance*/
   .dark-mode #menu {
+
     position: fixed;
     top: 60px;
     left: 10px;
@@ -576,7 +581,7 @@ h1.light-mode, p.light-mode {
     width: 200px;
     
     margin: auto;
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-align: center;
     border-radius: 4px;
     background: #000;
@@ -673,7 +678,7 @@ h1.light-mode, p.light-mode {
     width: 200px;
     
     margin: auto;
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-align: center;
     border-radius: 4px;
     background: #ffffff;
@@ -706,6 +711,6 @@ h1.light-mode, p.light-mode {
   }
   .light-mode li a:hover,
   .light-mode  li a:focus {
-    background: #2f2f2f;
-    color: #ffffff;
+    background: #b2b2b2;
+    color: #040404;
   }
