@@ -2,7 +2,19 @@ body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
 }
-/* Made by Hxnzqq */
+/*   
+ /$$                   /$$                        ©
+| $$                  | $$                        
+| $$$$$$$  /$$   /$$ /$$$$$$    /$$$$$$   /$$$$$$ 
+| $$__  $$| $$  | $$|_  $$_/   /$$__  $$ /$$__  $$
+| $$  \ $$| $$  | $$  | $$    | $$  \__/| $$  \ $$
+| $$  | $$| $$  | $$  | $$ /$$| $$      | $$  | $$
+| $$  | $$|  $$$$$$$  |  $$$$/| $$      |  $$$$$$/
+|__/  |__/ \____  $$   \___/  |__/       \______/ 
+           /$$  | $$                              
+          |  $$$$$$/                              
+           \______/                               
+What are you doing here? Don't copy my work! Any attempt to make a copy is considered theft.*/
 body a {
     color:white;
 }
@@ -41,9 +53,9 @@ a:hover, a:visited{
     width: 150px;
     height: 150px;
     margin: -80px 0px 0px -80px;
-    border: 5px rgb(212, 0, 142) solid;
+    border: 5px rgb(249, 0, 0) solid;
     border: 5px solid transparent;
-    border-top-color: rgb(212, 0, 142);
+    border-top-color: rgb(255, 0, 0);
     border-bottom-color: wrgb(212, 0, 142);
     animation: loader1-spinner-spin 3s linear infinite;
 }
@@ -54,9 +66,9 @@ a:hover, a:visited{
     left: 5px;
     right: 5px;
     bottom: 5px;
-    border: 5px solid #0096db;
+    border: 5px solid #fefefe;
     border: 5px solid transparent;
-    border-bottom-color: #0096db;
+    border-bottom-color: #ffffff;
     animation: loader1-spinner-spin 1.5s linear infinite;
 }
 
