@@ -4,11 +4,23 @@ html, body {
 }
 body {
     background: #fff;
-    background: radial-gradient(ellipse at center, #2e2e2e 0%, #000 70%);
+    background: radial-gradient(ellipse at center, #390000 0%, #000 70%);
     background-size: 100%;
     overflow: hidden;
 }
-/* Made by Hxnzqq */
+/*   
+ /$$                   /$$                        ©
+| $$                  | $$                        
+| $$$$$$$  /$$   /$$ /$$$$$$    /$$$$$$   /$$$$$$ 
+| $$__  $$| $$  | $$|_  $$_/   /$$__  $$ /$$__  $$
+| $$  \ $$| $$  | $$  | $$    | $$  \__/| $$  \ $$
+| $$  | $$| $$  | $$  | $$ /$$| $$      | $$  | $$
+| $$  | $$|  $$$$$$$  |  $$$$/| $$      |  $$$$$$/
+|__/  |__/ \____  $$   \___/  |__/       \______/ 
+           /$$  | $$                              
+          |  $$$$$$/                              
+           \______/                               
+What are you doing here? Don't copy my work! Any attempt to make a copy is considered theft.*/
 p {
     margin: 0;
     padding: 0;
@@ -21,8 +33,8 @@ p {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: #fff;
-    text-shadow: 0 0 20px rgba(194, 194, 194, 0.5) 0 0 20px rgba(154, 154, 154, 0.5);
+    color: #f7f7f7;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5) 0 0 20px rgba(154, 154, 154, 0.5);
 }
 #clock .time {
     letter-spacing: 0.05em;
@@ -68,7 +80,7 @@ p {
     transform: translate(0%, 0%);
     width: 100%;
     height: 100%;
-    background: #0c0c0c;
+    background: #090909;
     border-radius: 10px;
   }
   
