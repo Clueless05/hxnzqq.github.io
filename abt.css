@@ -10,13 +10,40 @@ body {
     overflow: hidden;
     transition: background 0.5s, color 0.5s;
 }
-/* Made by Hxnzqq */
+/*   
+ /$$                   /$$                        ©
+| $$                  | $$                        
+| $$$$$$$  /$$   /$$ /$$$$$$    /$$$$$$   /$$$$$$ 
+| $$__  $$| $$  | $$|_  $$_/   /$$__  $$ /$$__  $$
+| $$  \ $$| $$  | $$  | $$    | $$  \__/| $$  \ $$
+| $$  | $$| $$  | $$  | $$ /$$| $$      | $$  | $$
+| $$  | $$|  $$$$$$$  |  $$$$/| $$      |  $$$$$$/
+|__/  |__/ \____  $$   \___/  |__/       \______/ 
+           /$$  | $$                              
+          |  $$$$$$/                              
+           \______/                               
+What are you doing here? Don't copy my work! Any attempt to make a copy is considered theft.*/
 body.light-mode .social-buttons a {
     background: #fff;
     color: #000;
 }
 
 body.light-mode .social-buttons a i {
+    color: #000;
+}
+.theme-text {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 1px;
+    color: #fff;
+    font-size: 12px;
+    transition: color 0.3s;
+}
+
+.dark-mode .theme-text {
+    color: #ddd;
+}
+
+.light-mode .theme-text {
     color: #000;
 }
 body.light-mode .social-buttons a:hover {
@@ -100,7 +127,7 @@ p {
     transform: translate(0%, 0%);
     width: 100%;
     height: 100%;
-    background: #0c0c0c;
+    background: #090909;
     border-radius: 10px;
   }
   
@@ -158,7 +185,7 @@ p {
     transform: translate(0%, 0%);
     width: 100%;
     height: 100%;
-    background: #c5c5c5;
+    background: #efefef;
     border-radius: 10px;
   }
   
@@ -248,15 +275,15 @@ p {
 
 
 body.dark-mode .background-stars span:nth-child(odd) {
-    background: #ffffff; /* Light Pink */
+    background: #ee0000; /* Light Pink */
 }
 
 body.dark-mode .background-stars span:nth-child(even) {
-    background: #ffffff; /* Light Sky Blue */
+    background: #eaeaea; /* Light Sky Blue */
 }
 
 body.light-mode .background-stars span:nth-child(odd) {
-    background: #000000; /* Black */
+    background: #ff0000; /* Black */
 }
 
 body.light-mode .background-stars span:nth-child(even) {
@@ -392,6 +419,7 @@ h1.light-mode, p.light-mode {
 
 .text {
     margin-bottom: 30px; /* Prostor mezi odstavci */
+    font-size: 13px;
 }
 .text {
     transition: color 0.3s;
@@ -406,7 +434,7 @@ h1.light-mode, p.light-mode {
 }
 
 .About {
-    filter: grayscale(100);
+    filter: hue-rotate(35deg) saturate(150%) brightness(1.2);
     display: inline-block;
     border-width: 4px 0;
     padding: 1.5em 0em;
@@ -455,45 +483,6 @@ h1.light-mode, p.light-mode {
     100% { background-position: 100% 50%; }
 }
 
-.light-mode .About {
-    filter: grayscale(100), contrast(290%) drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
-    letter-spacing: .5em;
-    display: inline-block;
-    border-width: 4px 0;
-    padding: 1.5em 0em;
-    position: fixed;
-    top: 1%;
-    left: 50%;
-    width: 40em;
-    margin: 0 0 0 -20em;
-}
-
-.light-mode .About span {
-    font: 700 4em/1 "Poppins", sans-serif;
-    letter-spacing: 0;
-    padding: .25em 0 .325em;
-    display: block;
-    margin: 0 auto;
-    text-shadow: 0 0 80px rgba(0, 0, 0, 0.897);
-
-    /* Clip Background Image */
-    background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y;
-    filter: hue-rotate(0deg) saturate(0%) brightness(50%);
-    background-clip: text;
-    -webkit-background-clip: text;
-
-    /* Animate Background Image */
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    -webkit-animation: aitf 80s linear infinite;
-    animation: aitf 80s linear infinite;
-
-    /* Activate hardware acceleration for smoother animations */
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
 
 /* Animate Background Image */
 @-webkit-keyframes aitf {
