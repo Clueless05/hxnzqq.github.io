@@ -6,27 +6,40 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #000428, #004e92);
+    background: linear-gradient(135deg, #000428);
     overflow: hidden;
     transition: background 0.5s, color 0.5s;
 }
-/* Made by Hxnzqq */
+/*   
+ /$$                   /$$                        ©
+| $$                  | $$                        
+| $$$$$$$  /$$   /$$ /$$$$$$    /$$$$$$   /$$$$$$ 
+| $$__  $$| $$  | $$|_  $$_/   /$$__  $$ /$$__  $$
+| $$  \ $$| $$  | $$  | $$    | $$  \__/| $$  \ $$
+| $$  | $$| $$  | $$  | $$ /$$| $$      | $$  | $$
+| $$  | $$|  $$$$$$$  |  $$$$/| $$      |  $$$$$$/
+|__/  |__/ \____  $$   \___/  |__/       \______/ 
+           /$$  | $$                              
+          |  $$$$$$/                              
+           \______/                               
+What are you doing here? Don't copy my work! Any attempt to make a copy is considered theft.*/
 body.light-mode .social-buttons a {
      font-family: "Montserrat", sans-serif;
-    background: #fff;
-    color: #000;
+    background: #e0e0e0;
+    color: #000000;
 }
 
 body.light-mode .social-buttons a i {
-    color: #000;
+    color: #000000;
 }
+
 body.light-mode .social-buttons a:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
 }
 p {
     font-size: 18px;
-    color: #ddd;
+    color: #ffffff;
     margin-top: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     animation: FadeInTop 1s ease 0s 1 normal none;
@@ -46,7 +59,7 @@ p {
 .titlee {
     position: absolute 12px 13px;
     text-align: center;
-    -webkit-text-fill-color: #737373;
+    -webkit-text-fill-color: #505050;
     animation: fadeIn 1.5s ease-in-out;
     font-size: 13px;
 }
@@ -73,54 +86,10 @@ p {
     }
 }
 
-.profile-pic-container {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin: auto;
-}
-.profile-pic {
-    filter: contrast(110%);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    position: relative;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.185);
-    animation: bounceIn 2s;
-}
 
-.profile-pic:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-}
 
-.light-mode .profile-pic {
-    filter: grayscale(100);
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-    animation: bounceIn 2s;
-}
 
-.profile-pic::before,
-.profile-pic::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid pink;
-    border-radius: 50%;
-    box-sizing: border-box;
-}
 
-.profile-pic::before {
-    animation: spin 4s linear infinite;
-}
-
-.profile-pic::after {
-    animation: spin 4s linear infinite reverse;
-}
 
 h1 {
     margin: 0;
@@ -138,7 +107,7 @@ h1 {
     align-items: center;
     margin: 3px;
     text-decoration: none;
-    color: #fff;
+    color: #ffffff;
     padding: 10px 15px;
     border-radius: 5px;
     background: #000;
@@ -146,14 +115,21 @@ h1 {
 }
 .social-buttons a i {
     margin-right: 8px;
+    color: red;
+}
+.social-buttons a:hover i {
+    margin-right: 8px;
+    color: rgb(240, 240, 240);
 }
 .social-buttons a:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.76);
+
 }
 
 body.dark-mode .social-buttons a:hover {
-    box-shadow: 0 10px 15px rgba(88, 88, 88, 0.548); /* Light Pink */
+    box-shadow: 0 10px 15px rgba(92, 0, 0, 0.548); /* Light Pink */
+    color: #ff0000;
 }
 
 body.light-mode .social-buttons a:hover {
@@ -162,17 +138,21 @@ body.light-mode .social-buttons a:hover {
 }
 
 body.light-mode .social-buttons a {
-    background: #fff;
+    background: #f7f7f7;
     color: #000;
 }
 
 body.light-mode .social-buttons a i {
-    color: #000;
+    color: #ff0000;
+}
+body.light-mode .social-buttons a:hover i {
+    color: #000000;
 }
 
 body.light-mode .social-buttons a:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 15px rgba(253, 4, 4, 0.3);
+    color: red;
 }
 
 
@@ -217,7 +197,7 @@ body.light-mode .social-buttons a:hover {
 .background-stars span {
     position: absolute;
     display: block;
-    background: #fff;
+    background: #ffffff;
     border-radius: 50%;
     animation: twinkling 3s infinite, float 5s infinite;
 	
@@ -235,7 +215,7 @@ body.light-mode .social-buttons a:hover {
 
 
 body.dark-mode .background-stars span:nth-child(odd) {
-    background: #ffffff; /* Light Pink */
+    background: #ff0000; /* Light Pink */
 }
 
 body.dark-mode .background-stars span:nth-child(even) {
@@ -243,23 +223,23 @@ body.dark-mode .background-stars span:nth-child(even) {
 }
 
 body.light-mode .background-stars span:nth-child(odd) {
-    background: #000000; /* Black */
+    background: #ff0000; /* Black */
 }
 
 body.light-mode .background-stars span:nth-child(even) {
-    background: #525252 ; /* Dark grey */
+    background: #000000 ; /* Dark grey */
 }
 
 .background-stars.light-mode {
-    background: white;
+    background: rgb(253, 253, 253);
 }
 
 .background-stars.dark-mode span {
-    background: #fff;
+    background: #ffffff;
 }
 
 .background-stars.light-mode span {
-    background: #000;
+    background: #000000;
 }
 
 @keyframes twinkling {
@@ -297,7 +277,7 @@ body.light-mode .background-stars span:nth-child(even) {
 
 body.dark-mode {
     background: linear-gradient(135deg, #000428, #004e92);
-    color: #ddd;
+    color: #ffffff;
 }
 
 .text.dark-mode {
@@ -349,10 +329,11 @@ h1.light-mode, p.light-mode {
 }
 
 .slider {
+   
     position: relative;
     width: 40px;
     height: 20px;
-    background: #a8a8a8;
+    background: #ccc;
     border-radius: 20px;
     transition: background 0.3s;
 }
@@ -378,7 +359,8 @@ h1.light-mode, p.light-mode {
 }
 
 .theme-text {
-    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 1px;
     color: #fff;
     font-size: 14px;
     transition: color 0.3s;
@@ -402,43 +384,25 @@ h1.light-mode, p.light-mode {
 
 .Hxnzqq {
    
-    filter: grayscale(100);
+    filter: hue-rotate(90deg) saturate(150%) brightness(1.2);
     letter-spacing: .5em;
     display: inline-block;
     border-width: 4px 0;
     padding: 1.5em 0em;
     position: fixed;
-    top: 1%;
-    left: 50%;
-    width: 40em;
-    margin: 0 0 0 -20em;
-    letter-spacing: .5em;
-    display: inline-block;
-    border-width: 4px 0;
-    padding: 1.5em 0em;
-    position: fixed;
-    top: 1%;
-    left: 50%;
-    width: 40em;
-    margin: 0 0 0 -20em;
-    letter-spacing: .5em;
-    display: inline-block;
-    border-width: 4px 0;
-    padding: 1.5em 0em;
-    position: fixed;
-    top: 1%;
+    top: 5%;
     left: 50%;
     width: 40em;
     margin: 0 0 0 -20em;
 }
 
 .Hxnzqq span {
-    font: 700 4.2em/1 "Poppins", sans-serif;
+    font: 700 4.7em/1 "Poppins", sans-serif;
     letter-spacing: 0;
     padding: .25em 0 .325em;
     display: block;
     margin: 0 auto;
-    text-shadow: 0 0 80px rgba(0, 0, 0, 0.897);
+    text-shadow: 0 0 60px #110000;
 
     /* Clip Background Image */
     background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y;
@@ -471,13 +435,13 @@ h1.light-mode, p.light-mode {
 }
 
 .light-mode .Hxnzqq {
-    filter: grayscale(100) blur(0.5px) contrast(290%) drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
+    filter: hue-rotate(90deg) saturate(150%) brightness(1.2);
     letter-spacing: .5em;
     display: inline-block;
     border-width: 4px 0;
     padding: 1.5em 0em;
     position: fixed;
-    top: 1%;
+    top: 5%;
     left: 50%;
     width: 40em;
     margin: 0 0 0 -20em;
@@ -488,7 +452,7 @@ h1.light-mode, p.light-mode {
     padding: .25em 0 .325em;
     display: block;
     margin: 0 auto;
-    text-shadow: 0 0 80px rgba(0, 0, 0, 0.897);
+    text-shadow: 0 0 80px rgba(0, 0, 0, 100);
 
     /* Clip Background Image */
     background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y;
@@ -550,7 +514,7 @@ h1.light-mode, p.light-mode {
   .dark-mode #toggle span:before {
     width: 100%;
     height: 5px;
-    background-color: #ffffff;
+    background-color: #ff0000;
     transition: all 0.3s;
     backface-visibility: hidden;
     border-radius: 2px;
@@ -577,7 +541,7 @@ h1.light-mode, p.light-mode {
     position: fixed;
     top: 60px;
     left: 10px;
-    color: #000;
+    color: #000000;
     width: 200px;
     
     margin: auto;
@@ -608,14 +572,14 @@ h1.light-mode, p.light-mode {
   }
   .dark-mode  li a {
     padding: 5px;
-    color: white;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     transition: all .2s;
   }
   .dark-mode li a:hover,
   .dark-mode  li a:focus {
-    background: #272727;
-    color: #e8e8e8;
+    background: #120000;
+    color: #ea0000;
   }
   
   .light-mode #toggle {
@@ -711,6 +675,6 @@ h1.light-mode, p.light-mode {
   }
   .light-mode li a:hover,
   .light-mode  li a:focus {
-    background: #b2b2b2;
-    color: #040404;
+    background: #e3e3e3;
+    color: #f40000;
   }
