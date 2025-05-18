@@ -5,7 +5,19 @@ var clock = new Vue({
         date: ''
     }
 });
-
+/*   
+ /$$                   /$$                        ©
+| $$                  | $$                        
+| $$$$$$$  /$$   /$$ /$$$$$$    /$$$$$$   /$$$$$$ 
+| $$__  $$| $$  | $$|_  $$_/   /$$__  $$ /$$__  $$
+| $$  \ $$| $$  | $$  | $$    | $$  \__/| $$  \ $$
+| $$  | $$| $$  | $$  | $$ /$$| $$      | $$  | $$
+| $$  | $$|  $$$$$$$  |  $$$$/| $$      |  $$$$$$/
+|__/  |__/ \____  $$   \___/  |__/       \______/ 
+           /$$  | $$                              
+          |  $$$$$$/                              
+           \______/                               
+What are you doing here? Don't copy my work! Any attempt to make a copy is considered theft.*/
 var week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 var timerID = setInterval(updateTime, 1000);
 updateTime();
