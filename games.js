@@ -1,3 +1,16 @@
+/*   
+ /$$                   /$$                        ©
+| $$                  | $$                        
+| $$$$$$$  /$$   /$$ /$$$$$$    /$$$$$$   /$$$$$$ 
+| $$__  $$| $$  | $$|_  $$_/   /$$__  $$ /$$__  $$
+| $$  \ $$| $$  | $$  | $$    | $$  \__/| $$  \ $$
+| $$  | $$| $$  | $$  | $$ /$$| $$      | $$  | $$
+| $$  | $$|  $$$$$$$  |  $$$$/| $$      |  $$$$$$/
+|__/  |__/ \____  $$   \___/  |__/       \______/ 
+           /$$  | $$                              
+          |  $$$$$$/                              
+           \______/                               
+What are you doing here? Don't copy my work! Any attempt to make a copy is considered theft.*/
 const completedGames = [
     "Assassins Creed (2007)",
     "Assassins Creed II (2009)",
@@ -48,7 +61,7 @@ const completedGames = [
     "Telltale The Walking Dead Final Season (2018)",
     "Telltale The Walking Dead Michone (2016)",
     "Terraria (2014)",
-    "The Last of Us Part I (2023)",
+    "The Last of Us Part I Remastered (2023)",
     "Tomb Raider (2013)",
     "Uncharted 4 (2022)",
     "Watch Dogs (2014)",
