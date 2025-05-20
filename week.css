@@ -5,7 +5,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Monsterrat', sans-serif;
+      font-family: 'Orbitron', sans-serif;
     }
 /*   
  /$$                   /$$                        ©
@@ -139,12 +139,12 @@ What are you doing here? Don't copy my work! Any attempt to make a copy is consi
       }
     }
     .twitch-btn {
-        font-family: 'Orbitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   margin-top: 10px;
   margin-bottom: 20px;
   padding: 20px 30px;
-  background: #ff1a1a;
-  color: #fff;
+  background: #ff0505;
+  color: #ffffff;
   font-weight: 700;
   font-size: 1.3rem;
   text-transform: uppercase;
@@ -165,7 +165,6 @@ What are you doing here? Don't copy my work! Any attempt to make a copy is consi
 }
 
  .button {
-    font-family: 'Orbitron', sans-serif;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     padding: 15px 20px;
@@ -181,6 +180,7 @@ What are you doing here? Don't copy my work! Any attempt to make a copy is consi
   
   .button::after,
   .button::before {
+     font-family: 'Poppins', sans-serif;
     content: '';
     position: absolute;
     bottom: 0;
@@ -190,6 +190,7 @@ What are you doing here? Don't copy my work! Any attempt to make a copy is consi
   }
   
   .button::before {
+     font-family: 'Poppins', sans-serif;
     transform: translate(0%, 0%);
     width: 100%;
     height: 100%;
@@ -198,6 +199,7 @@ What are you doing here? Don't copy my work! Any attempt to make a copy is consi
   }
   
   .button::after {
+     font-family: 'Poppins', sans-serif;
     transform: translate(10px, 10px);
     width: 35px;
     height: 35px;
@@ -207,12 +209,14 @@ What are you doing here? Don't copy my work! Any attempt to make a copy is consi
   }
   
   .button:hover::before {
+     font-family: 'Poppins', sans-serif;
     transform: translate(5%, 20%);
     width: 110%;
     height: 110%;
   }
   
   .button:hover::after {
+     font-family: 'Poppins', sans-serif;
     border-radius: 10px;
     transform: translate(0, 0);
     width: 100%;
@@ -220,6 +224,7 @@ What are you doing here? Don't copy my work! Any attempt to make a copy is consi
   }
   
   .button:active::after {
+     font-family: 'Poppins', sans-serif;
     transition: 0s;
     transform: translate(0, 5%);
   }
@@ -231,7 +236,12 @@ What are you doing here? Don't copy my work! Any attempt to make a copy is consi
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
 }
 .disclaimer {
+  
+  font-family: 'Poppins', sans-serif;
     margin-top: 15px;
     font-size: 0.7em;
     color: #858585;
+}
+.text {
+  font-family: 'Poppins', sans-serif;
 }
