@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hytro's car portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="car.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="light-mode">
+
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="spinner"></div>
+    <h1>Luxury Motors</h1>
+  </div>
+
+  <!-- Header -->
+  <header class="modern-header">
+    <div class="logo">Luxury Motors</div>
+    <nav class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li> 
+        <li><a href="#models">Models</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="quote-btn">Request Quote</button>
+      <button id="darkModeToggle"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" id="hamburger">
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section" data-aos="fade-up">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="heroo.mp4"  type="video/mp4">
+    </video>
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Precision. Power. Prestige.</h1>
+        <p>Engineered for Excellence</p>
+        <button class="hero-cta" onclick="scrollToModels()">Explore Our Collection</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Car Models Grid -->
+  <section id="models" class="car-grid" data-aos="fade-up" data-aos-delay="300">
+    <h2 class="section-title">Our Vehicles</h2>
+    <div class="grid-container">
+      <div class="car-card" data-aos="zoom-in">
+        <img src="gtr.jpg" alt="GT-R X9">
+        <div class="card-overlay">
+          <h3>GT-R</h3>
+          <p>From $180,000</p>
+        </div>
+      </div>
+      <div class="car-card" data-aos="zoom-in" data-aos-delay="100">
+        <img src="911.jpg" alt="Turbo E-Vision">
+        <div class="card-overlay">
+          <h3>911 GT3 RS</h3>
+          <p>From $220,000</p>
+        </div>
+      </div>
+      <div class="car-card" data-aos="zoom-in" data-aos-delay="200">
+        <img src="i8.jpg" alt="911 RS Classic">
+        <div class="card-overlay">
+          <h3>BMW i8</h3>
+          <p>From $350,000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section" data-aos="fade-up">
+    <div class="about-content">
+      <h2 class="section-title">About Luxury Motors</h2>
+      <p class="p">For over 70 years, Luxury Motors has defined automotive excellence through groundbreaking engineering, timeless design, and unmatched driving dynamics. Our vehicles aren't just machines—they're masterpieces.</p>
+      <p class="p">Discover the heritage, innovation, and passion that drive us forward.</p>
+      <button class="read-more">Learn More</button>
+    </div>
+    <div class="about-image">
+      <img src="shwrmm.jpg" alt="Vehicle Assembly">
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" data-aos="fade-up" data-aos-delay="300">
+    <h2 class="section-titlee">What Our Clients Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <p>"The ultimate driving experience. Every curve, every gear shift is pure perfection." – <strong>Emily R., GT-R Owner</strong></p>
+      </div>
+      <div class="testimonial-card">
+        <p>"A masterpiece of engineering and design. The Turbo E-Vision redefines luxury mobility." – <strong>James T., EV Vision Owner</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="contact-section" data-aos="fade-up">
+    <h2 class="section-title">Contact Us</h2>
+    <form class="contact-form" id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="submit-btn">Send Message</button>
+      <p id="formMessage" class="form-message"></p>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <h3>Luxury Motors</h3>
+        <p>Since 1950 | Crafted in Germany</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li> 
+          <li><a href="#models">Models</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://hxnzqq.kdoseptal.eu/"><i class="fab fa-facebook"></i>Facebook</a>
+          <a href="https://hxnzqq.kdoseptal.eu/"><i class="fab fa-instagram"></i>Instagram</a>
+          <a href="https://hxnzqq.kdoseptal.eu/"><i class="fab fa-youtube"></i>Youtube</a>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2024 Luxury Motors GmbH. All rights reserved.</p>
+  </footer>
+
+  <!-- External Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script> 
+  <script src="car.js"></script>
+</body>
+</html>
