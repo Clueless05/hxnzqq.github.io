@@ -1,152 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hytro's car portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link rel="stylesheet" href="car.css" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+   <!-- 
+ /$$                   /$$                        ©
+| $$                  | $$                        
+| $$$$$$$  /$$   /$$ /$$$$$$    /$$$$$$   /$$$$$$ 
+| $$__  $$| $$  | $$|_  $$_/   /$$__  $$ /$$__  $$
+| $$  \ $$| $$  | $$  | $$    | $$  \__/| $$  \ $$
+| $$  | $$| $$  | $$  | $$ /$$| $$      | $$  | $$
+| $$  | $$|  $$$$$$$  |  $$$$/| $$      |  $$$$$$/
+|__/  |__/ \____  $$   \___/  |__/       \______/ 
+           /$$  | $$                              
+          |  $$$$$$/                              
+           \______/                               
+What are you doing here? Don't copy my work! Any attempt to make a copy is considered theft.-->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/RG14mvm4/Logo-1-modified.png">
+    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .profile-pic-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: auto;
+        }
+
+        .profile-pic {
+            filter: contrast(110%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.185);
+            animation: bounceIn 2s;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        .light-mode .profile-pic {
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            animation: bounceIn 2s;
+        }
+
+        .profile-pic::before,
+        .profile-pic::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid pink;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+
+        .profile-pic::before {
+            animation: spin 4s linear infinite;
+        }
+
+        .profile-pic::after {
+            animation: spin 4s linear infinite reverse;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .social-buttons a {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+            }
+        }
+       @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
+    <title>HYTRO</title>
+   
+
 </head>
-<body class="light-mode">
-
-  <!-- Preloader -->
-  <div id="preloader" class="preloader">
-    <div class="spinner"></div>
-    <h1>Luxury Motors</h1>
-  </div>
-
-  <!-- Header -->
-  <header class="modern-header">
-    <div class="logo">Luxury Motors</div>
-    <nav class="nav-menu">
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li> 
-        <li><a href="#models">Models</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="header-actions">
-      <button class="quote-btn">Request Quote</button>
-      <button id="darkModeToggle"><i class="fas fa-moon"></i></button>
-      <button class="hamburger" id="hamburger">
-        <span class="bar"></span>
-      </button>
+<main>
+   
+<body class="dark-mode">
+    <div class="idktext" h1>My creations:</h1></div>
+    <div class="toggle-switch">
+        <label class="switch-label">
+            <input type="checkbox" class="checkbox" id="theme-switch">
+            <span class="slider"></span>
+        </label>
+        <span id="theme-text" class="theme-text">Light mode</span>
     </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero-section" data-aos="fade-up">
-    <video autoplay muted loop playsinline class="hero-video">
-      <source src="heroo.mp4"  type="video/mp4">
-    </video>
-    <div class="hero-overlay">
-      <div class="hero-content">
-        <h1>Precision. Power. Prestige.</h1>
-        <p>Engineered for Excellence</p>
-        <button class="hero-cta" onclick="scrollToModels()">Explore Our Collection</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Car Models Grid -->
-  <section id="models" class="car-grid" data-aos="fade-up" data-aos-delay="300">
-    <h2 class="section-title">Our Vehicles</h2>
-    <div class="grid-container">
-      <div class="car-card" data-aos="zoom-in">
-        <img src="gtr.jpg" alt="GT-R X9">
-        <div class="card-overlay">
-          <h3>GT-R</h3>
-          <p>From $180,000</p>
+ 
+    <div class="background-stars dark-mode"></div>
+    <div class="container dark-mode">
+        <div class="profile-pic-container">
+            <img src="https://i.ibb.co/6c5nCRW9/Logo.png" alt="s" class="profile-pic">
         </div>
-      </div>
-      <div class="car-card" data-aos="zoom-in" data-aos-delay="100">
-        <img src="911.jpg" alt="Turbo E-Vision">
-        <div class="card-overlay">
-          <h3>911 GT3 RS</h3>
-          <p>From $220,000</p>
+        <p class="Hxnzqq">
+            <span>
+              HYTRO
+            </span>
+          </p>
+          <p class="titlee">It’s not just about being the best, it’s about pushing past your limits every day. Because in the end, it’s you vs. the person in the mirror.</p>
+<a href="#menu" id="toggle"><span></span></a>
+<div id="menu">
+  <ul>
+     <li><a href="https://hxnzqq.kdoseptal.eu/games">COMPLETED GAMES</a></li>
+    <li><a href="https://hxnzqq.kdoseptal.eu/clock">WEEK SCHEDULE</a></li>
+    <li><a href="https://hxnzqq.kdoseptal.eu/snake">SNAKE GAME</a></li>
+        <li><a href="https://hxnzqq.kdoseptal.eu/week">CLOCK</a></li>
+
+    <li><a href="https://hxnzqq.kdoseptal.eu/setup">PC SPECS</a></li>
+<li><a class="inactive menu-item" href="#" onclick="return false;">NEZVEŘEJNĚNÉ PROJEKTY</a></li>
+
+        <li><a href="flowers.html">FLOWERS</a></li>
+          <li><a href="404-animation.html">400 error code</a></li>
+    
+
+  </ul>
+</div>
+        <div class="social-buttons">
+            <a href="https://hxnzqq.kdoseptal.eu/instagram" class="Instagram button">
+                <i class="fab fa-instagram"></i> INSTAGRAM
+            </a>
+            <a href="https://hxnzqq.kdoseptal.eu/steam" class="Steam button">
+                <i class="fab fa-steam"></i> STEAM
+            </a>
+            <a href="https://hxnzqq.kdoseptal.eu/discord" class="Discord button">
+                <i class="fab fa-discord"></i> DISCORD
+            </a>
+            <a href="https://hxnzqq.kdoseptal.eu/tiktok" class="TikTok button">
+                <i class="fab fa-tiktok"></i> TIKTOK
+            </a>
+            <a href="https://hxnzqq.kdoseptal.eu/twitch" class="Twitch button">
+                <i class="fab fa-twitch"></i> <class= text>TWITCH</class>
+            </a>
+			<a href="https://hxnzqq.kdoseptal.eu/abt" class="SoundCloud button">
+                 <i class="fa fa-user" aria-hidden="true"></i>ABOUT ME
+            </a>
+            
         </div>
-      </div>
-      <div class="car-card" data-aos="zoom-in" data-aos-delay="200">
-        <img src="i8.jpg" alt="911 RS Classic">
-        <div class="card-overlay">
-          <h3>BMW i8</h3>
-          <p>From $350,000</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- About Section -->
-  <section id="about" class="about-section" data-aos="fade-up">
-    <div class="about-content">
-      <h2 class="section-title">About Luxury Motors</h2>
-      <p class="p">For over 70 years, Luxury Motors has defined automotive excellence through groundbreaking engineering, timeless design, and unmatched driving dynamics. Our vehicles aren't just machines—they're masterpieces.</p>
-      <p class="p">Discover the heritage, innovation, and passion that drive us forward.</p>
-      <button class="read-more">Learn More</button>
-    </div>
-    <div class="about-image">
-      <img src="shwrmm.jpg" alt="Vehicle Assembly">
-    </div>
-  </section>
 
-  <!-- Testimonials -->
-  <section class="testimonials" data-aos="fade-up" data-aos-delay="300">
-    <h2 class="section-titlee">What Our Clients Say</h2>
-    <div class="testimonial-cards">
-      <div class="testimonial-card">
-        <p>"The ultimate driving experience. Every curve, every gear shift is pure perfection." – <strong>Emily R., GT-R Owner</strong></p>
-      </div>
-      <div class="testimonial-card">
-        <p>"A masterpiece of engineering and design. The Turbo E-Vision redefines luxury mobility." – <strong>James T., EV Vision Owner</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Form -->
-  <section id="contact" class="contact-section" data-aos="fade-up">
-    <h2 class="section-title">Contact Us</h2>
-    <form class="contact-form" id="contactForm">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit" class="submit-btn">Send Message</button>
-      <p id="formMessage" class="form-message"></p>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-logo">
-        <h3>Luxury Motors</h3>
-        <p>Since 1950 | Crafted in Germany</p>
-      </div>
-      <div class="footer-links">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="#home">Home</a></li> 
-          <li><a href="#models">Models</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-social">
-        <h4>Follow Us</h4>
-        <div class="social-icons">
-          <a href="https://hxnzqq.kdoseptal.eu/"><i class="fab fa-facebook"></i>Facebook</a>
-          <a href="https://hxnzqq.kdoseptal.eu/"><i class="fab fa-instagram"></i>Instagram</a>
-          <a href="https://hxnzqq.kdoseptal.eu/"><i class="fab fa-youtube"></i>Youtube</a>
-        </div>
-      </div>
-    </div>
-    <p class="copyright">&copy; 2024 Luxury Motors GmbH. All rights reserved.</p>
-  </footer>
-
-  <!-- External Scripts -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script> 
-  <script src="car.js"></script>
+</main>
+    <script src="script.js"></script>
 </body>
 </html>
