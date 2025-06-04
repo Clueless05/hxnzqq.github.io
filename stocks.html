@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hytro's Stock site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --dark: #212529;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .stock-up {
+            color: #10b981;
+        }
+        
+        .stock-down {
+            color: #ef4444;
+        }
+        
+        .ticker-tape {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 10px;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-chart-line text-2xl"></i>
+                    <span class="text-xl font-bold">QNTM</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="hover:text-gray-200 transition">Dashboard</a>
+                    <a href="#market" class="hover:text-gray-200 transition">Markets</a>
+                    <a href="#news" class="hover:text-gray-200 transition">News</a>
+                    <a href="#contact" class="hover:text-gray-200 transition">Contact</a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="bg-white text-blue-600 px-4 py-2 rounded-full font-medium hover:bg-blue-50 transition transform hover:scale-105">
+                        Log In
+                    </button>
+                    <button class="hidden md:block text-white border border-white px-4 py-2 rounded-full font-medium hover:bg-white hover:text-blue-600 transition transform hover:scale-105">
+                        Sign Up
+                    </button>
+                    <button class="md:hidden text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden gradient-bg text-white">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')"></div>
+        </div>
+        <div class="container mx-auto px-4 py-24 relative z-10">
+            <div class="max-w-3xl mx-auto text-center fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 slide-up">Smart Investing for <span class="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500">Your Future</span></h1>
+                <p class="text-xl md:text-2xl mb-8 slide-up delay-1">Advanced analytics, real-time data, and powerful tools to help you grow your wealth.</p>
+                <div class="flex justify-center slide-up delay-2">
+                    <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg mr-4">
+                        Get Started
+                    </button>
+                    <button class="text-white border border-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 transition transform hover:scale-105 shadow-lg">
+                        Watch Market
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <!-- Market Overview Section -->
+    <section id="market" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Market Overview</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Market Card 1 -->
+                <div class="card bg-white p-6 slide-up">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-gray-500">S&P 500</span>
+                        <i class="fas fa-chart-line text-blue-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1">4,567.89</h3>
+                    <div class="flex items-center">
+                        <span class="text-green-500 font-medium">+1.24%</span>
+                        <i class="fas fa-caret-up text-green-500 ml-1"></i>
+                    </div>
+                </div>
+                
+                <!-- Market Card 2 -->
+                <div class="card bg-white p-6 slide-up delay-1">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-gray-500">NASDAQ</span>
+                        <i class="fas fa-chart-line text-purple-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1">15,342.56</h3>
+                    <div class="flex items-center">
+                        <span class="text-green-500 font-medium">+1.78%</span>
+                        <i class="fas fa-caret-up text-green-500 ml-1"></i>
+                    </div>
+                </div>
+                
+                <!-- Market Card 3 -->
+                <div class="card bg-white p-6 slide-up delay-2">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-gray-500">DOW JONES</span>
+                        <i class="fas fa-chart-line text-red-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1">34,567.12</h3>
+                    <div class="flex items-center">
+                        <span class="text-red-500 font-medium">-0.45%</span>
+                        <i class="fas fa-caret-down text-red-500 ml-1"></i>
+                    </div>
+                </div>
+                
+                <!-- Market Card 4 -->
+                <div class="card bg-white p-6 slide-up delay-3">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-gray-500">BTC/USD</span>
+                        <i class="fab fa-bitcoin text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1">$42,345.67</h3>
+                    <div class="flex items-center">
+                        <span class="text-green-500 font-medium">+3.21%</span>
+                        <i class="fas fa-caret-up text-green-500 ml-1"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Market Chart -->
+            <div class="card bg-white p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">S&P 500 Performance</h3>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 bg-gray-100 rounded-md text-sm">1D</button>
+                        <button class="px-3 py-1 bg-blue-600 text-white rounded-md text-sm">1W</button>
+                        <button class="px-3 py-1 bg-gray-100 rounded-md text-sm">1M</button>
+                        <button class="px-3 py-1 bg-gray-100 rounded-md text-sm">1Y</button>
+                    </div>
+                </div>
+                <canvas id="marketChart" height="300"></canvas>
+            </div>
+            
+            <!-- Top Movers -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-4">Today's Top Movers</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="card bg-white p-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fab fa-apple text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">AAPL</h4>
+                                <span>Apple Inc.</span>
+                            </div>
+                            <div class="ml-auto text-right">
+                                <div class="font-bold">$178.45</div>
+                                <span class="text-green-500 font-medium">+2.87%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card bg-white p-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-car text-orange-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">TSLA</h4>
+                                <span>Tesla Inc.</span>
+                            </div>
+                            <div class="ml-auto text-right">
+                                <div class="font-bold">$245.67</div>
+                                <span class="text-green-500 font-medium">+4.32%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card bg-white p-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-film text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">NFLX</h4>
+                                <span>Netflix Inc.</span>
+                            </div>
+                            <div class="ml-auto text-right">
+                                <div class="font-bold">$401.23</div>
+                                <span class="text-red-500 font-medium">-1.45%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- All Stocks Table -->
+            <div class="card bg-white overflow-hidden">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-4">Major Stocks</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Symbol</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Change</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Volume</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                                                <i class="fab fa-apple text-blue-600 text-sm"></i>
+                                            </div>
+                                            <div class="font-bold">AAPL</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Apple Inc.</td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-bold">$178.45</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="stock-up">+2.87%</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">24.5M</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <button class="text-blue-600 hover:text-blue-800">Trade</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-2">
+                                                <i class="fas fa-car text-orange-600 text-sm"></i>
+                                            </div>
+                                            <div class="font-bold">TSLA</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Tesla Inc.</td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-bold">$245.67</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="stock-up">+4.32%</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">18.7M</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <button class="text-blue-600 hover:text-blue-800">Trade</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center mr-2">
+                                                <i class="fab fa-microsoft text-cyan-600 text-sm"></i>
+                                            </div>
+                                            <div class="font-bold">MSFT</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Microsoft Corp.</td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-bold">$312.89</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="stock-up">+1.78%</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">15.3M</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <button class="text-blue-600 hover:text-blue-800">Trade</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-2">
+                                                <i class="fab fa-amazon text-green-600 text-sm"></i>
+                                            </div>
+                                            <div class="font-bold">AMZN</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Amazon.com Inc.</td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-bold">$137.25</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="stock-down">-0.45%</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">22.1M</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <button class="text-blue-600 hover:text-blue-800">Trade</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-2">
+                                                <i class="fas fa-film text-red-600 text-sm"></i>
+                                            </div>
+                                            <div class="font-bold">NFLX</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Netflix Inc.</td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-bold">$401.23</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="stock-down">-1.45%</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">5.6M</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <button class="text-blue-600 hover:text-blue-800">Trade</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Not logged in portfolio message -->
+    <section id="portfolio" class="py-16 px-4 bg-gray-50" x-show="!isLoggedIn">
+        <div class="container mx-auto">
+            <div class="card bg-white text-center p-12 max-w-2xl mx-auto">
+                <i class="fas fa-lock text-5xl text-blue-600 mb-6"></i>
+                <h2 class="text-3xl font-bold mb-4">Access Your Portfolio</h2>
+                <p class="text-gray-600 mb-6">Please log in to view your portfolio holdings and investment performance.</p>
+                <div class="space-x-4">
+                    <button onclick="isLoggedIn = true" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700 transition">
+                        Log In
+                    </button>
+                    <button class="text-blue-600 border border-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition">
+                        Sign Up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Financial News</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- News Card 1 -->
+                <div class="card overflow-hidden slide-up">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" 
+                             class="w-full h-full object-cover" alt="Market News">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-16"></div>
+                        <div class="absolute bottom-0 left-0 p-4 text-white">
+                            <span class="text-xs bg-blue-600 px-2 py-1 rounded">MARKET</span>
+                            <span class="text-xs text-gray-300 ml-2">Today, 10:45 AM</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">S&P 500 Hits Record High Amid Tech Rally</h3>
+                        <p class="text-gray-600 mb-4">The benchmark index climbed to 4,567.89 as tech stocks led gains following strong earnings reports from major companies.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Read more →</a>
+                    </div>
+                </div>
+                
+                <!-- News Card 2 -->
+                <div class="card overflow-hidden slide-up delay-1">
+                    <div class="relative h-48">
+                        <img src="https://tse3.mm.bing.net/th/id/OIP.CC-0J2LpXPeSy49XxwnizgHaE8?rs=1&pid=ImgDetMain" 
+                             class="w-full h-full object-cover" alt="Bitcoin News">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-16"></div>
+                        <div class="absolute bottom-0 left-0 p-4 text-white">
+                            <span class="text-xs bg-yellow-500 px-2 py-1 rounded">CRYPTO</span>
+                            <span class="text-xs text-gray-300 ml-2">Yesterday, 3:22 PM</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Bitcoin Surpasses $42,000 as Institutional Interest Grows</h3>
+                        <p class="text-gray-600 mb-4">The cryptocurrency has gained over 15% this month amid increasing adoption by major financial institutions and corporations.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Read more →</a>
+                    </div>
+                </div>
+                
+                <!-- News Card 3 -->
+                <div class="card overflow-hidden slide-up delay-2">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" 
+                             class="w-full h-full object-cover" alt="Fed News">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-16"></div>
+                        <div class="absolute bottom-0 left-0 p-4 text-white">
+                            <span class="text-xs bg-red-600 px-2 py-1 rounded">ECONOMY</span>
+                            <span class="text-xs text-gray-300 ml-2">Jun 12, 2023</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Fed Signals Potential Rate Hike Pause in September Meeting</h3>
+                        <p class="text-gray-600 mb-4">Central bank officials indicate they may hold off on further interest rate increases as inflation shows signs of cooling.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Read more →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg">
+                    View All News
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="card bg-white p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Our Headquarters</h4>
+                                    <p class="text-gray-600">120 Market Street, 69th Floor<br>Market Valley</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-phone-alt text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Phone Number</h4>
+                                    <p class="text-gray-600">+1 (123) 456-7890<br>Mon-Fri, 9am-6pm ET</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-envelope text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Email Address</h4>
+                                    <p class="text-gray-600">info@example.com<br>support@example.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                      
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="card bg-white p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">Send Us a Message</h3>
+                        
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="first-name" class="block text-gray-700 font-medium mb-2">First Name</label>
+                                    <input type="text" id="first-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="last-name" class="block text-gray-700 font-medium mb-2">Last Name</label>
+                                    <input type="text" id="last-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option>General Inquiry</option>
+                                    <option>Account Support</option>
+                                    <option>Trading Questions</option>
+                                    <option>Partnerships</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                        <span class="text-xl font-bold">QNTM</span>
+                    </div>
+                    <p class="text-gray-300">Advanced financial tools and insights to help you achieve your investment goals with confidence.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Trading Platform</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Investment Research</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Portfolio Analytics</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Wealth Management</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">API Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Investment Guides</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Market Research</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Webinars</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Disclosures</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Regulatory Information</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2024 Hytro. All rights reserved. Member FINRA/SIPC. Investments involve risk. Past performance is no guarantee of future results.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        // Check login state (false by default)
+        const isLoggedIn = false;
+        
+        // Initialize Market Chart
+        const marketCtx = document.getElementById('marketChart').getContext('2d');
+        const marketChart = new Chart(marketCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'S&P 500',
+                    data: [4200, 4250, 4350, 4400, 4350, 4450, 4500, 4550, 4500, 4480, 4560, 4570],
+                    borderColor: '#3a86ff',
+                    backgroundColor: 'rgba(58, 134, 255, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+        
+        
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-up');
+            
+            // Initially hide elements
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+            });
+            
+            // Check if elements are in viewport
+            function checkInView() {
+                animatedElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    const isInView = (rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0);
+                    
+                    if (isInView && !el.classList.contains('animated')) {
+                        el.classList.add('animated');
+                        el.style.animationFillMode = 'forwards';
+                    }
+                });
+            }
+            
+            // Run on load and scroll
+            checkInView();
+            window.addEventListener('scroll', checkInView);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
