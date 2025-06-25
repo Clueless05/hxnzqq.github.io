@@ -25,7 +25,12 @@ body {
 main {
   scrollbar-color: rgba(255,255,255,0.15) transparent;
 }
-
+@media (max-width: 640px) {
+  .game-card video {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -1013,20 +1018,49 @@ if (video) {
   });
 });
 document.querySelectorAll('.game-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const rotateX = ((y / rect.height) - 0.5) * 10;
-    const rotateY = ((x / rect.width) - 0.5) * -10;
-    card.classList.add('tilt');
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-  });
+  const video = card.querySelector('video');
 
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-    card.classList.remove('tilt');
-  });
+  let isPlaying = false;
+
+  const toggleVideo = () => {
+    if (!video) return;
+
+    if (isPlaying) {
+      video.pause();
+      video.currentTime = 0;
+      video.style.display = 'none';
+    } else {
+      video.style.display = 'block';
+      video.style.opacity = '0';
+      video.play();
+      setTimeout(() => {
+        video.style.opacity = '1';
+        video.style.transition = 'opacity 0.4s ease';
+      }, 10);
+    }
+
+    isPlaying = !isPlaying;
+  };
+
+  if ('ontouchstart' in window) {
+    card.addEventListener('click', (e) => {
+      e.stopPropagation(); // zabrání zacyklení
+      toggleVideo();
+    });
+
+    document.body.addEventListener('click', (e) => {
+      if (!card.contains(e.target) && isPlaying) {
+        toggleVideo();
+      }
+    });
+  } else {
+    // Desktop: zachováme hover chování
+    card.addEventListener('mouseenter', () => toggleVideo());
+    card.addEventListener('mouseleave', () => {
+      if (isPlaying) toggleVideo();
+    });
+  }
+
 });
 
   const burgerBtn = document.getElementById("burgerToggle");
