@@ -9,7 +9,11 @@
 body {
   background: linear-gradient(to bottom right, #271111, #291f37);
 }
-
+@media (max-width: 768px) {
+  .game-card video {
+    display: none !important;
+  }
+}
 /* Fade-in animace při načtení */
 .fade-in {
   animation: fadeIn 0.6s ease-out forwards;
@@ -45,11 +49,7 @@ main {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
-@media (max-width: 768px) {
-  .game-card video {
-    display: none !important;
-  }
-}
+
 /* Základ karty */
 .game-card {
   position: relative;
@@ -160,12 +160,12 @@ main {
   <ul class="space-y-1">
     <li>
       <button onclick="showAll()" class="hover:text-[#A1A1A1] font-semibold mt-2">
-        📋 All (62)
+        📋 All (63)
       </button>
     </li>
     <li>
       <button onclick="filterGames('dohrano')" class="hover:text-[#A1A1A1] font-semibold mt-2">
-        ✅ Completed (54)
+        ✅ Completed (52)
       </button>
     </li>
     <li>
@@ -198,7 +198,7 @@ main {
         <h2 class="text-sm uppercase text-gray-400 mt-6 mb-2">⭐ Rating</h2>
         <ul class="space-y-1">
           <li><button onclick="filterRating(6)" class="hover:text-yellow-400 font-semibold mt-2" >👑👑👑👑👑👑 (12)</button></li>
-          <li><button onclick="filterRating(5)" class="hover:text-yellow-400 font-semibold mt-2">⭐⭐⭐⭐⭐ (13)</button></li>
+          <li><button onclick="filterRating(5)" class="hover:text-yellow-400 font-semibold mt-2">⭐⭐⭐⭐⭐ (14)</button></li>
           <li><button onclick="filterRating(4)" class="hover:text-yellow-400 font-semibold mt-2">⭐⭐⭐⭐ (20)</button></li>
           <li><button onclick="filterRating(3)" class="hover:text-yellow-400 font-semibold mt-2">⭐⭐⭐ (8)</button></li>
           <li><button onclick="filterRating(2)" class="hover:text-yellow-400 font-semibold mt-2">⭐⭐ (5)</button></li>
@@ -320,6 +320,30 @@ main {
     <p>⭐⭐⭐⭐⭐</p>
   </div>
 </div>
+        <div class="game-card fade-in rounded-xl shadow-md p-1" data-status="dohrano" data-genre="fps" data-rating="5" style="background-color: #291212;">
+  <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/202970/header.jpg?t=1748037715" alt="CoDBO6" class="rounded mb-2">
+  <video muted loop preload="none" class="rounded mb-2">
+    <source src="https://video.fastly.steamstatic.com/store_trailers/2028416/movie480.webm?t=1589832329" type="video/mp4">
+  </video>
+  <h3 class="text-sm font-semibold">Call of Duty Black Ops II</h3>
+  <div class="text-xs text-gray-400 space-y-1">
+    <p>🎮 FPS</p>
+    <p>🏁 Completed</p>
+    <p>⭐⭐⭐⭐⭐</p>
+  </div>
+</div>
+        <div class="game-card fade-in rounded-xl shadow-md p-1" data-status="dohrano" data-genre="fps" data-rating="4" style="background-color: #291212;">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg?t=1748536585" alt="CoDBO6" class="rounded mb-2">
+  <video muted loop preload="none" class="rounded mb-2">
+    <source src="https://video.akamai.steamstatic.com/store_trailers/257092611/movie480_vp9.webm?t=1748536459" type="video/mp4">
+  </video>
+  <h3 class="text-sm font-semibold">Call of Duty Black Ops 6</h3>
+  <div class="text-xs text-gray-400 space-y-1">
+    <p>🎮 FPS</p>
+    <p>🏁 Completed</p>
+    <p>⭐⭐⭐⭐</p>
+  </div>
+</div>
         <div class="game-card fade-in rounded-xl shadow-md p-1" data-status="dohrano" data-genre="fps" data-rating="3" style="background-color: #291212;">
   <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2519060/header.jpg?t=1731633494" alt="CoDMWIII" class="rounded mb-2">
   <video muted loop preload="none" class="rounded mb-2">
@@ -333,18 +357,7 @@ main {
   </div>
 </div>
 
-        <div class="game-card fade-in rounded-xl shadow-md p-1" data-status="dohrano" data-genre="fps" data-rating="4" style="background-color: #291212;">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg?t=1748536585" alt="CoDBO6" class="rounded mb-2">
-  <video muted loop preload="none" class="rounded mb-2">
-    <source src="https://video.akamai.steamstatic.com/store_trailers/257092611/movie480_vp9.webm?t=1748536459" type="video/mp4">
-  </video>
-  <h3 class="text-sm font-semibold">Call of Duty Black Ops 6</h3>
-  <div class="text-xs text-gray-400 space-y-1">
-    <p>🎮 FPS</p>
-    <p>🏁 Completed</p>
-    <p>⭐⭐⭐⭐</p>
-  </div>
-</div>
+
         <div class="game-card fade-in rounded-xl shadow-md p-1" data-status="nedohrano" data-genre="action-adventure" data-rating="2" style="background-color: #291212;">
   <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/870780/header.jpg?t=1743425935" alt="Control" class="rounded mb-2">
   <video muted loop preload="none" class="rounded mb-2">
