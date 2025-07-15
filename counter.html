@@ -65,6 +65,15 @@
       -webkit-appearance: none;
       margin: 0;
     }
+.btn.copy {
+  background-color: #555;
+  margin-top: 15px;
+  grid-column: span 4;
+}
+
+.btn.copy:hover {
+  background-color: #777;
+}
 
     input[type=number] {
       -moz-appearance: textfield;
@@ -205,6 +214,9 @@
         <button class="btn operator" onclick="appendValue('+')">+</button>
 
         <button class="btn equal" style="grid-column: span 4;" onclick="calculateResult()">=</button>
+        <button class="btn copy" onclick="copyResult()">📋</button>
+<span id="copyStatus" style="font-size: 0.9rem; color: #4caf50; display: none;"></span>
+
       </div>
     </div>
 
@@ -269,6 +281,21 @@ document.addEventListener('keydown', function(e) {
     clearDisplay();
   }
 });
+function copyResult() {
+  const result = calcDisplay.value;
+  if (result !== '') {
+    navigator.clipboard.writeText(result)
+      .then(() => {
+        const status = document.getElementById('copyStatus');
+        status.style.display = 'inline';
+        setTimeout(() => {
+          status.style.display = 'none';
+        }, 1500);
+      })
+      .catch(() => alert("Nepodařilo se zkopírovat."));
+  }
+}
+
 
   </script>
 
