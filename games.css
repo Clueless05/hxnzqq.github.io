@@ -25,15 +25,17 @@ body {
     height:100%;
     z-index:0;
 }
+/* mobil */
 @media (max-width: 768px) {
     .burger-date-time {
-        position: fixed;
-        bottom: 80px; /* nad music playerem */
+        position: fixed;   /* fixní vůči viewportu */
+        bottom: 80px;      /* nad hudebním playerem */
         left: 50%;
         transform: translateX(-50%);
-        z-index: 130; /* aby byl nad vším */
+        z-index: 130;      /* nad vším ostatním */
     }
 }
+
 .star {
     position: absolute;
     width: 2px;
@@ -582,4 +584,5 @@ h1, .motivation {
     display: none;
   }
 }
+
 
