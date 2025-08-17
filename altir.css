@@ -1,0 +1,670 @@
+/* --- Reset a základ --- */
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Hvězdy --- */
+.stars {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/* --- Kontejner obsahu --- */
+.container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 480px;
+    padding: 0 15px;
+}
+
+.hytro {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #d3d3d3;
+}
+p.motivation:hover {
+    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+p.motivation {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #a3a3a3; /* jemná světle šedá */
+    font-weight: 600;
+}
+
+/* --- Social tlačítka --- */
+.social-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-buttons a {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:2px solid #ccc; /* světle šedý border */
+    color:#ccc; /* jemná světle šedá */
+    text-decoration:none;
+    font-size:18px;
+    transition: all 0.25s ease;
+    background:transparent;
+}
+
+.social-buttons a:hover {
+    transform: scale(1.05);
+    color: #929292; /* lehce světlejší než bílé */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* jemný glow */
+}
+
+/* --- Minimalistický efekt pro h1 a text --- */
+h1, p.motivation {
+    transition: all 0.3s ease;
+}
+
+.hytro:hover {
+    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    p.motivation {
+        font-size: 1rem;
+    }
+    .social-buttons a {
+        width: 40px;
+        height: 40px;
+        font-size:16px;
+    }
+}
+/* From Uiverse.io by Artahs */ 
+ul {
+  list-style: none;
+}
+
+.example-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.example-2 .icon-content {
+  margin: 0 10px;
+  position: relative;
+}
+
+.example-2 .icon-content a {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: rgb(212, 212, 212);
+  background-color: #00000000;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover {
+  box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+.example-2 .icon-content a svg {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+}
+.example-2 .icon-content a:hover {
+      color: #ffffff; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+.example-2 .icon-content a .filled {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #000;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover .filled {
+  height: 100%;
+}
+
+.example-2 .icon-content a[data-social="discord"] .filled,
+.example-2 .icon-content a[data-social="discord"] ~ .tooltip {
+  background-color: #7289da;
+}
+
+.example-2 .icon-content a[data-social="steam"] .filled,
+.example-2 .icon-content a[data-social="steam"] ~ .tooltip {
+  background-color: #171d25;
+}
+.example-2 .icon-content a[data-social="instagram"] .filled,
+.example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5b51db,
+    #b33ab4,
+    #c135b4,
+    #e17130,
+    #fdee1f
+  );
+}
+.example-2 .icon-content a[data-social="tiktok"] .filled,
+.example-2 .icon-content a[data-social="tiktok"] ~ .tooltip {
+  background-color: #0e0e0e;
+}
+.example-2 .icon-content a[data-social="youtube"] .filled,
+.example-2 .icon-content a[data-social="youtube"] ~ .tooltip {
+  background-color: #ff0000;
+}
+
+.example-2 .icon-content a[data-social="twitch"] .filled,
+.example-2 .icon-content a[data-social="twitch"] ~ .tooltip {
+  background-color: #9146FF;
+}
+/* Skrytí checkboxu */
+.burger-menu input {
+  display: none;
+}
+
+/* Burger menší vlevo nahoře */
+.burger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.burger-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;  /* menší */
+  height: 22px; /* menší */
+  cursor: pointer;
+  z-index: 110;
+}
+
+.burger-label span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Burger -> X po kliknutí */
+#menu-toggle:checked + .burger-label span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu-toggle:checked + .burger-label span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked + .burger-label span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Menu vysouvání */
+
+.burger-label {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 120; /* nad menu */
+}
+
+.burger-label span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* animace při otevření menu */
+#menu-toggle:checked + .burger-label span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-toggle:checked + .burger-label span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .burger-label span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* menu vysunuté zleva */
+
+/* Container */
+#music-player {
+  transform: scale(0.8); /* zmenší všechno */
+  transform-origin: bottom right;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  align-items: flex-start;
+  width: 430px;
+  background: none; /* průhledné */
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: system-ui, sans-serif;
+  color: #fff;
+  z-index: 9999;
+  padding: 10px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease; /* hladký přechod pozice/rozměrů */
+}
+
+/* Album */
+#album-art {
+  flex: 0 0 100px;
+  height: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-right: 15px;
+  position: relative;
+}
+
+#album-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* animace pro obrázek */
+}
+
+/* efekt při hoveru */
+#album-art:hover img {
+  transform: scale(1.1);
+  filter: blur(1px);
+}
+
+/* animace při změně tracku */
+#album-art.fade-out {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+#album-art.fade-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Track Info */
+#track-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+#track-info:hover {
+  cursor: default;
+}
+/* Track title and artist */
+#track-title, #track-artist {
+  transition: opacity 0.3s ease, transform 0.3s ease; /* animace textu */
+}
+#track-artist {
+  font-size: 12px;          /* o trochu menší než title */
+  color: #ccc;              /* světle šedá */
+  margin-bottom: 14px;      /* víc prostoru od seek baru */
+  line-height: 1.2;         /* lepší čitelnost */
+  overflow: hidden;         /* pokud je dlouhý text, nepřebíhá */
+  white-space: nowrap;
+  text-overflow: ellipsis;  /* doplní ... když se nevejde */
+  transition: color 0.3s;   /* jemný přechod při změně textu */
+}
+#track-artist:hover {
+  cursor: default;
+
+}
+#track-title.fade-out, #track-artist.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+#track-title.fade-in, #track-artist.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progress bar */
+#seek-bar-container {
+  width: 100%;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  position: relative;
+}
+#seek-bar-container:hover {
+  width: 100%;
+  height: 6px;
+  background: #424242;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  transition: color 0.5s, text-shadow 0.5s;
+  cursor: pointer;
+  position: relative;
+}
+
+.hytro, .burger-date-time, .motivation {
+  cursor: default;
+}
+
+#seek-bar {
+  height: 100%;
+  width: 0%;
+  background: #ffffff;
+  border-radius: 3px;
+  transition: width 0.2s linear;
+}
+
+/* Controls */
+#controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#player-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #aaa;
+  margin-right: 10px;
+  transition: color 0.2s;
+}
+
+#player-buttons button:hover {
+  color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 1px #fff,   /* jemný glow */
+        0 0 2px #ccc,
+        0 0 3px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Volume */
+#volume-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#volume-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #aaa;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+#volume-button:hover {
+  cursor: default;
+      color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 1px #fff,   /* jemný glow */
+        0 0 2px #ccc,
+        0 0 3px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Slider initially hidden */
+#volume-bar-container {
+  width: 120px;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  cursor: pointer;
+  position: absolute;
+  top: 55%;
+  right: 35px;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.2s;
+}
+
+#volume-bar-container.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#volume-bar {
+  width: 50%; /* default volume */
+  height: 100%;
+  background: #ffffff;
+  border-radius: 3px;
+  transition: width 0.2s linear;
+}
+#volume-bar-container:hover {
+  width: 120px;
+  height: 6px;
+  background: #424242;
+  border-radius: 3px;
+  cursor: pointer;
+  position: absolute;
+  top: 55%;
+  right: 35px;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.2s;
+}
+/* --- Fade animations --- */
+.fade-out {
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#album-art img {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.burger-date-time {
+    position: absolute;   /* fixně dole */
+    bottom: 20px;         /* odsazení od spodku */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Nunito', sans-serif; /* futuristický tech font */
+    font-size: 18px;      /* větší text */
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase; /* uppercase */
+    opacity: 0.9;
+}
+.burger-date-time:hover {
+    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+/* === Burger tlačítko === */
+#menu-toggle {
+  display: none;
+}
+
+.toggle {
+  position: fixed;        /* aby držel v rohu */
+  top: 15px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition-duration: .3s;
+  z-index: 100;           /* nad menu */
+}
+
+.bars {
+  width: 100%;
+  height: 4px;
+  background-color: rgb(253, 255, 243);
+  border-radius: 5px;
+  transition-duration: .3s;
+}
+
+/* Animace hamburgeru → kříž */
+#menu-toggle:checked + .toggle #bar2 {
+  transform: translateY(14px) rotate(60deg);
+  transform-origin: right;
+  transition-duration: .3s;
+  z-index: 2;
+}
+
+#menu-toggle:checked + .toggle #bar1 {
+  transform: translateY(28px) rotate(-60deg);
+  transition-duration: .3s;
+  transform-origin: left;
+  z-index: 1;
+}
+
+#menu-toggle:checked + .toggle {
+  transform: rotate(-90deg);
+}
+
+/* === Sidebar === */
+.burger-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  padding-top: 60px; /* prostor pro burger */
+  z-index: 90;
+}
+
+#menu-toggle:checked ~ .burger-nav {
+  transform: translateX(0);
+}
+
+.burger-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.burger-nav ul li {
+  margin: 20px 0;
+}
+
+.burger-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.burger-nav ul li a:hover {
+     color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+.toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: 25px;        /* zmenšeno z 40px */
+  height: 25px;       /* zmenšeno z 40px */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;           /* zmenšeno z 10px */
+  transition-duration: .3s;
+  z-index: 100;
+}
+
