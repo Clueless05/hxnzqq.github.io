@@ -90,7 +90,15 @@ p.motivation {
     transition: all 0.25s ease;
     background:transparent;
 }
-
+@media (max-width: 768px) {
+    .burger-date-time {
+        position: fixed;
+        bottom: 80px; /* nad music playerem */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 130; /* aby byl nad vším */
+    }
+}
 .social-buttons a:hover {
     transform: scale(1.05);
     color: #929292; /* lehce světlejší než bílé */
@@ -695,4 +703,5 @@ ul {
     transform: translateX(-50%) scale(0.8); /* posun doprostřed */
     transform-origin: bottom center;
   }
+
 }
