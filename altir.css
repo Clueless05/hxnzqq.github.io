@@ -629,6 +629,11 @@ ul {
   padding-top: 60px; /* prostor pro burger */
   z-index: 90;
 }
+@media (max-width: 768px) {
+    .burger-date-time {
+        display: none;
+    }
+}
 
 #menu-toggle:checked ~ .burger-nav {
   transform: translateX(0);
@@ -706,4 +711,5 @@ ul {
   }
 
 }
+
 
