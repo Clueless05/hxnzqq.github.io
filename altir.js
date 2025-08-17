@@ -167,11 +167,9 @@ function hideIrisVideo() {
 
 // --- Seznam tracků ---
 const tracks = [
-  { title: "Sextape", artist: "Deftones", src: "assets/sextape.mp3", cover: "https://i.ibb.co/DfhymFpt/Deftones-sextape.jpg" },
-  { title: "No Surprises", artist: "Radiohead", src: "assets/nosurprises.mp3", cover: "https://i.ibb.co/GvsPxS4n/ab67616d0000b273c8b444df094279e70d0ed856.jpg" },
-  { title: "Iris", artist: "Goo Goo Dolls", src: "assets/iris.m4a", cover: "https://i.ibb.co/JwL986CX/ab67616d0000b273eda9478c39a21e1cdc6609ca.jpg" },
-  { title: "Home", artist: "Jordan Schor", src: "https://singhimalaya.github.io/Codepen/assets/music/4.mp3", cover: "https://singhimalaya.github.io/Codepen/assets/img/album-arts/4.jpg" },
-  { title: "Proxy", artist: "Martin Garrix", src: "https://singhimalaya.github.io/Codepen/assets/music/5.mp3", cover: "https://singhimalaya.github.io/Codepen/assets/img/album-arts/5.jpg" }
+  { title: "Iris", artist: "Goo Goo Dolls", src: "iris.m4a", cover: "https://i.ibb.co/JwL986CX/ab67616d0000b273eda9478c39a21e1cdc6609ca.jpg" },
+  { title: "Sextape", artist: "Deftones", src: "sextape.mp3", cover: "https://i.ibb.co/DfhymFpt/Deftones-sextape.jpg" },
+  { title: "No Surprises", artist: "Radiohead", src: "nosurprises.mp3", cover: "https://i.ibb.co/GvsPxS4n/ab67616d0000b273c8b444df094279e70d0ed856.jpg" }
 ];
 
 let currentIndex = 0;
