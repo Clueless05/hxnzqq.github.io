@@ -668,3 +668,31 @@ ul {
   z-index: 100;
 }
 
+@media (max-width: 768px) {
+  .burger-nav {
+    background: rgba(0, 0, 0, 0.95); /* černá s mírnou průhledností */
+  }
+}
+/* Music player */
+#music-player {
+  z-index: 900; /* pod menu i burgerem */
+}
+
+/* Menu nav */
+.burger-nav {
+  z-index: 950; /* nad playerem */
+}
+
+/* Burger tlačítko */
+.burger-label {
+  z-index: 1000; /* vždy nejvyšší, aby šlo kliknout */
+}
+@media (max-width: 768px) {
+  #music-player {
+    bottom: 15px;      /* stále dole */
+    left: 50%;         /* horizontální střed */
+    right: auto;       /* zrušíme pravou pozici */
+    transform: translateX(-50%) scale(0.8); /* posun doprostřed */
+    transform-origin: bottom center;
+  }
+}

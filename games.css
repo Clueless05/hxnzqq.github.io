@@ -1,0 +1,576 @@
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Hvězdy --- */
+.stars {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+
+.container {
+    position: absolute;
+    top: 50px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    
+    z-index: 2;
+    text-align: center;
+    max-width: 480px;
+    padding: 0 15px;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+
+
+p.motivation:hover {
+           color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+p.motivation {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #ccc;
+    font-weight: 600;
+}
+
+h1, p.motivation {
+    transition: all 0.3s ease;
+}
+
+.hytro:hover {
+       color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    p.motivation {
+        font-size: 1rem;
+    }
+}
+
+.burger-menu input {
+  display: none;
+}
+
+
+.burger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.burger-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;  
+  height: 22px; 
+  cursor: pointer;
+  z-index: 110;
+}
+
+.burger-label span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+
+#menu-toggle:checked + .burger-label span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu-toggle:checked + .burger-label span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked + .burger-label span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+.burger-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;       
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  padding-top: 60px;  
+  z-index: 90;
+}
+
+#menu-toggle:checked ~ .burger-nav {
+  transform: translateX(0);
+}
+
+.burger-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.burger-nav ul li {
+  margin: 20px 0;
+}
+
+.burger-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+h1, .motivation {
+  cursor: default; 
+}
+
+.burger-nav ul li a:hover {
+         color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+.burger-label {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 120; 
+}
+
+.burger-label span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* animace při otevření menu */
+#menu-toggle:checked + .burger-label span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-toggle:checked + .burger-label span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .burger-label span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* menu */
+.burger-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  padding-top: 60px;
+  z-index: 90;
+}
+
+#menu-toggle:checked ~ .burger-nav {
+  transform: translateX(0);
+}
+
+.burger-date-time {
+    position: absolute;   
+    bottom: 20px;         
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Nunito', sans-serif; 
+    font-size: 18px;      
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase; 
+    opacity: 0.9;
+}
+.burger-date-time:hover { 
+  cursor: default;
+      color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Default (PC) */
+.burger-nav {
+  background: rgba(0, 0, 0, 0); /* průhledné */
+}
+
+/* Mobile a tablety */
+@media (max-width: 768px) {
+  .burger-nav {
+    background: rgba(0, 0, 0, 0.95); /* černá s mírnou průhledností */
+  }
+}
+
+/* Container pro header + grid */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    width: 90%;
+    height: 100vh; /* zabírá celou obrazovku */
+}
+
+/* Nadpis a motivace nahoře */
+.hytro,
+.motivation {
+    z-index: 5;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Hlavní wrapper pro grid + filtry */
+
+.content-with-filters {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    flex-grow: 1;    /* vyplní prostor pod headerem */
+    min-height: 0;   /* klíčové pro scroll uvnitř flexu */
+}
+
+/* Grid her vyplní zbytek vertikální plochy */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* auto-fit místo auto-fill */
+    grid-auto-rows: auto;
+    gap: 20px;
+    flex-grow: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding-bottom: 80px; /* rezerva dole */
+    scroll-padding-bottom: 80px;
+    align-items: start;
+}
+
+/* Skrytí scrollbaru */
+.games-grid::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+.games-grid {
+    padding-bottom: 80px; /* větší rezerva */
+    scroll-padding-bottom: 80px;
+}
+
+
+.game-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(14, 14, 14, 0);
+    border-radius: 12px;
+    padding: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+    /* zruš max-height, to dělá bordel */
+    height: auto;
+}
+
+.game-box:hover {
+    transform: translateY(-5px);
+    color: #e0e0e0;
+    text-shadow: 
+        0 0 2px #afafaf, 
+        0 0 4px #999999,
+        0 0 6px #9c9b9b;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+.media-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #000; /* pro vyplnění okrajů při contain */
+}
+
+.media-wrapper img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* celý obrázek se vejde, žádné ořezávání */
+    transform: translate(-50%, -50%); /* vycentrování */
+    border-radius: 16px;
+    transition: opacity 0.3s ease;
+}
+
+.media-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* video vyplní celý box */
+    border-radius: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.game-box:hover .media-wrapper img {
+    opacity: 0;
+}
+
+.game-box:hover .media-wrapper video {
+    opacity: 1;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-title {
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.game-dev {
+    text-align: left;
+    font-size: 0.8rem;
+    color: #ccc;
+    margin: 0;
+}
+
+.rating-circle {
+    width: 40px;
+    height: 40px;
+}
+
+.circular-chart {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #444;
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 4;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke-dasharray 0.5s ease;
+}
+
+.percentage {
+    fill: #ffffff;
+    font-size: 0.8em;
+    text-anchor: middle;
+}
+
+/* Sidebar filtry */
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    padding-left: 20px;
+    width: 200px;
+}
+.filters:hover {
+  cursor: default;
+      color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+.filters h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    text-align: left;
+}
+.filters h2:hover {
+  cursor: default;
+      color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Skrytí default checkboxu */
+.filters input[type="checkbox"] {
+    display: none;
+}
+
+/* Vlastní styl checkboxu */
+.filters label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1rem;
+}
+
+/* Vlastní box */
+.filters label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+/* Animovaný check */
+.filters input[type="checkbox"]:checked + label::before {
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+/* Zaškrtávací značka */
+.filters label::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 12px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.2s ease;
+}
+
+/* Při checknu zobrazí značku */
+.filters input[type="checkbox"]:checked + label::after {
+    transform: rotate(45deg) scale(1);
+}
+.game-count {
+    margin-top: 20px;
+   
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.game-count i {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.game-count:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    cursor: default;
+    text-shadow: 
+        0 0 4px #fff,
+        0 0 6px #aaa;
+}
+@media (max-width: 768px) {
+  .filters {
+    display: none;
+  }
+}
