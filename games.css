@@ -25,13 +25,6 @@ body {
     height:100%;
     z-index:0;
 }
-/* mobil */
-@media (max-width: 768px) {
-    .burger-date-time {
-        display: none;
-    }
-}
-
 
 .star {
     position: absolute;
@@ -56,7 +49,7 @@ body {
 }
 
 h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 10px;
@@ -76,7 +69,7 @@ p.motivation:hover {
 }
 
 p.motivation {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 1.2rem;
     margin-bottom: 25px;
     color: #ccc;
@@ -270,6 +263,12 @@ h1, .motivation {
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
+/* mobil */
+@media (max-width: 768px) {
+    .burger-date-time {
+        display: none;
+    }
+}
 
 /* Default (PC) */
 .burger-nav {
@@ -456,10 +455,13 @@ h1, .motivation {
 }
 
 .percentage {
+    font-family: 'Nunito', sans-serif;
     fill: #ffffff;
-    font-size: 0.8em;
-    text-anchor: middle;
+    font-size: 0.9em;
+    text-anchor: middle;       /* horizontální střed */
+   
 }
+
 
 /* Sidebar filtry */
 .filters {
@@ -581,6 +583,3 @@ h1, .motivation {
     display: none;
   }
 }
-
-
-
