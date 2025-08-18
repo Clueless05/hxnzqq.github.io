@@ -307,3 +307,23 @@ const themes = {
         document.querySelector('.storm-container').style.display = "none";
     },
 };
+
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', (event) => {
+        // gamma -> naklonění vlevo/vpravo, beta -> naklonění dopředu/dozadu
+        const x = event.gamma / 45; // škáluješ podle potřeby
+        const y = event.beta / 45;
+
+        const stars = document.querySelectorAll('.star');
+        stars.forEach(star => {
+            const speed = star.offsetWidth / 2;
+            star.style.transform = `translate(${x * speed * 10}px, ${y * speed * 10}px)`; // násobíš pro větší efekt
+        });
+
+        // stejná logika může být pro social ikony
+        const icons = document.querySelectorAll('.example-2 svg');
+        icons.forEach(icon => {
+            icon.style.transform = `translate(${x * 5}px, ${y * 5}px)`; 
+        });
+    });
+}
