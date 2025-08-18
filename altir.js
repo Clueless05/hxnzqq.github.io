@@ -310,8 +310,8 @@ const themes = {
 
 if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', (event) => {
-        targetX = event.gamma / 45 * 3; // dvojnásobná citlivost
-        targetY = event.beta / 45 * 3;
+        targetX = event.gamma / 45 * 1; // dvojnásobná citlivost
+        targetY = event.beta / 45 * 1;
     });
 }
 
@@ -331,4 +331,5 @@ function updateParallax() {
 }
 
 updateParallax();
+
 
