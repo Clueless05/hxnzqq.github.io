@@ -310,21 +310,25 @@ const themes = {
 
 if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', (event) => {
-        // gamma -> naklonění vlevo/vpravo, beta -> naklonění dopředu/dozadu
-        const x = event.gamma / 45; // škáluješ podle potřeby
-        const y = event.beta / 45;
-
-        const stars = document.querySelectorAll('.star');
-        stars.forEach(star => {
-            const speed = star.offsetWidth / 2;
-            star.style.transform = `translate(${x * speed * 20}px, ${y * speed * 20}px)`; // zdvojnásobeno z 10 na 20
-        });
-
-        // stejná logika pro social ikony
-        const icons = document.querySelectorAll('.example-2 svg');
-        icons.forEach(icon => {
-            icon.style.transform = `translate(${x * 10}px, ${y * 10}px)`; // zdvojnásobeno z 5 na 10
-        });
+        targetX = event.gamma / 45 * 3; // dvojnásobná citlivost
+        targetY = event.beta / 45 * 3;
     });
 }
+
+function updateParallax() {
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+        const speed = star.offsetWidth / 2;
+        star.style.transform = `translate(${targetX * speed * 10}px, ${targetY * speed * 10}px)`; 
+    });
+
+    const icons = document.querySelectorAll('.example-2 svg');
+    icons.forEach(icon => {
+        icon.style.transform = `translate(${targetX * 5}px, ${targetY * 5}px)`; 
+    });
+
+    requestAnimationFrame(updateParallax);
+}
+
+updateParallax();
 
