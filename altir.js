@@ -1,26 +1,32 @@
 // --- Seznam tracků ---
 const tracks = [
-      {
+  {
     title: "Scars",
     artist: "Papa Roach",
     cover: "https://i.scdn.co/image/ab67616d0000b2732d5551c32546cafe3aafd939",
     url: "https://audio.jukehost.co.uk/jQqWY6Bt1ASpFzt5O0y1l0AYVdF7s7VMP"
   },
+
   {
-    title: "Hit 'Em Up",
-    artist: "2pac",
-    cover: "https://i.scdn.co/image/ab67616d0000b273d81a092eb373ded457d94eec",
-    url: "https://audio.jukehost.co.uk/P65uLV7S4q74s4ApKNX5tI8VxSMbOz8H"
-  },
-  {
-    title: "Ambitionz Az A Ridah",
-    artist: "2pac",
-    cover: "https://i.scdn.co/image/ab67616d0000b273073aebff28f79959d2543596",
-    url: "https://audio.jukehost.co.uk/dhXWYMZI7zPdBeSj35DdSWFIyWc4poxP"
+    title: "Hand Of Blood",
+    artist: "Bullet For My Valentine",
+    cover: "https://i.scdn.co/image/ab67616d0000b27354113df5ab7a69df8a44c37e",
+    url: "https://audio.jukehost.co.uk/eWI5uPM9f4xhEIYNkaNCin9sDDAe11BB"
   },
 
+    {
+    title: "Time is Running Out",
+    artist: "Muse",
+    cover: "https://i.scdn.co/image/ab67616d0000b2733303a842ee1bc0b23204333d",
+    url: "https://audio.jukehost.co.uk/eNn4fnEq66GxzItu1uK3JspiCUJyogOi"
+  },
+      {
+    title: "kiss kiss",
+    artist: "mgk",
+    cover: "https://i.scdn.co/image/ab67616d0000b273d4d4929a3a86fe2f9fadbd42",
+    url: "https://audio.jukehost.co.uk/xTB8xHc2HOKY9o7pUlBYKmoQ7UQYQpBB"
+  },
 ];
-
 let currentIndex = Math.floor(Math.random() * tracks.length); // <-- náhodný start
 
 const audio = new Audio();
@@ -117,50 +123,51 @@ document.getElementById("seek-bar-container").addEventListener("click", (e) => {
   audio.currentTime = (clickX / rect.width) * audio.duration;
 });
 
-// --- Volume slider with 5s timeout ---
-let volumeTimeout;
+// --- Volume slider always visible ---
 let isDragging = false;
 
-const showVolume = () => {
-    volumeContainer.classList.add("show");
-    clearTimeout(volumeTimeout);
-    volumeTimeout = setTimeout(() => {
-        volumeContainer.classList.remove("show");
-    }, 5000); // schová po 5 sekundách
-};
-
 const setVolume = (e) => {
-  const rect = volumeContainer.getBoundingClientRect();
-  let x = e.clientX - rect.left;
-  x = Math.max(0, Math.min(x, rect.width));
-  const newVolume = x / rect.width;
-  audio.volume = newVolume;
-  volumeBar.style.width = (newVolume * 100) + "%";
-  showVolume(); // reset timeout při dragování
+    const rect = volumeContainer.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    x = Math.max(0, Math.min(x, rect.width));
+    const newVolume = x / rect.width;
+    audio.volume = newVolume;
+    volumeBar.style.width = (newVolume * 100) + "%";
 };
 
-// Zobrazení / schování
-volumeBtn.addEventListener("mouseenter", showVolume);
-volumeContainer.addEventListener("mouseenter", showVolume);
-volumeBtn.addEventListener("mouseleave", showVolume);
-volumeContainer.addEventListener("mouseleave", showVolume);
+// --- Automaticky přehrát další track po dohrání ---
+audio.addEventListener('ended', () => {
+    currentIndex = (currentIndex + 1) % tracks.length; // další track (cyklicky)
+    loadTrackAnimated(currentIndex);                  // nahraj nový track s animací
+
+    // po malé prodlevě spustíme přehrávání, aby animace stihla nahrát track
+    setTimeout(() => {
+        audio.play().catch(() => {});                // ignoruje chybu, pokud autoplay blokuje prohlížeč
+        playButton.innerHTML = '<i class="fas fa-pause"></i>'; // tlačítko zůstane jako pause
+    }, 350); // prodleva cca stejna jako fade in animace
+});
 
 // Drag logika
 volumeContainer.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  setVolume(e);
-  showVolume();
+    isDragging = true;
+    setVolume(e);
+});
+// --- Reset play/pause button po dohrání tracku ---
+audio.addEventListener('ended', () => {
+    playButton.innerHTML = '<i class="fas fa-play"></i>';
 });
 
 document.addEventListener("mousemove", (e) => {
-  if(isDragging) setVolume(e);
+    if (isDragging) setVolume(e);
 });
 
-document.addEventListener("mouseup", () => isDragging = false);
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+});
 
+// Aktualizace při změně volume (např. tlačítkem)
 audio.addEventListener("volumechange", () => {
-  volumeBar.style.width = (audio.volume * 100) + "%";
-  showVolume();
+    volumeBar.style.width = (audio.volume * 100) + "%";
 });
 
 // --- Load first track ---
@@ -331,5 +338,4 @@ function updateParallax() {
 }
 
 updateParallax();
-
 
