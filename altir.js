@@ -2,13 +2,15 @@
 const tracks = [
   { title: "Scars", artist: "Papa Roach", cover: "https://i.scdn.co/image/ab67616d0000b2732d5551c32546cafe3aafd939", url: "https://audio.jukehost.co.uk/jQqWY6Bt1ASpFzt5O0y1l0AYVdF7s7VMP" },
   { title: "Can You Feel My Heart", artist: "Bring Me The Horizon", cover: "https://i.scdn.co/image/ab67616d0000b27360cf7c8dd93815ccd6cb4830", url: "https://audio.jukehost.co.uk/RPM2ch4dcbsObFDYwSA0WdKoeijfj88A" },
-    { title: "Hit 'Em Up", artist: "2pac", cover: "https://i.scdn.co/image/ab67616d0000b273d81a092eb373ded457d94eec", url: "https://audio.jukehost.co.uk/P65uLV7S4q74s4ApKNX5tI8VxSMbOz8H" },
+  { title: "Hit 'Em Up", artist: "2pac", cover: "https://i.scdn.co/image/ab67616d0000b273d81a092eb373ded457d94eec", url: "https://audio.jukehost.co.uk/P65uLV7S4q74s4ApKNX5tI8VxSMbOz8H" },
   { title: "Ambitionz Az A Ridah", artist: "2pac", cover: "https://i.scdn.co/image/ab67616d0000b273073aebff28f79959d2543596", url: "https://audio.jukehost.co.uk/dhXWYMZI7zPdBeSj35DdSWFIyWc4poxP" },
 ];
 
-let currentIndex = 0;
+// --- Náhodný start ---
+let currentIndex = Math.floor(Math.random() * tracks.length);
+
+// --- Audio element ---
 const audio = new Audio();
-audio.src = tracks[currentIndex].url;
 audio.volume = 0.5;
 
 // --- Elements ---
@@ -24,12 +26,10 @@ const volumeContainer = document.getElementById("volume-bar-container");
 const volumeBar = document.getElementById("volume-bar");
 
 // --- Load track with fade ---
-function loadTrack(index) {
+function loadTrack(index){
     const wasPlaying = !audio.paused;
 
-    [albumArt, trackTitle, trackArtist].forEach(el => {
-        el.classList.add("fade-out");
-    });
+    [albumArt, trackTitle, trackArtist].forEach(el => el.classList.add("fade-out"));
 
     setTimeout(() => {
         const track = tracks[index];
@@ -48,7 +48,7 @@ function loadTrack(index) {
 
         setTimeout(() => {
             [albumArt, trackTitle, trackArtist].forEach(el => el.classList.remove("fade-in"));
-            if (wasPlaying) audio.play().catch(() => {});
+            if(wasPlaying) audio.play().catch(()=>{});
         }, 300);
 
         setThemeForTrack(index);
@@ -73,6 +73,13 @@ prevButton.addEventListener("click", () => {
     playButton.innerHTML = '<i class="fas fa-pause"></i>';
 });
 nextButton.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % tracks.length;
+    loadTrack(currentIndex);
+    playButton.innerHTML = '<i class="fas fa-pause"></i>';
+});
+
+// --- Autoplay další po skončení ---
+audio.addEventListener('ended', () => {
     currentIndex = (currentIndex + 1) % tracks.length;
     loadTrack(currentIndex);
     playButton.innerHTML = '<i class="fas fa-pause"></i>';
@@ -112,7 +119,7 @@ document.addEventListener("mousemove", e => { if(isDragging) setVolume(e); });
 document.addEventListener("mouseup", () => isDragging = false);
 audio.addEventListener("volumechange", () => { volumeBar.style.width = (audio.volume * 100) + "%"; showVolume(); });
 
-// --- Initial track ---
+// --- Initial track load ---
 loadTrack(currentIndex);
 
 // --- Date/Time ---
@@ -149,7 +156,6 @@ for(let i=0;i<150;i++){
         setTimeout(()=>blink(el), Math.random()*1000+500);
     })(star);
 }
-
 function createShootingStar(){
     const star = document.createElement('span');
     star.classList.add('shooting-star');
@@ -189,13 +195,15 @@ document.addEventListener('mousemove', e => {
     const y = (e.clientY/window.innerHeight-0.5)*40;
     starsArray.forEach(s=>{ s.el.style.transform = `translate(${x*s.speed}px, ${y*s.speed}px)`; });
 });
-window.addEventListener('resize', ()=>{
-    starsArray.forEach(s=>{
-        s.el.style.top = Math.random()*window.innerHeight+'px';
-        s.el.style.left = Math.random()*window.innerWidth+'px';
-    });
-});
+window.addEventListener('resize', ()=>{ starsArray.forEach(s=>{ s.el.style.top = Math.random()*window.innerHeight+'px'; s.el.style.left = Math.random()*window.innerWidth+'px'; }); });
 
 // --- Themes ---
 const themes = { stars: ()=>{ document.body.style.background='black'; document.querySelector('.stars').style.display='block'; } };
 function setThemeForTrack(index){ themes.stars(); }
+// --- Automatické přehrání další skladby ---
+audio.addEventListener('ended', () => {
+    currentIndex = (currentIndex + 1) % tracks.length;
+    loadTrack(currentIndex);  // nastaví nový track
+    audio.play().catch(() => {}); // spustí automaticky
+    playButton.innerHTML = '<i class="fas fa-pause"></i>';
+});
