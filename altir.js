@@ -317,13 +317,14 @@ if (window.DeviceOrientationEvent) {
         const stars = document.querySelectorAll('.star');
         stars.forEach(star => {
             const speed = star.offsetWidth / 2;
-            star.style.transform = `translate(${x * speed * 10}px, ${y * speed * 10}px)`; // násobíš pro větší efekt
+            star.style.transform = `translate(${x * speed * 20}px, ${y * speed * 20}px)`; // zdvojnásobeno z 10 na 20
         });
 
-        // stejná logika může být pro social ikony
+        // stejná logika pro social ikony
         const icons = document.querySelectorAll('.example-2 svg');
         icons.forEach(icon => {
-            icon.style.transform = `translate(${x * 5}px, ${y * 5}px)`; 
+            icon.style.transform = `translate(${x * 10}px, ${y * 10}px)`; // zdvojnásobeno z 5 na 10
         });
     });
 }
+
