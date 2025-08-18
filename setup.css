@@ -1,0 +1,482 @@
+/* --- Reset a základ --- */
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Hvězdy --- */
+.stars {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/* --- Kontejner obsahu --- */
+.container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 480px;
+    padding: 0 15px;
+}
+
+.hytro {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #d3d3d3;
+}
+
+
+p.motivation:hover {
+    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+p.motivation {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #a3a3a3;
+    font-weight: 500;
+}
+
+
+
+h1, p.motivation {
+    transition: all 0.3s ease;
+}
+
+.hytro:hover {
+    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    p.motivation {
+        font-size: 1rem;
+    }
+    .social-buttons a {
+        width: 40px;
+        height: 40px;
+        font-size:16px;
+    }
+}
+/* Skrytí checkboxu */
+.burger-menu input {
+  display: none;
+}
+
+/* Burger menší vlevo nahoře */
+.burger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.burger-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;  /* menší */
+  height: 22px; /* menší */
+  cursor: pointer;
+  z-index: 110;
+}
+
+.burger-label span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Burger -> X po kliknutí */
+#menu-toggle:checked + .burger-label span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu-toggle:checked + .burger-label span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked + .burger-label span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Menu vysouvání */
+
+.burger-label {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 120; /* nad menu */
+}
+
+.burger-label span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* animace při otevření menu */
+#menu-toggle:checked + .burger-label span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-toggle:checked + .burger-label span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .burger-label span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+.burger-date-time {
+    position: absolute;   /* fixně dole */
+    bottom: 20px;         /* odsazení od spodku */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Nunito', sans-serif; /* futuristický tech font */
+    font-size: 18px;      /* větší text */
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase; /* uppercase */
+    opacity: 0.9;
+}
+.burger-date-time:hover {
+    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+/* === Burger tlačítko === */
+#menu-toggle {
+  display: none;
+}
+
+.toggle {
+  position: fixed;        /* aby držel v rohu */
+  top: 15px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition-duration: .3s;
+  z-index: 100;           /* nad menu */
+}
+
+.bars {
+  width: 100%;
+  height: 4px;
+  background-color: rgb(253, 255, 243);
+  border-radius: 5px;
+  transition-duration: .3s;
+}
+
+/* Animace hamburgeru → kříž */
+#menu-toggle:checked + .toggle #bar2 {
+  transform: translateY(14px) rotate(60deg);
+  transform-origin: right;
+  transition-duration: .3s;
+  z-index: 2;
+}
+
+#menu-toggle:checked + .toggle #bar1 {
+  transform: translateY(28px) rotate(-60deg);
+  transition-duration: .3s;
+  transform-origin: left;
+  z-index: 1;
+}
+
+#menu-toggle:checked + .toggle {
+  transform: rotate(-90deg);
+}
+
+/* === Sidebar === */
+.burger-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  padding-top: 60px; /* prostor pro burger */
+  z-index: 90;
+}
+
+#menu-toggle:checked ~ .burger-nav {
+  transform: translateX(0);
+}
+
+.burger-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.burger-nav ul li {
+  margin: 20px 0;
+}
+
+.burger-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.burger-nav ul li a:hover {
+     color: #e0e0e0; /* světle šedá místo čistě bílé */
+    text-shadow: 
+        0 0 2px #fff,   /* jemný glow */
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+.toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: 25px;        /* zmenšeno z 40px */
+  height: 25px;       /* zmenšeno z 40px */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;           /* zmenšeno z 10px */
+  transition-duration: .3s;
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .burger-nav {
+    background: rgba(0, 0, 0, 0.95); /* černá s mírnou průhledností */
+  }
+}
+
+
+/* Menu nav */
+.burger-nav {
+  z-index: 950; /* nad playerem */
+}
+
+/* Burger tlačítko */
+.burger-label {
+  z-index: 1000; /* vždy nejvyšší, aby šlo kliknout */
+}
+
+/* mobil */
+@media (max-width: 768px) {
+    .burger-date-time {
+        display: none;
+    }
+}
+
+.container {
+    position: absolute;
+    top: 50px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    
+    z-index: 2;
+    text-align: center;
+    max-width: 480px;
+    padding: 0 15px;
+}
+
+.specs-grid {
+  display: grid;
+  grid-auto-flow: column;                /* grid se vyplňuje po sloupcích */
+  grid-auto-columns: minmax(220px, 1fr); /* šířka sloupce */
+  grid-template-rows: repeat(3, auto);   /* max 3 řádky */
+  gap: 24px;
+  margin-top: 50px;
+  z-index: 2;
+  font-family: 'Inter', 'Segoe UI', sans-serif; /* čistý moderní font */
+}
+
+.spec-card {
+  cursor: default;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(235, 235, 235, 0);
+  border-radius: 14px;
+  padding: 22px 18px;
+  text-align: center;
+  color: #808080;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(3px);
+}
+
+.spec-card i {
+  font-size: 2.2rem;
+  margin-bottom: 14px;
+  color: rgb(170, 170, 170);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.spec-card i:hover {
+  color: rgb(255, 255, 255);
+  transform: scale(1.1);
+}
+
+.spec-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.spec-card p {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+@keyframes glowBreath {
+  0% {
+    box-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 16px rgb(255, 255, 255), 0 0 32px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.spec-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  border-color: rgb(85, 85, 85);
+  color: #fff;
+  animation: glowBreath 1.5s infinite ease-in-out;
+}
+
+/* --- Responsivní grid --- */
+
+/* Tablety: max 1024px */
+@media (max-width: 1024px) {
+  .specs-grid {
+    grid-auto-columns: minmax(180px, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Menší tablety / větší mobily: max 768px */
+@media (max-width: 768px) {
+  .specs-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 sloupec */
+    grid-auto-flow: row;
+    gap: 18px;
+    margin-top: 40px;
+  }
+}
+
+/* Mobily: max 480px */
+@media (max-width: 480px) {
+  .specs-grid {
+    grid-template-columns: 1fr; /* stále 1 sloupec */
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+  .spec-card {
+    padding: 15px 12px;
+  }
+
+  .spec-card i {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+  }
+
+  .spec-card h3 {
+    font-size: 1rem;
+  }
+
+  .spec-card p {
+    font-size: 0.85rem;
+  }
+}
+/* Mobilní scroll a odsazení gridu */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto; /* povolit vertikální scroll */
+    height: auto;     /* neomezovat výšku na 100vh */
+    padding-bottom: 40px; /* prostor dole, aby se neřízl poslední element */
+  }
+
+  .container {
+    top: 30px; /* posun hlavičky trochu nahoru */
+  }
+
+  .specs-grid {
+    margin-top: 180px; /* odsazení od hlavičky, aby se grid nepřekrýval */
+    grid-auto-columns: 100%; /* full-width sloupce na mobilu */
+    grid-template-rows: auto; /* všechny položky jeden pod druhým */
+    grid-auto-flow: row;      /* vyplnění po řádcích */
+    gap: 20px;                /* mezera mezi položkami */
+  }
+}
