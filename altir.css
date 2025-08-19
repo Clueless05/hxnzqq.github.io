@@ -706,7 +706,7 @@ ul {
 .burger-label {
   z-index: 1000; 
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   #music-player {
     bottom: 15px;      
     left: 50%;         
