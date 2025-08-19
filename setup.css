@@ -484,3 +484,10 @@ h1, p.motivation {
     gap: 20px;                
   }
 }
+@media (min-width: 375px) and (max-width: 768px) {
+  .specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: row;  
+    gap: 18px;
+  }
+}
