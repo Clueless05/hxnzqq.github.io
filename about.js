@@ -40,14 +40,14 @@ function createShootingStar() {
     const star = document.createElement('span');
     star.classList.add('shooting-star');
 
-    
+ 
     const startX = Math.random() * window.innerWidth * 0.8;
     const startY = Math.random() * window.innerHeight * 0.3;
 
     star.style.position = 'absolute';
     star.style.top = startY + 'px';
     star.style.left = startX + 'px';
-    star.style.width = '2px';   
+    star.style.width = '2px';  
     star.style.height = '2px';
     star.style.background = 'white';
     star.style.borderRadius = '50%';
@@ -98,7 +98,7 @@ document.addEventListener('mousemove', (e) => {
     const y = (e.clientY / window.innerHeight - 0.5) * 10;
 
     icons.forEach((icon) => {
-        icon.style.transition = 'transform 0.4s ease-out'; 
+        icon.style.transition = 'transform 0.4s ease-out';
         icon.style.transform = `translate(${x}px, ${y}px)`;
     });
 });

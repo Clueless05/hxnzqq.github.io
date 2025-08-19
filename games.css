@@ -16,7 +16,7 @@ body {
     align-items: center;
 }
 
-/* --- Hvězdy --- */
+
 .stars {
     position: fixed;
     top:0;
@@ -60,9 +60,9 @@ h1 {
 
 
 p.motivation:hover {
-           color: #e0e0e0; /* světle šedá místo čistě bílé */
+           color: #e0e0e0;
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,  
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
@@ -81,15 +81,15 @@ h1, p.motivation {
 }
 
 .hytro:hover {
-       color: #e0e0e0; /* světle šedá místo čistě bílé */
+       color: #e0e0e0; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,   
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
 
-/* --- Responsive --- */
+
 @media (max-width: 500px) {
     h1 {
         font-size: 2.2rem;
@@ -184,9 +184,9 @@ h1, .motivation {
 }
 
 .burger-nav ul li a:hover {
-         color: #e0e0e0; /* světle šedá místo čistě bílé */
+         color: #e0e0e0; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,   
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
@@ -212,7 +212,7 @@ h1, .motivation {
   transition: all 0.4s ease;
 }
 
-/* animace při otevření menu */
+
 #menu-toggle:checked + .burger-label span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -223,7 +223,7 @@ h1, .motivation {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* menu */
+
 .burger-nav {
   position: fixed;
   top: 0;
@@ -242,6 +242,7 @@ h1, .motivation {
 }
 
 .burger-date-time {
+    
     position: absolute;   
     bottom: 20px;         
     left: 50%;
@@ -256,43 +257,43 @@ h1, .motivation {
 }
 .burger-date-time:hover { 
   cursor: default;
-      color: #e0e0e0; /* světle šedá místo čistě bílé */
+      color: #e0e0e0; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,   
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
-/* mobil */
+
 @media (max-width: 768px) {
     .burger-date-time {
         display: none;
     }
 }
 
-/* Default (PC) */
+
 .burger-nav {
-  background: rgba(0, 0, 0, 0); /* průhledné */
+  background: rgba(0, 0, 0, 0);
 }
 
-/* Mobile a tablety */
+
 @media (max-width: 768px) {
   .burger-nav {
-    background: rgba(0, 0, 0, 0.95); /* černá s mírnou průhledností */
+    background: rgba(0, 0, 0, 0.95); 
   }
 }
 
-/* Container pro header + grid */
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 1200px;
     width: 90%;
-    height: 100vh; /* zabírá celou obrazovku */
+    height: 100vh; 
 }
 
-/* Nadpis a motivace nahoře */
+
 .hytro,
 .motivation {
     z-index: 5;
@@ -300,37 +301,37 @@ h1, .motivation {
     margin-bottom: 20px;
 }
 
-/* Hlavní wrapper pro grid + filtry */
+
 
 .content-with-filters {
     display: flex;
     width: 100%;
     gap: 20px;
-    flex-grow: 1;    /* vyplní prostor pod headerem */
-    min-height: 0;   /* klíčové pro scroll uvnitř flexu */
+    flex-grow: 1;    
+    min-height: 0;   
 }
 
-/* Grid her vyplní zbytek vertikální plochy */
+
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* auto-fit místo auto-fill */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
     grid-auto-rows: auto;
     gap: 20px;
     flex-grow: 1;
     min-height: 0;
     overflow-y: auto;
-    padding-bottom: 80px; /* rezerva dole */
+    padding-bottom: 80px; 
     scroll-padding-bottom: 80px;
     align-items: start;
 }
 
-/* Skrytí scrollbaru */
+
 .games-grid::-webkit-scrollbar {
     width: 0px;
     background: transparent;
 }
 .games-grid {
-    padding-bottom: 80px; /* větší rezerva */
+    padding-bottom: 80px; 
     scroll-padding-bottom: 80px;
 }
 
@@ -344,7 +345,7 @@ h1, .motivation {
     padding: 10px;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: default;
-    /* zruš max-height, to dělá bordel */
+   
     height: auto;
 }
 
@@ -363,7 +364,7 @@ h1, .motivation {
     aspect-ratio: 16/9;
     overflow: hidden;
     border-radius: 18px;
-    background: #000; /* pro vyplnění okrajů při contain */
+    background: #000; 
 }
 
 .media-wrapper img {
@@ -372,8 +373,8 @@ h1, .motivation {
     left: 50%;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* celý obrázek se vejde, žádné ořezávání */
-    transform: translate(-50%, -50%); /* vycentrování */
+    object-fit: contain; 
+    transform: translate(-50%, -50%); 
     border-radius: 16px;
     transition: opacity 0.3s ease;
 }
@@ -384,7 +385,7 @@ h1, .motivation {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* video vyplní celý box */
+    object-fit: cover; 
     border-radius: 16px;
     opacity: 0;
     pointer-events: none;
@@ -458,12 +459,12 @@ h1, .motivation {
     font-family: 'Nunito', sans-serif;
     fill: #ffffff;
     font-size: 0.9em;
-    text-anchor: middle;       /* horizontální střed */
+    text-anchor: middle;      
    
 }
 
 
-/* Sidebar filtry */
+
 .filters {
     display: flex;
     flex-direction: column;
@@ -475,9 +476,9 @@ h1, .motivation {
 }
 .filters:hover {
   cursor: default;
-      color: #e0e0e0; /* světle šedá místo čistě bílé */
+      color: #e0e0e0; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,  
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
@@ -489,20 +490,20 @@ h1, .motivation {
 }
 .filters h2:hover {
   cursor: default;
-      color: #e0e0e0; /* světle šedá místo čistě bílé */
+      color: #e0e0e0; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,   
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
 
-/* Skrytí default checkboxu */
+
 .filters input[type="checkbox"] {
     display: none;
 }
 
-/* Vlastní styl checkboxu */
+
 .filters label {
     position: relative;
     padding-left: 25px;
@@ -511,7 +512,7 @@ h1, .motivation {
     font-size: 1rem;
 }
 
-/* Vlastní box */
+
 .filters label::before {
     content: "";
     position: absolute;
@@ -525,13 +526,13 @@ h1, .motivation {
     transition: all 0.2s ease;
 }
 
-/* Animovaný check */
+
 .filters input[type="checkbox"]:checked + label::before {
     background: #fff;
     box-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
 
-/* Zaškrtávací značka */
+
 .filters label::after {
     content: "";
     position: absolute;
@@ -545,7 +546,7 @@ h1, .motivation {
     transition: transform 0.2s ease;
 }
 
-/* Při checknu zobrazí značku */
+
 .filters input[type="checkbox"]:checked + label::after {
     transform: rotate(45deg) scale(1);
 }

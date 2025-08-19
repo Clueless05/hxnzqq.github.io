@@ -1,4 +1,4 @@
-// --- Seznam tracků ---
+
 const tracks = [
   {
     title: "Scars",
@@ -27,13 +27,13 @@ const tracks = [
     url: "https://audio.jukehost.co.uk/xTB8xHc2HOKY9o7pUlBYKmoQ7UQYQpBB"
   },
 ];
-let currentIndex = Math.floor(Math.random() * tracks.length); // <-- náhodný start
+let currentIndex = Math.floor(Math.random() * tracks.length); 
 
 const audio = new Audio();
 audio.src = tracks[currentIndex].url;
 audio.volume = 0.5;
 
-// --- Elements ---
+
 const playButton = document.getElementById("play-pause");
 const prevButton = document.getElementById("prev");
 const nextButton = document.getElementById("next");
@@ -45,11 +45,10 @@ const volumeBtn = document.getElementById("volume-button");
 const volumeContainer = document.getElementById("volume-bar-container");
 const volumeBar = document.getElementById("volume-bar");
 
-// --- Load track with animation ---
 function loadTrackAnimated(index) {
     const wasPlaying = !audio.paused;
 
-    // fade out
+   
     albumArt.classList.add("fade-out");
     trackTitle.classList.add("fade-out");
     trackArtist.classList.add("fade-out");
@@ -64,7 +63,7 @@ function loadTrackAnimated(index) {
         seekBar.style.width = "0%";
         volumeBar.style.width = (audio.volume * 100) + "%";
 
-        // fade in
+        
         albumArt.classList.remove("fade-out");
         albumArt.classList.add("fade-in");
         trackTitle.classList.remove("fade-out");
@@ -80,13 +79,13 @@ function loadTrackAnimated(index) {
             if (wasPlaying) audio.play().catch(() => {});
         }, 300);
 
-        // --- Přepnout theme ---
+        
         setThemeForTrack(index);
 
     }, 300);
 }
 
-// --- Play / Pause ---
+
 playButton.addEventListener("click", () => {
   if(audio.paused){
     audio.play();
@@ -97,7 +96,7 @@ playButton.addEventListener("click", () => {
   }
 });
 
-// --- Previous / Next ---
+
 prevButton.addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
   loadTrackAnimated(currentIndex);
@@ -110,20 +109,19 @@ nextButton.addEventListener("click", () => {
   playButton.innerHTML = '<i class="fas fa-pause"></i>';
 });
 
-// --- Update seek bar ---
 audio.addEventListener("timeupdate", () => {
   const progress = (audio.currentTime / audio.duration) * 100;
   seekBar.style.width = progress + "%";
 });
 
-// --- Click to seek ---
+
 document.getElementById("seek-bar-container").addEventListener("click", (e) => {
   const rect = e.currentTarget.getBoundingClientRect();
   const clickX = e.clientX - rect.left;
   audio.currentTime = (clickX / rect.width) * audio.duration;
 });
 
-// --- Volume slider always visible ---
+
 let isDragging = false;
 
 const setVolume = (e) => {
@@ -135,24 +133,24 @@ const setVolume = (e) => {
     volumeBar.style.width = (newVolume * 100) + "%";
 };
 
-// --- Automaticky přehrát další track po dohrání ---
-audio.addEventListener('ended', () => {
-    currentIndex = (currentIndex + 1) % tracks.length; // další track (cyklicky)
-    loadTrackAnimated(currentIndex);                  // nahraj nový track s animací
 
-    // po malé prodlevě spustíme přehrávání, aby animace stihla nahrát track
+audio.addEventListener('ended', () => {
+    currentIndex = (currentIndex + 1) % tracks.length; 
+    loadTrackAnimated(currentIndex);                  
+
+   
     setTimeout(() => {
-        audio.play().catch(() => {});                // ignoruje chybu, pokud autoplay blokuje prohlížeč
-        playButton.innerHTML = '<i class="fas fa-pause"></i>'; // tlačítko zůstane jako pause
-    }, 350); // prodleva cca stejna jako fade in animace
+        audio.play().catch(() => {});                
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+    }, 350); 
 });
 
-// Drag logika
+
 volumeContainer.addEventListener("mousedown", (e) => {
     isDragging = true;
     setVolume(e);
 });
-// --- Reset play/pause button po dohrání tracku ---
+
 audio.addEventListener('ended', () => {
     playButton.innerHTML = '<i class="fas fa-play"></i>';
 });
@@ -165,15 +163,15 @@ document.addEventListener("mouseup", () => {
     isDragging = false;
 });
 
-// Aktualizace při změně volume (např. tlačítkem)
+
 audio.addEventListener("volumechange", () => {
     volumeBar.style.width = (audio.volume * 100) + "%";
 });
 
-// --- Load first track ---
+
 loadTrackAnimated(currentIndex);
 
-// --- Date / Time ---
+
 function updateDateTime() {
     const now = new Date();
     const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
@@ -192,12 +190,12 @@ function updateDateTime() {
 setInterval(updateDateTime, 1000);
 updateDateTime();
 
-// --- Hvězdy a paralaxa ---
+
 const starsContainer = document.querySelector('.stars');
 const starsCount = 150;
 const starsArray = [];
 
-// Generování hvězd
+
 for(let i=0;i<starsCount;i++){
     const star = document.createElement('span');
     star.classList.add('star');
@@ -216,7 +214,7 @@ for(let i=0;i<starsCount;i++){
     starsArray.push({el: star, speed});
 }
 
-// Blikání hvězd
+
 starsArray.forEach(starObj => {
     const { el } = starObj;
     const blink = () => {
@@ -228,7 +226,7 @@ starsArray.forEach(starObj => {
     blink();
 });
 
-// Shooting stars
+
 function createShootingStar() {
     const star = document.createElement('span');
     star.classList.add('shooting-star');
@@ -263,7 +261,7 @@ function createShootingStar() {
 }
 setInterval(() => { if(Math.random() < 0.5) createShootingStar(); }, 500);
 
-// Přepočet hvězd při resize
+
 window.addEventListener('resize', () => {
     const stars = document.querySelectorAll('.star');
     stars.forEach(star => {
@@ -274,7 +272,7 @@ window.addEventListener('resize', () => {
     });
 });
 
-// Paralaxa social ikon
+
 document.addEventListener('mousemove', (e) => {
     const icons = document.querySelectorAll('.example-2 svg');
     const x = (e.clientX / window.innerWidth - 0.5) * 10;
@@ -294,7 +292,7 @@ document.addEventListener('mouseleave', () => {
     });
 });
 
-// Paralaxa hvězd podle myši
+
 document.addEventListener('mousemove', (e) => {
     const stars = document.querySelectorAll('.star');
     const x = (e.clientX / window.innerWidth - 0.5) * 40; 
@@ -306,7 +304,7 @@ document.addEventListener('mousemove', (e) => {
     });
 });
 
-// --- Themes ---
+
 const themes = {
     stars: () => {
         document.body.style.background = "black";
@@ -317,7 +315,7 @@ const themes = {
 
 if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', (event) => {
-        targetX = event.gamma / 45 * 1; // dvojnásobná citlivost
+        targetX = event.gamma / 45 * 1; 
         targetY = event.beta / 45 * 1;
     });
 }

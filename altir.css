@@ -1,4 +1,4 @@
-/* --- Reset a základ --- */
+
 * {
     margin:0;
     padding:0;
@@ -16,7 +16,7 @@ body {
     align-items: center;
 }
 
-/* --- Hvězdy --- */
+
 .stars {
     position: fixed;
     top:0;
@@ -35,7 +35,7 @@ body {
     opacity: 0.8;
 }
 
-/* --- Kontejner obsahu --- */
+
 .container {
     position: relative;
     z-index: 2;
@@ -54,9 +54,9 @@ body {
 
 
 p.motivation:hover {
-    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    color: #e0e0e0; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,   
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
@@ -70,7 +70,7 @@ p.motivation {
 }
 
 
-/* --- Social tlačítka --- */
+
 .social-buttons {
     display: flex;
     gap: 15px;
@@ -85,8 +85,8 @@ p.motivation {
     display:flex;
     justify-content:center;
     align-items:center;
-    border:2px solid #ccc; /* světle šedý border */
-    color:#ccc; /* jemná světle šedá */
+    border:2px solid #ccc; 
+    color:#ccc; 
     text-decoration:none;
     font-size:18px;
     transition: all 0.25s ease;
@@ -95,25 +95,25 @@ p.motivation {
 
 .social-buttons a:hover {
     transform: scale(1.05);
-    color: #929292; /* lehce světlejší než bílé */
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* jemný glow */
+    color: #929292; 
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); 
 }
 
-/* --- Minimalistický efekt pro h1 a text --- */
+
 h1, p.motivation {
     transition: all 0.3s ease;
 }
 
 .hytro:hover {
-    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    color: #e0e0e0; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,   
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
 
-/* --- Responsive --- */
+
 @media (max-width: 500px) {
     h1 {
         font-size: 2.2rem;
@@ -127,7 +127,7 @@ h1, p.motivation {
         font-size:16px;
     }
 }
-/* From Uiverse.io by Artahs */ 
+
 ul {
   list-style: none;
 }
@@ -165,9 +165,9 @@ ul {
   height: 30px;
 }
 .example-2 .icon-content a:hover {
-      color: #ffffff; /* světle šedá místo čistě bílé */
+      color: #ffffff; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,   
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
@@ -220,12 +220,12 @@ ul {
 .example-2 .icon-content a[data-social="twitch"] ~ .tooltip {
   background-color: #9146FF;
 }
-/* Skrytí checkboxu */
+
 .burger-menu input {
   display: none;
 }
 
-/* Burger menší vlevo nahoře */
+
 .burger-menu {
   position: fixed;
   top: 20px;
@@ -237,8 +237,8 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;  /* menší */
-  height: 22px; /* menší */
+  width: 30px; 
+  height: 22px; 
   cursor: pointer;
   z-index: 110;
 }
@@ -252,7 +252,7 @@ ul {
   transition: all 0.4s ease;
 }
 
-/* Burger -> X po kliknutí */
+
 #menu-toggle:checked + .burger-label span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -265,7 +265,7 @@ ul {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Menu vysouvání */
+
 
 .burger-label {
   position: fixed;
@@ -277,7 +277,7 @@ ul {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  z-index: 120; /* nad menu */
+  z-index: 120; 
 }
 
 .burger-label span {
@@ -288,7 +288,7 @@ ul {
   transition: all 0.4s ease;
 }
 
-/* animace při otevření menu */
+
 #menu-toggle:checked + .burger-label span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -299,11 +299,11 @@ ul {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* menu vysunuté zleva */
 
-/* Container */
+
+
 #music-player {
-  transform: scale(0.8); /* zmenší všechno */
+  transform: scale(0.8); 
   transform-origin: bottom right;
   position: fixed;
   bottom: 15px;
@@ -311,7 +311,7 @@ ul {
   display: flex;
   align-items: flex-start;
   width: 430px;
-  background: none; /* průhledné */
+  background: none; 
   border-radius: 12px;
   overflow: hidden;
   font-family: 'Rubik', sans-serif;
@@ -319,10 +319,10 @@ ul {
   z-index: 9999;
   padding: 10px;
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease; /* hladký přechod pozice/rozměrů */
+  transition: all 0.3s ease; 
 }
 
-/* Album */
+
 #album-art {
   flex: 0 0 100px;
   height: 100px;
@@ -336,16 +336,15 @@ ul {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* animace pro obrázek */
+  transition: transform 0.3s ease, opacity 0.3s ease; 
 }
 
-/* efekt při hoveru */
 #album-art:hover img {
   transform: scale(1.1);
   filter: blur(1px);
 }
 
-/* animace při změně tracku */
+
 #album-art.fade-out {
   opacity: 0;
   transform: scale(0.8);
@@ -356,7 +355,7 @@ ul {
   transform: scale(1);
 }
 
-/* Track Info */
+
 #track-info {
   flex: 1;
   display: flex;
@@ -366,19 +365,19 @@ ul {
 #track-info:hover {
   cursor: default;
 }
-/* Track title and artist */
+
 #track-title, #track-artist {
-  transition: opacity 0.3s ease, transform 0.3s ease; /* animace textu */
+  transition: opacity 0.3s ease, transform 0.3s ease; 
 }
 #track-artist {
-  font-size: 12px;          /* o trochu menší než title */
-  color: #ccc;              /* světle šedá */
-  margin-bottom: 14px;      /* víc prostoru od seek baru */
-  line-height: 1.2;         /* lepší čitelnost */
-  overflow: hidden;         /* pokud je dlouhý text, nepřebíhá */
+  font-size: 12px;          
+  color: #ccc;            
+  margin-bottom: 14px;      
+  line-height: 1.2;       
+  overflow: hidden;        
   white-space: nowrap;
-  text-overflow: ellipsis;  /* doplní ... když se nevejde */
-  transition: color 0.3s;   /* jemný přechod při změně textu */
+  text-overflow: ellipsis;  
+  transition: color 0.3s;   
 }
 #track-artist:hover {
   cursor: default;
@@ -394,7 +393,7 @@ ul {
   transform: translateY(0);
 }
 
-/* Progress bar */
+
 #seek-bar-container {
   width: 100%;
   height: 6px;
@@ -433,9 +432,9 @@ ul {
   background: #b8b8b8;
   border-radius: 3px;
   transition: width 0.2s linear;
-    transition: background 0.2s; /* jen barva */
+    transition: background 0.2s; 
 }
-/* Controls */
+
 #controls {
   display: flex;
   justify-content: space-between;
@@ -454,15 +453,15 @@ ul {
 }
 
 #player-buttons button:hover {
-  color: #e0e0e0; /* světle šedá místo čistě bílé */
+  color: #e0e0e0; 
     text-shadow: 
-        0 0 1px #fff,   /* jemný glow */
+        0 0 1px #fff,   
         0 0 2px #ccc,
         0 0 3px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
 
-/* Volume */
+
 #volume-control {
   position: relative;
   display: flex;
@@ -480,15 +479,15 @@ ul {
 
 #volume-button:hover {
   cursor: default;
-      color: #e0e0e0; /* světle šedá místo čistě bílé */
+      color: #e0e0e0;
     text-shadow: 
-        0 0 1px #fff,   /* jemný glow */
+        0 0 1px #fff,   
         0 0 2px #ccc,
         0 0 3px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
 
-/* Slider initially hidden */
+
 #volume-bar-container {
   width: 120px;
   height: 6px;
@@ -499,19 +498,19 @@ ul {
   top: 55%;
   right: 35px;
   transform: translateY(-50%);
-  opacity: 1;          /* pořád viditelné */
-  pointer-events: auto; /* pořád aktivní */
+  opacity: 1;         
+  pointer-events: auto; 
   z-index: 100;
-  transition: background 0.2s; /* jen barva */
+  transition: background 0.2s; 
 }
 
 #volume-bar-container:hover {
-  background: #111111; /* jen vizuální změna při hoveru */
+  background: #111111; 
 }
 
 
 #volume-bar {
-  width: 50%; /* default volume */
+  width: 50%; 
   height: 100%;
   background: #a3a3a3;
   border-radius: 3px;
@@ -520,7 +519,7 @@ ul {
 }
 
 #volume-bar:hover {
-  width: 50%; /* default volume */
+  width: 50%;
   height: 100%;
   background: #a3a3a3;
   border-radius: 3px;
@@ -537,12 +536,12 @@ ul {
   top: 55%;
   right: 35px;
   transform: translateY(-50%);
-  opacity: 1; /* už se neschovává */
+  opacity: 1; 
   z-index: 100;
-  transition: background 0.2s; /* jen barva se mění */
+  transition: background 0.2s; 
 }
 
-/* --- Fade animations --- */
+
 .fade-out {
   opacity: 0;
   transform: translateY(-5px);
@@ -559,33 +558,33 @@ ul {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .burger-date-time {
-    position: absolute;   /* fixně dole */
-    bottom: 20px;         /* odsazení od spodku */
+    position: absolute;  
+    bottom: 20px;         
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Nunito', sans-serif; /* futuristický tech font */
-    font-size: 18px;      /* větší text */
+    font-family: 'Nunito', sans-serif; 
+    font-size: 18px;      
     color: #fff;
     text-align: center;
     letter-spacing: 1px;
-    text-transform: uppercase; /* uppercase */
+    text-transform: uppercase; 
     opacity: 0.9;
 }
 .burger-date-time:hover {
-    color: #e0e0e0; /* světle šedá místo čistě bílé */
+    color: #e0e0e0; 
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,  
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
-/* === Burger tlačítko === */
+
 #menu-toggle {
   display: none;
 }
 
 .toggle {
-  position: fixed;        /* aby držel v rohu */
+  position: fixed;      
   top: 15px;
   left: 15px;
   width: 40px;
@@ -597,7 +596,7 @@ ul {
   justify-content: center;
   gap: 10px;
   transition-duration: .3s;
-  z-index: 100;           /* nad menu */
+  z-index: 100;         
 }
 
 .bars {
@@ -608,7 +607,7 @@ ul {
   transition-duration: .3s;
 }
 
-/* Animace hamburgeru → kříž */
+
 #menu-toggle:checked + .toggle #bar2 {
   transform: translateY(14px) rotate(60deg);
   transform-origin: right;
@@ -627,7 +626,7 @@ ul {
   transform: rotate(-90deg);
 }
 
-/* === Sidebar === */
+
 .burger-nav {
   position: fixed;
   top: 0;
@@ -637,7 +636,7 @@ ul {
   background: rgba(0, 0, 0, 0);
   transform: translateX(-100%);
   transition: transform 0.5s ease;
-  padding-top: 60px; /* prostor pro burger */
+  padding-top: 60px; 
   z-index: 90;
 }
 
@@ -665,9 +664,9 @@ ul {
 }
 
 .burger-nav ul li a:hover {
-     color: #e0e0e0; /* světle šedá místo čistě bílé */
+     color: #e0e0e0;
     text-shadow: 
-        0 0 2px #fff,   /* jemný glow */
+        0 0 2px #fff,   
         0 0 4px #ccc,
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
@@ -676,47 +675,47 @@ ul {
   position: fixed;
   top: 15px;
   left: 15px;
-  width: 25px;        /* zmenšeno z 40px */
-  height: 25px;       /* zmenšeno z 40px */
+  width: 25px;        
+  height: 25px;      
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;           /* zmenšeno z 10px */
+  gap: 5px;          
   transition-duration: .3s;
   z-index: 100;
 }
 
 @media (max-width: 768px) {
   .burger-nav {
-    background: rgba(0, 0, 0, 0.95); /* černá s mírnou průhledností */
+    background: rgba(0, 0, 0, 0.95); 
   }
 }
-/* Music player */
+
 #music-player {
-  z-index: 900; /* pod menu i burgerem */
+  z-index: 900; 
 }
 
-/* Menu nav */
+
 .burger-nav {
-  z-index: 950; /* nad playerem */
+  z-index: 950;
 }
 
-/* Burger tlačítko */
+
 .burger-label {
-  z-index: 1000; /* vždy nejvyšší, aby šlo kliknout */
+  z-index: 1000; 
 }
 @media (max-width: 768px) {
   #music-player {
-    bottom: 15px;      /* stále dole */
-    left: 50%;         /* horizontální střed */
-    right: auto;       /* zrušíme pravou pozici */
-    transform: translateX(-50%) scale(0.8); /* posun doprostřed */
+    bottom: 15px;      
+    left: 50%;         
+    right: auto;      
+    transform: translateX(-50%) scale(0.8); 
     transform-origin: bottom center;
   }
 }
-/* mobil */
+
 @media (max-width: 768px) {
     .burger-date-time {
         display: none;
