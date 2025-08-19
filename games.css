@@ -579,8 +579,51 @@ h1, .motivation {
         0 0 4px #fff,
         0 0 6px #aaa;
 }
+
+
+
 @media (max-width: 768px) {
-  .filters {
+  
+    .bio-container {
+        margin-top: 20px; 
+        max-height: 40vh; 
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+
+   
+    .game-count, 
+    .game-count-mobile {
+        margin-top: 100px; 
+        margin-bottom: 15px;
+        order: 0; 
+        text-align: center;
+    }
+
+   
+    .games-grid {
+        margin-top: 10px; 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .filters {
+        display: none; 
+    }
+.motivation {
     display: none;
-  }
+}
+    
+    .game-count-mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+}
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        overflow: visible;
+    }
 }
