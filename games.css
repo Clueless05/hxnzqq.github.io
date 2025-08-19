@@ -582,48 +582,60 @@ h1, .motivation {
 
 
 
+/* Mobile-only game count */
+.game-count-mobile {
+    display: none; /* default: hidden na desktopu */
+}
+
+/* --- Mobile adjustments --- */
 @media (max-width: 768px) {
-  
     .bio-container {
         margin-top: 20px; 
         max-height: 40vh; 
         overflow-y: auto;
         padding-right: 10px;
     }
+.hytro {
+    font-size: 23px;
+}
 
-   
-    .game-count, 
+    /* Games finished pod Hytro/motivation */
     .game-count-mobile {
-        margin-top: 100px; 
+        display: flex; /* jen na mobilech */
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 90px;
         margin-bottom: 15px;
-        order: 0; 
         text-align: center;
+        position: relative;
+        z-index: 2;
     }
 
-   
+    .filters {
+        display: none; 
+    }
+
+    .motivation {
+        display: none;
+    }
+
     .games-grid {
         margin-top: 10px; 
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
 
-    .filters {
-        display: none; 
-    }
-.motivation {
-    display: none;
-}
-    
-    .game-count-mobile {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-    }
-}
-@media (max-width: 768px) {
     body {
         height: auto;
         overflow: visible;
+    }
+}
+
+/* Extra úzké mobily: 1 sloupec */
+@media (max-width: 385px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 12px; 
     }
 }
