@@ -488,7 +488,7 @@ h1, p.motivation {
     }
 }
 
-@media(max-width:768px){
+@media(max-width:767px){
     .about-skills-container {
         width: 90%;
         max-width: 100%;
@@ -537,5 +537,16 @@ h1, p.motivation {
     max-height: calc(100vh - 250px);
     overflow-y: auto;
     padding-right: 10px;
+  }
+}
+@media screen and (max-width: 411px) {
+.hytro {
+display: none;
+}
+}
+
+@media screen and (max-height: 650px) {
+  .hytro {
+    display: none;
   }
 }
