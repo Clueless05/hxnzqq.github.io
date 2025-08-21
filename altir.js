@@ -1,10 +1,28 @@
 
 const tracks = [
+      {
+    title: "Fighting Myself",
+    artist: "Linkin Park",
+    cover: "https://i.scdn.co/image/ab67616d0000b273ca2e09fd52e6330146ea9550",
+    url: "https://audio.jukehost.co.uk/3ujitCazy2DOVUTzZ3tuguLKnm6NEnAm"
+  },
   {
     title: "Scars",
     artist: "Papa Roach",
     cover: "https://i.scdn.co/image/ab67616d0000b2732d5551c32546cafe3aafd939",
     url: "https://audio.jukehost.co.uk/jQqWY6Bt1ASpFzt5O0y1l0AYVdF7s7VMP"
+  },
+  {
+      title: "Rosemary",
+    artist: "Deftones",
+    cover: "https://i.scdn.co/image/ab67616d0000b27373652b7a0dc388dd1d044b69",
+    url: "https://audio.jukehost.co.uk/kZU2iN0KwGUc5LvpnR7ZHaKClh6wDXfn"
+  },
+    {
+    title: "Can You Feel My Heart",
+    artist: "Bring Me The Horizon",
+    cover: "https://i.scdn.co/image/ab67616d0000b27360cf7c8dd93815ccd6cb4830",
+    url: "https://audio.jukehost.co.uk/RPM2ch4dcbsObFDYwSA0WdKoeijfj88A"
   },
 
   {
@@ -14,17 +32,49 @@ const tracks = [
     url: "https://audio.jukehost.co.uk/eWI5uPM9f4xhEIYNkaNCin9sDDAe11BB"
   },
 
+      {
+    title: "The Devil in I",
+    artist: "Slipknot",
+    cover: "https://i.scdn.co/image/ab67616d0000b273eed722040c6810f7a7da93ea",
+    url: "https://audio.jukehost.co.uk/dKxedJYZmgnddQ7qlve2v9EMkJVg7KXw"
+  },
+
     {
     title: "Time is Running Out",
     artist: "Muse",
     cover: "https://i.scdn.co/image/ab67616d0000b2733303a842ee1bc0b23204333d",
     url: "https://audio.jukehost.co.uk/eNn4fnEq66GxzItu1uK3JspiCUJyogOi"
   },
+        {
+    title: "Faint",
+    artist: "Linkin Park",
+    cover: "https://i.scdn.co/image/ab67616d0000b2735f1f51d14e8bea89484ecd1b",
+    url: "https://audio.jukehost.co.uk/XpvEhwQedCxEO8BwHTeSFfgqH9cAAHbI"
+  },
+    {
+    title: "Hereafter",
+    artist: "Architects",
+    cover: "https://i.scdn.co/image/ab67616d0000b2735b6bb2889c9276c2ad126831",
+    url: "https://audio.jukehost.co.uk/Y3kLtXRRpz07ID14smvXEzgTRL9W6Hmj"
+  },
+
+    {
+      title: "Landmines",
+    artist: "Sum 41",
+    cover: "https://i.scdn.co/image/ab67616d0000b273d4109eee9ce4b4be92cbac39",
+    url: "https://audio.jukehost.co.uk/oKpoCc9IKpiTztcVdQGeNdDrloy5v48F"
+  },
+    {
+      title: "Aerials",
+    artist: "System Of A Down",
+    cover: "https://i.scdn.co/image/ab67616d0000b27307bc7d2a745636c356b4d0aa",
+    url: "https://audio.jukehost.co.uk/6DRAzaZ2c2ql4e8wJR9xpBxHRlbOPpjm"
+  },
       {
-    title: "kiss kiss",
-    artist: "mgk",
-    cover: "https://i.scdn.co/image/ab67616d0000b273d4d4929a3a86fe2f9fadbd42",
-    url: "https://audio.jukehost.co.uk/xTB8xHc2HOKY9o7pUlBYKmoQ7UQYQpBB"
+      title: "Blinded in Chains",
+    artist: "Avenged Sevenfold",
+    cover: "https://i.scdn.co/image/ab67616d0000b27391b3adb195fd4017fd3d6400",
+    url: "https://audio.jukehost.co.uk/S7R4WicmrwMtCF5WcfkxYbVgpcjtEoPS"
   },
 ];
 let currentIndex = Math.floor(Math.random() * tracks.length); 
@@ -151,9 +201,7 @@ volumeContainer.addEventListener("mousedown", (e) => {
     setVolume(e);
 });
 
-audio.addEventListener('ended', () => {
-    playButton.innerHTML = '<i class="fas fa-play"></i>';
-});
+
 
 document.addEventListener("mousemove", (e) => {
     if (isDragging) setVolume(e);
@@ -172,23 +220,7 @@ audio.addEventListener("volumechange", () => {
 loadTrackAnimated(currentIndex);
 
 
-function updateDateTime() {
-    const now = new Date();
-    const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-    const day = dayNames[now.getDay()];
-    const date = now.getDate();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
-    const hours = String(now.getHours()).padStart(2,'0');
-    const minutes = String(now.getMinutes()).padStart(2,'0');
-    const seconds = String(now.getSeconds()).padStart(2,'0');
 
-    const dateStr = `${day} ${date}.${month}.${year}`;
-    const timeStr = `${hours}:${minutes}:${seconds}`;
-    document.getElementById('burger-date-time').innerHTML = `${dateStr}<br>${timeStr}`;
-}
-setInterval(updateDateTime, 1000);
-updateDateTime();
 
 
 const starsContainer = document.querySelector('.stars');
