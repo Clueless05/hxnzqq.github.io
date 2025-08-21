@@ -89,6 +89,7 @@ p.motivation {
 
 
 h1, p.motivation {
+  display: none;
     transition: all 0.3s ease;
 }
 
@@ -122,30 +123,14 @@ h1, p.motivation {
 
 
 .burger-menu {
+  
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 100;
 }
 
-.burger-label {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;  
-  height: 22px; 
-  cursor: pointer;
-  z-index: 110;
-}
 
-.burger-label span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
 
 
 #menu-toggle:checked + .burger-label span:nth-child(1) {
@@ -163,6 +148,7 @@ h1, p.motivation {
 
 
 .burger-label {
+  cursor: default;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -171,11 +157,12 @@ h1, p.motivation {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  cursor: pointer;
+  
   z-index: 120; 
 }
 
 .burger-label span {
+  cursor: default;
   display: block;
   height: 3px;
   background: white;
@@ -224,12 +211,13 @@ h1, p.motivation {
 }
 
 .toggle {
+  
   position: fixed;     
   top: 15px;
   left: 15px;
   width: 40px;
   height: 40px;
-  cursor: pointer;
+  cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -267,18 +255,8 @@ h1, p.motivation {
 }
 
 
-.burger-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-  padding-top: 60px; 
-  z-index: 90;
-}
+
+
 
 #menu-toggle:checked ~ .burger-nav {
   transform: translateX(0);
@@ -297,9 +275,9 @@ h1, p.motivation {
 .burger-nav ul li a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
-  font-family: 'Nunito', sans-serif;
-  font-size: 1.1em;
+  font-weight: normal;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1em;
   transition: color 0.3s;
 }
 
@@ -317,7 +295,7 @@ h1, p.motivation {
   left: 15px;
   width: 25px;      
   height: 25px;      
-  cursor: pointer;
+  cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -548,5 +526,138 @@ display: none;
 @media screen and (max-height: 650px) {
   .hytro {
     display: none;
+  }
+}
+.glass-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 0 40px;
+  background: transparent;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-bottom: 1px solid rgba(77, 77, 77, 0.164);
+  z-index: 1000;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.logo {
+  cursor: default;
+  position: absolute;
+  left: 40px; /* zachová logo vlevo */
+  font-size: 1.8rem;
+  font-weight: normal;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.logo:hover {
+  cursor: default;
+    color: #e0e0e0;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #ccc,
+    0 0 6px #aaa;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.glass-nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-nav-links a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.glass-nav-links a:hover {
+  color: #e0e0e0;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #ccc,
+    0 0 6px #aaa;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+@media (max-width: 600px) {
+  .glass-navbar {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .burger-nav {
+    display: block;
+  }
+}
+@media (max-width: 500px) {
+    h1 {
+      display: block;
+        font-size: 2.2rem;
+    }
+    p.motivation {
+        font-size: 1rem;
+    }
+    .social-buttons a {
+        width: 40px;
+        height: 40px;
+        font-size:16px;
+    }
+}
+/* default - desktop: skryté */
+
+.burger-label span {
+  cursor: default;
+  display: none;   
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* show burger icon only on mobile */
+@media (max-width: 600px) {
+  .burger-label span {
+    display: block;
+  }
+  .burger-label {
+    display: flex;
+    flex-direction: column; /* proužky pod sebe */
+    justify-content: space-between;
+    width: 25px;            /* nastavíš šířku burgeru */
+    height: 20px;           /* výšku burgeru */
+    overflow: visible;      /* důležité, aby nic neskrylo proužky */
+  }
+  .burger-nav {
+    display: block;
+  }
+}
+.burger-nav {
+  cursor: default;
+  display: none;          /* úplně skryté na desktopu */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.938);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  padding-top: 60px; 
+  z-index: 90;
+}
+
+/* mobil: zobrazit a připravit na animaci */
+@media (max-width: 600px) {
+  .burger-nav {
+    display: block;
   }
 }

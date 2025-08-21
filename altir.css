@@ -114,19 +114,7 @@ h1, p.motivation {
 }
 
 
-@media (max-width: 500px) {
-    h1 {
-        font-size: 2.2rem;
-    }
-    p.motivation {
-        font-size: 1rem;
-    }
-    .social-buttons a {
-        width: 40px;
-        height: 40px;
-        font-size:16px;
-    }
-}
+
 
 ul {
   list-style: none;
@@ -243,14 +231,23 @@ ul {
   z-index: 110;
 }
 
-.burger-label span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
+/* burger icon hidden by default */
+.burger-label {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 25px;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 120;
 }
+
+
+
+
 
 
 #menu-toggle:checked + .burger-label span:nth-child(1) {
@@ -268,6 +265,7 @@ ul {
 
 
 .burger-label {
+  display: none;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -280,13 +278,7 @@ ul {
   z-index: 120; 
 }
 
-.burger-label span {
-  display: block;
-  height: 3px;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
+
 
 
 #menu-toggle:checked + .burger-label span:nth-child(1) {
@@ -318,7 +310,7 @@ ul {
   color: #fff;
   z-index: 9999;
   padding: 10px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(2px);
   transition: all 0.3s ease; 
 }
 
@@ -628,6 +620,7 @@ ul {
 
 
 .burger-nav {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -657,9 +650,9 @@ ul {
 .burger-nav ul li a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
-  font-family: 'Nunito', sans-serif;
-  font-size: 1.1em;
+  font-weight: normal;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1em;
   transition: color 0.3s;
 }
 
@@ -720,4 +713,108 @@ ul {
     .burger-date-time {
         display: none;
     }
+}
+
+
+
+.glass-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 0 40px;
+  background: transparent;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-bottom: 1px solid rgba(77, 77, 77, 0.164);
+  z-index: 1000;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.logo {
+  position: absolute;
+  left: 40px; /* zachová logo vlevo */
+  font-size: 1.8rem;
+  font-weight: normal;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.glass-nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-nav-links a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.glass-nav-links a:hover {
+  color: #e0e0e0;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #ccc,
+    0 0 6px #aaa;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+@media (max-width: 600px) {
+  .glass-navbar {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .burger-nav {
+    display: block;
+  }
+}
+@media (max-width: 500px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    p.motivation {
+        font-size: 1rem;
+    }
+    .social-buttons a {
+        width: 40px;
+        height: 40px;
+        font-size:16px;
+    }
+}
+/* default - desktop: skryté */
+
+.burger-label span {
+  display: none;   
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* show burger icon only on mobile */
+@media (max-width: 600px) {
+  .burger-label span {
+    display: block;
+  }
+  .burger-label {
+    display: flex;
+    flex-direction: column; /* proužky pod sebe */
+    justify-content: space-between;
+    width: 25px;            /* nastavíš šířku burgeru */
+    height: 20px;           /* výšku burgeru */
+    overflow: visible;      /* důležité, aby nic neskrylo proužky */
+  }
+  .burger-nav {
+    display: block;
+  }
 }
