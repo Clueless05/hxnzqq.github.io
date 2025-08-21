@@ -117,13 +117,16 @@ h1, p.motivation {
 }
 
 .burger-label {
+  cursor: default;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;  
-  height: 22px; 
-  cursor: pointer;
-  z-index: 110;
+  z-index: 120; 
 }
 
 .burger-label span {

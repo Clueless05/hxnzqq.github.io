@@ -164,7 +164,7 @@ p.motivation{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  cursor: pointer;
+  cursor: default;
   z-index: 120; 
 }
 
