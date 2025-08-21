@@ -227,7 +227,7 @@ ul {
   justify-content: space-between;
   width: 30px; 
   height: 22px; 
-  cursor: pointer;
+  cursor: default;
   z-index: 110;
 }
 
@@ -818,4 +818,5 @@ ul {
     display: block;
   }
 }
+
 
