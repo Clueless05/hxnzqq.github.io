@@ -12,6 +12,12 @@ const tracks = [
     cover: "https://i.scdn.co/image/ab67616d0000b2732d5551c32546cafe3aafd939",
     url: "https://audio.jukehost.co.uk/jQqWY6Bt1ASpFzt5O0y1l0AYVdF7s7VMP"
   },
+      {
+    title: "i think about you all the time",
+    artist: "Deftones",
+    cover: "https://i.scdn.co/image/ab67616d0000b2732fe9acaf02e66d89c6524d3b",
+    url: "https://audio.jukehost.co.uk/HEGTnkekXfJG5kcFP2nhXxvpIRznCEKd"
+  },
   {
       title: "Rosemary",
     artist: "Deftones",
@@ -368,4 +374,5 @@ function updateParallax() {
 }
 
 updateParallax();
+
 
