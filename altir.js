@@ -12,12 +12,6 @@ const tracks = [
     cover: "https://i.scdn.co/image/ab67616d0000b2732d5551c32546cafe3aafd939",
     url: "https://audio.jukehost.co.uk/jQqWY6Bt1ASpFzt5O0y1l0AYVdF7s7VMP"
   },
-      {
-    title: "i think about you all the time",
-    artist: "Deftones",
-    cover: "https://i.scdn.co/image/ab67616d0000b2732fe9acaf02e66d89c6524d3b",
-    url: "https://audio.jukehost.co.uk/HEGTnkekXfJG5kcFP2nhXxvpIRznCEKd"
-  },
   {
       title: "Rosemary",
     artist: "Deftones",
@@ -30,7 +24,24 @@ const tracks = [
     cover: "https://i.scdn.co/image/ab67616d0000b27360cf7c8dd93815ccd6cb4830",
     url: "https://audio.jukehost.co.uk/RPM2ch4dcbsObFDYwSA0WdKoeijfj88A"
   },
-
+      {
+    title: "Unsainted",
+    artist: "Slipknot",
+    cover: "https://i.scdn.co/image/ab67616d0000b27326f20b4d67c0c7b0f137ce4f",
+    url: "https://audio.jukehost.co.uk/rYOoR9lTMCtk9RmxBeEl2RlgS0loKPhR"
+  },
+      {
+    title: "i think about you all the time",
+    artist: "Deftones",
+    cover: "https://i.scdn.co/image/ab67616d0000b2732fe9acaf02e66d89c6524d3b",
+    url: "https://audio.jukehost.co.uk/HEGTnkekXfJG5kcFP2nhXxvpIRznCEKd"
+  },
+      {
+    title: "Wait and Bleed",
+    artist: "Slipknot",
+    cover: "https://i.scdn.co/image/ab67616d0000b27381e0d9617e70d75e7ae11fa6",
+    url: "https://audio.jukehost.co.uk/yRGgF51z30fxKVac3LQcSLqd8O4MgYWl"
+  },
   {
     title: "Hand Of Blood",
     artist: "Bullet For My Valentine",
@@ -374,5 +385,4 @@ function updateParallax() {
 }
 
 updateParallax();
-
 
