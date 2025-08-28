@@ -231,7 +231,7 @@
     input.addEventListener('input', () => {
       const count = parseInt(input.value) || 0;
       const eur = count * 0.06;
-      const czk = eur * 24;
+      const czk = eur * 24.5;
 
       eurDisplay.textContent = eur.toFixed(2);
       czkDisplay.textContent = czk.toFixed(2);
@@ -301,3 +301,4 @@ function copyResult() {
 
 </body>
 </html>
+
