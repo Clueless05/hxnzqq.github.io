@@ -12,7 +12,7 @@ let currentTheme = 'cosmic';
 let morphTarget = 0;
 let morphProgress = 0;
 
-let particleCount =2500;
+let particleCount =6000;
 
 // pokud je obrazovka úzká (mobil/tablet), snížíme počet partiklu
 if (window.innerWidth < 900) {
@@ -489,3 +489,4 @@ function createExtraTextOverlay(text) {
   const container = document.getElementById('container') || document.body;
   container.appendChild(overlay);
 }
+
