@@ -12,7 +12,12 @@ let currentTheme = 'cosmic';
 let morphTarget = 0;
 let morphProgress = 0;
 
-const particleCount =6000;
+let particleCount =2500;
+
+// pokud je obrazovka úzká (mobil/tablet), snížíme počet partiklu
+if (window.innerWidth < 900) {
+  particleCount = 2000;
+}
 
 const themes = {
   cosmic: {
@@ -27,6 +32,40 @@ const themes = {
     bloom: { strength: 0.4, radius: 0.5, threshold: 0.65 }
   },
 };
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+function createTextPath(text = "I LOVE YOU", particleIndex, totalParticles) {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  const size = 512;
+  canvas.width = size;
+  canvas.height = size;
+
+  // Vykreslení textu doprostřed
+  ctx.fillStyle = "white";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = "bold 120px Arial";
+  ctx.fillText(text, size / 2, size / 2);
+
+  const imgData = ctx.getImageData(0, 0, size, size).data;
+  const points = [];
+
+  for (let y = 0; y < size; y += 4) {
+    for (let x = 0; x < size; x += 4) {
+      const i = (y * size + x) * 4;
+      if (imgData[i + 3] > 128) {
+        points.push(new THREE.Vector3(x - size / 2, size / 2 - y, Math.random() * 2 - 1));
+      }
+    }
+  }
+
+  const point = points[particleIndex % points.length];
+  return point;
+}
 
 document.addEventListener('DOMContentLoaded', init);
 
@@ -429,4 +468,24 @@ function animate() {
   }
 
   composer.render();
+}
+function createExtraTextOverlay(text) {
+  // wrapper
+  const overlay = document.createElement('div');
+  overlay.className = 'love-overlay'; // využijeme stejný styl, aby to ladilo
+  overlay.style.top = '20%'; // pozice nahoře
+  overlay.style.transform = 'translate(-50%, 0)';
+  
+  const card = document.createElement('div');
+  card.className = 'love-card';
+
+  const h = document.createElement('h1');
+  h.className = 'love-text pulse';
+  h.textContent = text;
+
+  card.appendChild(h);
+  overlay.appendChild(card);
+
+  const container = document.getElementById('container') || document.body;
+  container.appendChild(overlay);
 }
