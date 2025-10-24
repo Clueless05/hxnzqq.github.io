@@ -480,25 +480,61 @@ Navždy tvůj
     viewer.addEventListener('click', (e)=>{ if(e.target === viewer){ viewer.close(); sendAnalytics('viewer_close_backdrop'); } });
 
     // Vouchers (visual-only)
-    const listV = $('#voucherList');
-    const chime = new Audio('data:audio/wav;base64,UklGRmQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABYAZGF0YQAAABz/AAAAAP8AAAD/AAAAAP8AAP//AAAA//8AAAD/AAAAAP8AAAD/AAAAAP8AAP//AAAA//8AAAD/AAAAAP8AAAD/AAAAAP8AAP//AAAA//8AAAA=');
-    VOUCHERS.forEach(v=>{
-      const el = document.createElement('div'); el.className='voucher';
-      el.innerHTML = `<div><div class="title">${v.title}</div><div class="tag">${v.tag}</div></div>` +
-        `<div style="display:flex;gap:8px"><button class="btn" style="padding:8px 12px">Redeem</button></div>`;
-      el.querySelector('button').onclick = ()=>{
-        el.style.opacity=.55; el.style.filter='grayscale(1)';
-        el.animate([{transform:'scale(1)'},{transform:'scale(1.04)'},{transform:'scale(1)'}],{duration:420,easing:'ease-out'});
-        const rect = el.getBoundingClientRect(); sparkle(rect.left + rect.width/2, rect.top + rect.height/2);
-        try { chime.currentTime = 0; chime.play(); } catch {}
-        const t=$('#toast'); t.textContent='Voucher redeemed ✓'; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200);
-        const when = new Date().toLocaleString('cs-CZ');
-        // Původní notifikace do hlavního webhooku
-        sendDiscord(`🎟️ Lucka právě redeemnula voucher: **${v.title}** (${v.tag}) • ${when}`);
-        // Analytics záznam
-      };
-      listV.appendChild(el);
-    });
+const listV = $('#voucherList');
+const chime = new Audio('data:audio/wav;base64,UklGRmQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABYAZGF0YQAAABz/AAAAAP8AAAD/AAAAAP8AAP//AAAA//8AAAD/AAAAAP8AAAD/AAAAAP8AAP//AAAA//8AAAD/AAAAAP8AAAD/AAAAAP8AAP//AAAA//8AAAA=');
+
+// 🕒 globální cooldown (60 s) mezi jakýmikoli dvěma redeemy
+let lastRedeemTime = 0;
+
+VOUCHERS.forEach(v=>{
+  const el = document.createElement('div'); 
+  el.className='voucher';
+  el.innerHTML = `<div><div class="title">${v.title}</div><div class="tag">${v.tag}</div></div>` +
+    `<div style="display:flex;gap:8px"><button class="btn" style="padding:8px 12px">Redeem</button></div>`;
+
+  const btn = el.querySelector('button');
+  btn.onclick = ()=>{
+    const now = Date.now();
+    const diff = now - lastRedeemTime;
+
+    // 🔒 Cooldown 60 000 ms = 60 s
+    if (diff < 60000) {
+      const remaining = Math.ceil((60000 - diff) / 1000);
+      const t = $('#toast');
+      t.textContent = `Počkej ${remaining}s, než použiješ další voucher 💜`;
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'), 1500);
+      return;
+    }
+
+    // ✅ povoleno – nastav čas posledního redeemu
+    lastRedeemTime = now;
+
+    // vizuální redeem
+    el.style.opacity = .55; 
+    el.style.filter = 'grayscale(1)';
+    el.animate(
+      [{transform:'scale(1)'},{transform:'scale(1.04)'},{transform:'scale(1)'}],
+      {duration:420, easing:'ease-out'}
+    );
+    const rect = el.getBoundingClientRect(); 
+    sparkle(rect.left + rect.width/2, rect.top + rect.height/2);
+    try { chime.currentTime = 0; chime.play(); } catch {}
+
+    const t = $('#toast'); 
+    t.textContent='Voucher redeemed ✓'; 
+    t.classList.add('show'); 
+    setTimeout(()=>t.classList.remove('show'),1200);
+
+    const when = new Date().toLocaleString('cs-CZ');
+    // Původní notifikace do hlavního webhooku
+    sendDiscord(`🎟️ Lucka právě redeemnula voucher: **${v.title}** (${v.tag}) • ${when}`);
+    // (volitelně) sendAnalytics('voucher_redeem', { title: v.title, tag: v.tag, when });
+  };
+
+  listV.appendChild(el);
+});
+
 
     // Music
     const song = $('#song'); song.src = SONG_URL;
