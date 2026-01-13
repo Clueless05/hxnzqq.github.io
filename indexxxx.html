@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Valentine</title>
+
+<style>
+:root {
+  --purple-1: #a78bfa;
+  --purple-2: #c4b5fd;
+  --purple-3: #7c3aed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(135deg, var(--purple-1), var(--purple-2));
+  overflow: hidden;
+}
+
+/* floating hearts (background only) */
+.heart {
+  position: fixed;
+  bottom: -40px;
+  font-size: 18px;
+  opacity: 0.35;
+  animation: floatUp linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
+/* main card */
+.card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+  padding: 48px 64px;
+  text-align: center;
+  box-shadow: 0 40px 90px rgba(0,0,0,0.25);
+}
+
+.card img {
+  width: 170px;
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0;
+  color: white;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+/* buttons */
+button {
+  position: fixed;
+  padding: 16px 36px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    left 0.45s cubic-bezier(.4,0,.2,1),
+    top 0.45s cubic-bezier(.4,0,.2,1);
+}
+
+#yes {
+  background: linear-gradient(135deg, var(--purple-3), #5b21b6);
+  color: white;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.3);
+}
+
+#yes:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+}
+
+#no {
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+  color: white;
+}
+
+/* result */
+.result {
+  color: white;
+  font-size: 2.3rem;
+  font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<!-- hearts -->
+<script>
+for (let i = 0; i < 18; i++) {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.textContent = "💜";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = 10 + Math.random() * 10 + "s";
+  h.style.fontSize = 14 + Math.random() * 18 + "px";
+  document.body.appendChild(h);
+}
+</script>
+
+<div class="card" id="card">
+  <img
+    src="https://media.tenor.com/3199198135359664573/AAAP.gif"
+    alt="cute gif"
+  />
+  <h1>Will you be my Valentine?</h1>
+</div>
+
+<button id="yes">Yes</button>
+<button id="no">No</button>
+
+<script>
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const card = document.getElementById("card");
+
+/* initial placement */
+function placeInitialButtons() {
+  const centerY = window.innerHeight / 2 + 140;
+  yesBtn.style.left = window.innerWidth / 2 - 140 + "px";
+  yesBtn.style.top = centerY + "px";
+  noBtn.style.left = window.innerWidth / 2 + 20 + "px";
+  noBtn.style.top = centerY + "px";
+}
+
+placeInitialButtons();
+window.addEventListener("resize", placeInitialButtons);
+
+function moveNoButton() {
+  const padding = 20;
+
+  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+  let x, y;
+  do {
+    x = Math.random() * maxX;
+    y = Math.random() * maxY;
+  } while (
+    Math.abs(x - yesBtn.offsetLeft) < 180 &&
+    Math.abs(y - yesBtn.offsetTop) < 90
+  );
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveNoButton);
+
+yesBtn.addEventListener("click", () => {
+  card.innerHTML = `
+    <img src="https://media.tenor.com/25258190/AAAP.gif" alt="love gif">
+    <div class="result">Yayyy, I knew it! 💜</div>
+  `;
+  yesBtn.remove();
+  noBtn.remove();
+});
+</script>
+
+</body>
+</html>
