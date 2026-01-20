@@ -1,811 +1,314 @@
-
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+/* --- RESET A ZÁKLAD --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Nunito', sans-serif;
-    overflow: hidden;
-    background: #000;
-    color: #fff;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: 'Rubik', sans-serif;
+    background: #000; color: #fff; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    overflow-x: hidden;
 }
 
+/* --- HVĚZDY --- */
+.stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0.8; }
 
-.stars {
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:0;
-}
-
-.star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #fff;
-    border-radius: 50%;
-    opacity: 0.8;
-}
-
-
+/* --- HLAVNÍ CONTAINER --- */
 .container {
-    position: absolute;
-    top: 50px; 
-    left: 50%;
-    transform: translateX(-50%); 
-    
-    z-index: 2;
-    text-align: center;
-    max-width: 480px;
-    padding: 0 15px;
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+    max-width: 1600px; /* Širší kontejner, aby se vešlo víc her */
+    width: 95%;
+    height: 100vh;
+    padding-top: 80px; 
 }
 
-h1 {
-    display: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
-    color: #fff;
-}
-
-
-
-p.motivation:hover {
-           color: #e0e0e0;
-    text-shadow: 
-        0 0 2px #fff,  
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
+/* --- NADPISY --- */
+.hytro {
+    font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 700;
+    margin-bottom: 5px; letter-spacing: 3px; color: #fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    cursor: default;
 }
 
 p.motivation {
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    margin-top: 20px;  /* posune text dolů */
-    color: #ccc;
-    font-weight: 600;
+    font-family: 'Orbitron', sans-serif; font-size: 1rem;
+    margin-bottom: 30px; color: #888; letter-spacing: 2px; text-transform: uppercase;
+    cursor: default;
 }
 
-
-h1, p.motivation {
-    transition: all 0.3s ease;
-}
-
-.hytro:hover {
-       color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,   
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-
-@media (max-width: 500px) {
-
-    h1 {
-        display: block;
-        font-size: 2.2rem;
-    }
-    p.motivation {
-        font-size: 1rem;
-    }
-}
-
-.burger-menu input {
-  display: none;
-}
-
-
-.burger-menu {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 100;
-}
-
-.burger-label {
-  cursor: default;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 30px;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 120; 
-}
-
-.burger-label span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
-
-
-#menu-toggle:checked + .burger-label span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-#menu-toggle:checked + .burger-label span:nth-child(2) {
-  opacity: 0;
-}
-
-#menu-toggle:checked + .burger-label span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-
-.burger-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;       
-  height: 100vh;
-  background: rgba(0,0,0,0.95);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-  padding-top: 60px;  
-  z-index: 90;
-}
-
-#menu-toggle:checked ~ .burger-nav {
-  transform: translateX(0);
-}
-
-.burger-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0 20px;
-}
-
-.burger-nav ul li {
-  margin: 20px 0;
-}
-
-.burger-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: normal;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1em;
-  transition: color 0.3s;
-}
-h1, .motivation {
-  cursor: default; 
-}
-
-.burger-nav ul li a:hover {
-         color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,   
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-.burger-label {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 30px;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 120; 
-}
-
-.burger-label span {
-  display: block;
-  height: 3px;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
-
-
-#menu-toggle:checked + .burger-label span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-#menu-toggle:checked + .burger-label span:nth-child(2) {
-  opacity: 0;
-}
-#menu-toggle:checked + .burger-label span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-
-.burger-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-  padding-top: 60px;
-  z-index: 90;
-}
-
-#menu-toggle:checked ~ .burger-nav {
-  transform: translateX(0);
-}
-
-.burger-date-time {
-    
-    position: absolute;   
-    bottom: 20px;         
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Nunito', sans-serif; 
-    font-size: 18px;      
-    color: #fff;
-    text-align: center;
-    letter-spacing: 1px;
-    text-transform: uppercase; 
-    opacity: 0.9;
-}
-.burger-date-time:hover { 
-  cursor: default;
-      color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,   
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-@media (max-width: 768px) {
-    .burger-date-time {
-        display: none;
-    }
-}
-
-
-.burger-nav {
-  background: rgba(0, 0, 0, 0);
-}
-
-
-@media (max-width: 768px) {
-  .burger-nav {
-    background: rgba(0, 0, 0, 0.95); 
-  }
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1200px;
-    width: 90%;
-    height: 100vh; 
-}
-
-
-.hytro,
-.motivation {
-    z-index: 5;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-
-
+/* --- LAYOUT: GRID + FILTRY --- */
 .content-with-filters {
-    display: flex;
-    width: 100%;
-    gap: 20px;
-    flex-grow: 1;    
-    min-height: 0;   
+    display: flex; width: 100%; gap: 20px;
+    flex-grow: 1; min-height: 0; 
+    position: relative;
 }
 
-
+/* --- GAMES GRID (Seznam her) --- */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-    grid-auto-rows: auto;
+    /* TADY JE ZMĚNA: 200px zajistí 4-6 sloupců */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    grid-auto-rows: min-content;
     gap: 20px;
     flex-grow: 1;
-    min-height: 0;
-    overflow-y: auto;
-    padding-bottom: 80px; 
-    scroll-padding-bottom: 80px;
-    align-items: start;
+    overflow-y: auto; 
+    padding-right: 10px;
+    padding-bottom: 50px;
+    scrollbar-width: none; 
 }
+.games-grid::-webkit-scrollbar { display: none; }
 
-
-.games-grid::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-}
-.games-grid {
-    padding-bottom: 80px; 
-    scroll-padding-bottom: 80px;
-}
-
-
+/* --- GAME BOX (Karta hry) --- */
 .game-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(14, 14, 14, 0);
+    display: flex; flex-direction: column;
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     padding: 10px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: default;
-   
-    height: auto;
+    position: relative;
+    overflow: hidden;
 }
 
 .game-box:hover {
-    transform: translateY(-5px);
-    color: #e0e0e0;
-    text-shadow: 
-        0 0 2px #afafaf, 
-        0 0 4px #999999,
-        0 0 6px #9c9b9b;
-    transition: color 0.3s, text-shadow 0.3s;
+ 
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
+
+/* Media (Obrázek/Video) */
 .media-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    border-radius: 18px;
-    background: #000; 
+    position: relative; width: 100%; aspect-ratio: 16/9;
+    overflow: hidden; border-radius: 8px;
+    background: #000; /* Černé pozadí pro letterbox efekt */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex; align-items: center; justify-content: center;
 }
 
+.media-wrapper img, .media-wrapper video, .media-wrapper iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    transition: opacity 0.4s ease;
+}
+
+/* OPRAVA OBRÁZKU: Aby byl vidět celý */
 .media-wrapper img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
     object-fit: contain; 
-    transform: translate(-50%, -50%); 
-    border-radius: 16px;
-    transition: opacity 0.3s ease;
 }
 
-.media-wrapper video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+/* Video necháme přes celou plochu */
+.media-wrapper video, .media-wrapper iframe {
     object-fit: cover; 
-    border-radius: 16px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
 }
 
-.game-box:hover .media-wrapper img {
-    opacity: 0;
+.media-wrapper video { opacity: 0; }
+.game-box:hover .media-wrapper img { opacity: 0; }
+.game-box:hover .media-wrapper video { opacity: 1; }
+
+.video-wrapper {
+    display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+.media-wrapper:hover .video-wrapper { display: block; }
+.video-wrapper iframe {
+    width: 100%; height: 100%; pointer-events: none; transform: scale(1.1);
 }
 
-.game-box:hover .media-wrapper video {
-    opacity: 1;
-}
-
+/* Info pod kartou */
 .game-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 10px; padding: 0 2px;
 }
 
-.text {
-    display: flex;
-    flex-direction: column;
-}
+.text { display: flex; flex-direction: column; gap: 2px; }
 
 .game-title {
-    text-align: left;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #fff;
-    margin: 0;
+    font-family: 'Rubik', sans-serif; font-size: 0.9rem; font-weight: 600; color: #eee;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;
 }
 
 .game-dev {
-    text-align: left;
-    font-size: 0.8rem;
-    color: #ccc;
-    margin: 0;
+    font-family: 'Nunito', sans-serif; font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px;
 }
 
-.rating-circle {
-    width: 40px;
-    height: 40px;
-}
-
-.circular-chart {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.circle-bg {
-    fill: none;
-    stroke: #444;
-    stroke-width: 3.8;
-}
-
+/* Rating Circle */
+.rating-circle { width: 32px; height: 32px; position: relative; }
+.circular-chart { display: block; margin: 0 auto; max-width: 100%; max-height: 100%; }
+.circle-bg { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 3; }
 .circle {
-    fill: none;
-    stroke: #ffffff;
-    stroke-width: 4;
-    stroke-linecap: round;
-    transform: rotate(-90deg);
-    transform-origin: center;
-    transition: stroke-dasharray 0.5s ease;
+    fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round;
+    transform: rotate(-90deg); transform-origin: center;
+    transition: stroke-dasharray 0.6s ease;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5)); 
 }
-
 .percentage {
-    font-family: 'Nunito', sans-serif;
-    fill: #ffffff;
-    font-size: 0.9em;
-    text-anchor: middle;      
-   
+    font-family: 'Orbitron', sans-serif; fill: #fff; font-size: 0.8em; font-weight: 700;
+    text-anchor: middle; dominant-baseline: middle; 
 }
 
 
-
+/* --- FILTERS SIDEBAR --- */
 .filters {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    color: #fff;
-    font-family: 'Nunito', sans-serif;
-    padding-left: 20px;
-    width: 200px;
+    width: 240px; /* Užší panel */
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex; flex-direction: column; gap: 15px;
+    height: fit-content;
+    max-height: 80vh;
+    overflow-y: auto;
 }
-.filters:hover {
-  cursor: default;
-      color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,  
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
+
 .filters h2 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    text-align: left;
-}
-.filters h2:hover {
-  cursor: default;
-      color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,   
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
+    font-family: 'Orbitron', sans-serif; font-size: 1rem; color: #fff;
+    margin-bottom: 5px; display: flex; align-items: center; gap: 10px;
+    padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.filter-group { display: flex; flex-direction: column; gap: 8px; }
 
-.filters input[type="checkbox"] {
-    display: none;
-}
-
+.filters input[type="checkbox"] { display: none; }
 
 .filters label {
-    position: relative;
-    padding-left: 25px;
+    position: relative; padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
     cursor: pointer;
-    user-select: none;
-    font-size: 1rem;
-}
-
-
-.filters label::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #fff;
-    border-radius: 4px;
-    background: transparent;
+    font-size: 0.85rem; color: #aaa;
     transition: all 0.2s ease;
+    display: flex; justify-content: space-between; align-items: center;
 }
 
+.filters label:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
 
-.filters input[type="checkbox"]:checked + label::before {
+.filters input[type="checkbox"]:checked + label {
     background: #fff;
-    box-shadow: 0 0 8px rgba(255,255,255,0.6);
-}
-
-
-.filters label::after {
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 1px;
-    width: 6px;
-    height: 12px;
-    border: solid #000;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg) scale(0);
-    transition: transform 0.2s ease;
-}
-
-
-.filters input[type="checkbox"]:checked + label::after {
-    transform: rotate(45deg) scale(1);
-}
-.game-count {
-    margin-top: 20px;
-   
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0);
-    text-align: center;
-    font-size: 1rem;
+    color: #000;
+    border-color: #fff;
     font-weight: 600;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
-.game-count i {
-    color: #fff;
-    font-size: 1.2rem;
+.game-count {
+    margin-top: 5px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center; color: #888; font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
 }
-
-.game-count:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
-    cursor: default;
-    text-shadow: 
-        0 0 4px #fff,
-        0 0 6px #aaa;
-}
+.game-count i { color: #fff; }
 
 
+/* --- NAVBAR & BURGER (Standard) --- */
+.glass-navbar { position: fixed; top: 0; width: 100%; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000; }
+.logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; letter-spacing: 2px; cursor: default; }
+.glass-nav-links a { margin-left: 30px; text-decoration: none; color: #aaa; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; transition: color 0.3s ease; }
+.glass-nav-links a:hover, .glass-nav-links a.active { color: #fff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); }
+#menu-toggle { display: none; } .burger-label { display: none; }
+.burger-nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); z-index: 990; padding-top: 80px; flex-direction: column; align-items: center; }
+.burger-nav ul { list-style: none; text-align: center; } .burger-nav li { margin: 25px 0; }
+.burger-nav a { color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; text-decoration: none; }
+.burger-date-time { position: absolute; bottom: 40px; width: 100%; text-align: center; color: #888; font-family: 'Nunito', sans-serif; }
 
-/* Mobile-only game count */
-.game-count-mobile {
-    display: none; /* default: hidden na desktopu */
-}
+.game-count-mobile { display: none; }
 
-/* --- Mobile adjustments --- */
-@media (max-width: 768px) {
-    .bio-container {
-        margin-top: 20px; 
-        max-height: 40vh; 
-        overflow-y: auto;
-        padding-right: 10px;
+/* --- RESPONSIVITA --- */
+@media (max-width: 900px) {
+    /* Navbar pryč, burger sem */
+    .glass-navbar { display: none; }
+    
+    .burger-label {
+        display: flex; flex-direction: column; justify-content: space-between;
+        width: 30px; height: 22px; position: fixed; top: 25px; left: 25px; z-index: 1000; cursor: pointer;
     }
-.hytro {
-    font-size: 23px;
-}
+    .burger-label span { height: 2px; width: 100%; background: #fff; transition: 0.3s; }
+    
+    #menu-toggle:checked + .burger-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    #menu-toggle:checked + .burger-label span:nth-child(2) { opacity: 0; }
+    #menu-toggle:checked + .burger-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+    #menu-toggle:checked ~ .burger-nav { display: flex; }
 
-    /* Games finished pod Hytro/motivation */
+    /* Layout */
+    .container { padding-top: 10px; width: 100%; max-width: 100%; }
+    
+    .hytro { margin-top: 60px; font-size: 2rem; margin-bottom: 5px; }
+    .motivation { display: none; } 
+
     .game-count-mobile {
-        display: flex; /* jen na mobilech */
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        margin-top: 90px;
-        margin-bottom: 15px;
-        text-align: center;
-        position: relative;
-        z-index: 2;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        color: #aaa; margin-top: 5px; margin-bottom: 15px; font-family: 'Orbitron', sans-serif; font-size: 0.9rem;
+        position: relative; z-index: 5;
     }
 
-    .filters {
+    /* Skrýt filtry */
+    .filters { display: none; }
+
+    /* --- MOBILE GRID (2 SLOUPCE) --- */
+    .games-grid {
+        /* Vynutíme 2 sloupce */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 12px; /* Menší mezery */
+        padding: 0 12px 80px 12px; /* Menší okraje */
+    }
+    
+    /* Kompaktní karta */
+    .game-box {
+        padding: 8px; /* Méně vaty uvnitř */
+        border-radius: 10px;
+    }
+
+    .media-wrapper {
+        border-radius: 6px;
+        /* Poměr stran na mobilu může být trochu vyšší, aby byl obrázek větší */
+        aspect-ratio: 16/10; 
+    }
+
+    /* Info pod kartou */
+    .game-info {
+        margin-top: 8px;
+        flex-direction: row; /* Vedle sebe */
+        align-items: center;
+    }
+
+    .text {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .game-title {
+        font-size: 0.8rem; /* Menší písmo */
+        margin-bottom: 0;
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+    }
+
+    /* Na mobilu skryjeme jméno vývojáře/žánr, aby to nebylo přeplácané */
+    .game-dev {
         display: none; 
     }
 
-    .motivation {
-        display: none;
+    /* Menší kolečko hodnocení */
+    .rating-circle {
+        width: 24px; 
+        height: 24px;
+        margin-left: 5px;
+        flex-shrink: 0; /* Aby se nesmrsklo */
     }
-
-    .games-grid {
-        margin-top: 10px; 
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    body {
-        height: auto;
-        overflow: visible;
+    
+    .percentage {
+        font-size: 0.7em; /* Menší číslo */
     }
 }
 
-/* Extra úzké mobily: 1 sloupec */
-@media (max-width: 385px) {
-    .games-grid {
-        grid-template-columns: 1fr;
-        gap: 12px; 
-    }
-}
-
-.glass-navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  padding: 0 40px;
-  background: transparent;
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-  border-bottom: 1px solid rgba(77, 77, 77, 0.164);
-  z-index: 1000;
-  font-family: 'Orbitron', sans-serif;
-}
-
-.logo {
-  cursor: default;
-  position: absolute;
-  left: 40px; /* zachová logo vlevo */
-  font-size: 1.8rem;
-  font-weight: normal;
-  color: #fff;
-  letter-spacing: 2px;
-}
-.logo:hover {
-  cursor: default;
-    color: #e0e0e0;
-  text-shadow:
-    0 0 2px #fff,
-    0 0 4px #ccc,
-    0 0 6px #aaa;
-  transition: color 0.3s, text-shadow 0.3s;
-}
-.glass-nav-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.glass-nav-links a {
-  margin-left: 30px;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.glass-nav-links a:hover {
-  color: #e0e0e0;
-  text-shadow:
-    0 0 2px #fff,
-    0 0 4px #ccc,
-    0 0 6px #aaa;
-  transition: color 0.3s, text-shadow 0.3s;
-}
-
-@media (max-width: 600px) {
-  .glass-navbar {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .burger-nav {
-    display: block;
-  }
-}
-@media (max-width: 500px) {
-    h1 {
-      display: block;
-        font-size: 2.2rem;
-    }
-    p.motivation {
-        font-size: 1rem;
-    }
-    .social-buttons a {
-        width: 40px;
-        height: 40px;
-        font-size:16px;
-    }
-}
-/* default - desktop: skryté */
-
-.burger-label span {
-  cursor: default;
-  display: none;   
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
-
-/* show burger icon only on mobile */
-@media (max-width: 600px) {
-  .burger-label span {
-    display: block;
-  }
-  .burger-label {
-    display: flex;
-    flex-direction: column; /* proužky pod sebe */
-    justify-content: space-between;
-    width: 25px;            /* nastavíš šířku burgeru */
-    height: 20px;           /* výšku burgeru */
-    overflow: visible;      /* důležité, aby nic neskrylo proužky */
-  }
-  .burger-nav {
-    display: block;
-  }
-}
-.burger-nav {
-  cursor: default;
-  display: none;          /* úplně skryté na desktopu */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.938);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-  padding-top: 60px; 
-  z-index: 90;
-}
-
-/* mobil: zobrazit a připravit na animaci */
-@media (max-width: 600px) {
-  .burger-nav {
-    display: block;
-  }
-}
-.video-wrapper {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.media-wrapper {
-    position: relative;
-}
-
-.media-wrapper:hover img {
-    display: none;
-}
-
-.media-wrapper:hover .video-wrapper {
-    display: block;
-}
-
-.video-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    transform: scale(0.85); /* Zmenší obsah iframe */
-    transform-origin: center center;
-    pointer-events: none; /* Zabrání klikání na video */
+/* Extra malé mobily (iPhone SE apod.) - raději 1 sloupec, jinak to bude nečitelné */
+@media (max-width: 360px) {
+    .games-grid { grid-template-columns: 1fr; }
+    .game-dev { display: block; } /* Tady už se vejde */
 }

@@ -1,4 +1,4 @@
-
+/* --- Reset a základ --- */
 * {
     margin:0;
     padding:0;
@@ -16,7 +16,7 @@ body {
     align-items: center;
 }
 
-
+/* --- Hvězdy --- */
 .stars {
     position: fixed;
     top:0;
@@ -30,9 +30,8 @@ body {
     50% { opacity: 1; }
 }
 
-
 .star {
-  animation: twinkle var(--duration) ease-in-out infinite;
+    animation: twinkle var(--duration) ease-in-out infinite;
     position: absolute;
     width: 2px;
     height: 2px;
@@ -41,7 +40,7 @@ body {
     opacity: 0.8;
 }
 
-
+/* --- Hlavní kontejner --- */
 .container {
     position: relative;
     z-index: 2;
@@ -52,12 +51,25 @@ body {
 
 .hytro {
     font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: #d3d3d3;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    cursor: default;
 }
 
+.motivation {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    cursor: default;
+}
 
 p.motivation:hover {
     color: #e0e0e0; 
@@ -67,16 +79,17 @@ p.motivation:hover {
         0 0 6px #aaa;
     transition: color 0.3s, text-shadow 0.3s;
 }
-p.motivation {
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-    color: #a3a3a3;
-    font-weight: 500;
+
+.hytro:hover {
+    color: #e0e0e0; 
+    text-shadow: 
+        0 0 2px #fff,   
+        0 0 4px #ccc,
+        0 0 6px #aaa;
+    transition: color 0.3s, text-shadow 0.3s;
 }
 
-
-
+/* --- Social Icons (Původní kód zachován) --- */
 .social-buttons {
     display: flex;
     gap: 15px;
@@ -104,23 +117,6 @@ p.motivation {
     color: #929292; 
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); 
 }
-
-
-h1, p.motivation {
-    transition: all 0.3s ease;
-}
-
-.hytro:hover {
-    color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,   
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-
-
 
 ul {
   list-style: none;
@@ -215,91 +211,134 @@ ul {
   background-color: #9146FF;
 }
 
-.burger-menu input {
-  display: none;
+
+/* --- NOVÝ NAVBAR & BURGER (Sjednoceno s ostatními stránkami) --- */
+
+.glass-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between; /* Změna na space-between jako jinde */
+    align-items: center;
+    padding: 0 40px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: 2px;
+    cursor: default;
+    position: static; /* Reset absolutní pozice z původního kódu */
+}
+
+.glass-nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #aaa;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.glass-nav-links a:hover, .glass-nav-links a.active {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Burger Elements */
+#menu-toggle { display: none; }
+.burger-label { display: none; }
+
+.burger-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 990;
+    padding-top: 80px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.burger-nav ul { list-style: none; text-align: center; padding: 0 20px; margin: 0; }
+.burger-nav li { margin: 25px 0; }
+.burger-nav a {
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+.burger-nav a:hover {
+    color: #e0e0e0;
+    text-shadow: 0 0 2px #fff, 0 0 4px #ccc, 0 0 6px #aaa;
+}
+
+.burger-date-time {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+    color: #888;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    left: 0; transform: none; /* Reset transformace */
+}
+
+/* RESPONSIVITA (900px Breakpoint jako jinde) */
+@media (max-width: 900px) {
+    .glass-navbar { display: none; }
+    
+    .burger-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        z-index: 1000;
+        cursor: pointer;
+    }
+    
+    .burger-label span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background: #fff;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    #menu-toggle:checked + .burger-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    #menu-toggle:checked + .burger-label span:nth-child(2) { opacity: 0; }
+    #menu-toggle:checked + .burger-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+    
+    #menu-toggle:checked ~ .burger-nav { display: flex; }
 }
 
 
-.burger-menu {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 100;
-}
-
-.burger-label {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px; 
-  height: 22px; 
-  cursor: default;
-  z-index: 110;
-}
-
-/* burger icon hidden by default */
-.burger-label {
-  display: none;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 30px;
-  height: 25px;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 120;
-}
-
-
-
-
-
-
-#menu-toggle:checked + .burger-label span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-#menu-toggle:checked + .burger-label span:nth-child(2) {
-  opacity: 0;
-}
-
-#menu-toggle:checked + .burger-label span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-
-
-.burger-label {
-  display: none;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 30px;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 120; 
-}
-
-
-
-
-#menu-toggle:checked + .burger-label span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-#menu-toggle:checked + .burger-label span:nth-child(2) {
-  opacity: 0;
-}
-#menu-toggle:checked + .burger-label span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-
-
-
+/* --- MUSIC PLAYER STYLES (Zachováno 1:1) --- */
 #music-player {
   transform: scale(0.8); 
   transform-origin: bottom right;
@@ -320,703 +359,218 @@ ul {
   transition: all 0.3s ease; 
 }
 
-
 #album-art {
-  flex: 0 0 100px;
-  height: 100px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-right: 15px;
-  position: relative;
+    flex: 0 0 100px;
+    height: 100px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-right: 15px;
+    position: relative;
 }
 
 #album-art img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease, opacity 0.3s ease; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease, opacity 0.3s ease; 
 }
 
 #album-art:hover img {
-  transform: scale(1.1);
-  filter: blur(1px);
+    transform: scale(1.1);
+    filter: blur(1px);
 }
 
-
-#album-art.fade-out {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-#album-art.fade-in {
-  opacity: 1;
-  transform: scale(1);
-}
-
+#album-art.fade-out { opacity: 0; transform: scale(0.8); }
+#album-art.fade-in { opacity: 1; transform: scale(1); }
 
 #track-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
-#track-info:hover {
-  cursor: default;
-}
+#track-info:hover { cursor: default; }
 
-#track-title, #track-artist {
-  transition: opacity 0.3s ease, transform 0.3s ease; 
-}
+#track-title, #track-artist { transition: opacity 0.3s ease, transform 0.3s ease; }
+#track-title { font-weight: 600; margin-bottom: 2px; }
 #track-artist {
-  font-size: 12px;          
-  color: #ccc;            
-  margin-bottom: 14px;      
-  line-height: 1.2;       
-  overflow: hidden;        
-  white-space: nowrap;
-  text-overflow: ellipsis;  
-  transition: color 0.3s;   
-}
-#track-artist:hover {
-  cursor: default;
-
-}
-#track-title.fade-out, #track-artist.fade-out {
-  opacity: 0;
-  transform: translateY(-10px);
+    font-size: 12px; color: #ccc; margin-bottom: 14px;
+    line-height: 1.2; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    transition: color 0.3s;
 }
 
-#track-title.fade-in, #track-artist.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+#track-title.fade-out, #track-artist.fade-out { opacity: 0; transform: translateY(-10px); }
+#track-title.fade-in, #track-artist.fade-in { opacity: 1; transform: translateY(0); }
 
 #seek-bar-container {
-  width: 100%;
-  height: 6px;
-  background: #000000;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  position: relative;
+    width: 100%;
+    height: 6px;
+    background: #000000;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
 }
-#seek-bar-container:hover {
-  width: 100%;
-  height: 6px;
-  background: #0f0f0f;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  transition: color 1s, text-shadow 0.5s;
-  cursor: pointer;
-  position: relative;
-}
-
-.hytro, .burger-date-time, .motivation {
-  cursor: default;
-}
+#seek-bar-container:hover { background: #0f0f0f; }
 
 #seek-bar {
-  height: 100%;
-  width: 0%;
-  background: #a3a3a3;
-  border-radius: 3px;
-  transition: width 0.2s linear;
-
+    height: 100%;
+    width: 0%;
+    background: #a3a3a3;
+    border-radius: 3px;
+    transition: width 0.2s linear;
 }
-#seek-bar:hover {
-  height: 100%;
-  width: 0%;
-  background: #b8b8b8;
-  border-radius: 3px;
-  transition: width 0.2s linear;
-    transition: background 0.2s; 
-}
+#seek-bar:hover { background: #b8b8b8; transition: background 0.2s; }
 
 #controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
 }
 
 #player-buttons button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  color: #aaa;
-  margin-right: 10px;
-  transition: color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #aaa;
+    margin-right: 10px;
+    transition: color 0.2s;
 }
-
 #player-buttons button:hover {
-  color: #e0e0e0; 
-    text-shadow: 
-        0 0 1px #fff,   
-        0 0 2px #ccc,
-        0 0 3px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
+    color: #e0e0e0;
+    text-shadow: 0 0 1px #fff, 0 0 2px #ccc, 0 0 3px #aaa;
 }
-
 
 #volume-control {
-  position: relative;
-  display: flex;
-  align-items: center;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 #volume-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #aaa;
-  font-size: 18px;
-  transition: color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 18px;
+    transition: color 0.2s;
 }
-
 #volume-button:hover {
-  cursor: default;
-      color: #e0e0e0;
-    text-shadow: 
-        0 0 1px #fff,   
-        0 0 2px #ccc,
-        0 0 3px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
+    color: #e0e0e0;
+    text-shadow: 0 0 1px #fff, 0 0 2px #ccc, 0 0 3px #aaa;
 }
-
 
 #volume-bar-container {
-  width: 120px;
-  height: 6px;
-  background: #000000;
-  border-radius: 3px;
-  cursor: pointer;
-  position: absolute;
-  top: 55%;
-  right: 35px;
-  transform: translateY(-50%);
-  opacity: 1;         
-  pointer-events: auto; 
-  z-index: 100;
-  transition: background 0.2s; 
+    width: 120px;
+    height: 6px;
+    background: #000000;
+    border-radius: 3px;
+    cursor: pointer;
+    position: absolute;
+    top: 55%;
+    right: 35px;
+    transform: translateY(-50%);
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 100;
+    transition: background 0.2s;
 }
-
-#volume-bar-container:hover {
-  background: #111111; 
-}
-
+#volume-bar-container:hover { background: #111111; }
 
 #volume-bar {
-  width: 50%; 
-  height: 100%;
-  background: #a3a3a3;
-  border-radius: 3px;
-  transition: width 0.2s linear;
-  cursor: pointer;
+    width: 50%;
+    height: 100%;
+    background: #a3a3a3;
+    border-radius: 3px;
+    transition: width 0.2s linear;
+    cursor: pointer;
 }
 
-#volume-bar:hover {
-  width: 50%;
-  height: 100%;
-  background: #a3a3a3;
-  border-radius: 3px;
-  transition: width 0.2s linear;
-  cursor: pointer;
-}
-#volume-bar-container:hover {
-  width: 120px;
-  height: 6px;
-  background: #0f0f0F;
-  border-radius: 3px;
-  cursor: pointer;
-  position: absolute;
-  top: 55%;
-  right: 35px;
-  transform: translateY(-50%);
-  opacity: 1; 
-  z-index: 100;
-  transition: background 0.2s; 
-}
-
-
-.fade-out {
-  opacity: 0;
-  transform: translateY(-5px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-#album-art img {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.burger-date-time {
-    position: absolute;  
-    bottom: 20px;         
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Nunito', sans-serif; 
-    font-size: 18px;      
-    color: #fff;
-    text-align: center;
-    letter-spacing: 1px;
-    text-transform: uppercase; 
-    opacity: 0.9;
-}
-.burger-date-time:hover {
-    color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,  
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-#menu-toggle {
-  display: none;
-}
-
-.toggle {
-  position: fixed;      
-  top: 15px;
-  left: 15px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition-duration: .3s;
-  z-index: 100;         
-}
-
-.bars {
-  width: 100%;
-  height: 4px;
-  background-color: rgb(253, 255, 243);
-  border-radius: 5px;
-  transition-duration: .3s;
-}
-
-
-#menu-toggle:checked + .toggle #bar2 {
-  transform: translateY(14px) rotate(60deg);
-  transform-origin: right;
-  transition-duration: .3s;
-  z-index: 2;
-}
-
-#menu-toggle:checked + .toggle #bar1 {
-  transform: translateY(28px) rotate(-60deg);
-  transition-duration: .3s;
-  transform-origin: left;
-  z-index: 1;
-}
-
-#menu-toggle:checked + .toggle {
-  transform: rotate(-90deg);
-}
-
-
-.burger-nav {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-  padding-top: 60px; 
-  z-index: 90;
-}
-
-#menu-toggle:checked ~ .burger-nav {
-  transform: translateX(0);
-}
-
-.burger-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0 20px;
-}
-
-.burger-nav ul li {
-  margin: 20px 0;
-}
-
-.burger-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: normal;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1em;
-  transition: color 0.3s;
-}
-
-.burger-nav ul li a:hover {
-     color: #e0e0e0;
-    text-shadow: 
-        0 0 2px #fff,   
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-.toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  width: 25px;        
-  height: 25px;      
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;          
-  transition-duration: .3s;
-  z-index: 100;
-}
-
-@media (max-width: 768px) {
-  .burger-nav {
-    background: rgba(0, 0, 0, 0.95); 
-  }
-}
-
-#music-player {
-  z-index: 900; 
-}
-
-
-.burger-nav {
-  z-index: 950;
-}
-
-
-.burger-label {
-  z-index: 1000; 
-}
-@media (max-width: 1024px) {
-  #music-player {
-    bottom: 15px;      
-    left: 50%;         
-    right: auto;      
-    transform: translateX(-50%) scale(0.8); 
-    transform-origin: bottom center;
-  }
-}
-
-@media (max-width: 768px) {
-    .burger-date-time {
-        display: none;
-    }
-}
-
-
-
-.glass-navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  padding: 0 40px;
-  background: transparent;
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-  border-bottom: 1px solid rgba(77, 77, 77, 0.164);
-  z-index: 1000;
-  font-family: 'Orbitron', sans-serif;
-}
-
-.logo {
-  position: absolute;
-  left: 40px; /* zachová logo vlevo */
-  font-size: 1.8rem;
-  font-weight: normal;
-  color: #fff;
-  letter-spacing: 2px;
-}
-
-.glass-nav-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.glass-nav-links a {
-  margin-left: 30px;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.glass-nav-links a:hover {
-  color: #e0e0e0;
-  text-shadow:
-    0 0 2px #fff,
-    0 0 4px #ccc,
-    0 0 6px #aaa;
-  transition: color 0.3s, text-shadow 0.3s;
-}
-
-@media (max-width: 600px) {
-  .glass-navbar {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .burger-nav {
-    display: block;
-  }
-}
-@media (max-width: 500px) {
-    h1 {
-        font-size: 2.2rem;
-    }
-    p.motivation {
-        font-size: 1rem;
-    }
-    .social-buttons a {
-        width: 40px;
-        height: 40px;
-        font-size:16px;
-    }
-}
-/* default - desktop: skryté */
-
-.burger-label span {
-  display: none;   
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
-
-/* show burger icon only on mobile */
-@media (max-width: 600px) {
-  .burger-label span {
-    display: block;
-  }
-  .burger-label {
-    display: flex;
-    flex-direction: column; /* proužky pod sebe */
-    justify-content: space-between;
-    width: 25px;            /* nastavíš šířku burgeru */
-    height: 20px;           /* výšku burgeru */
-    overflow: visible;      /* důležité, aby nic neskrylo proužky */
-  }
-  .burger-nav {
-    display: block;
-  }
-}
-
-
-.hytro {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3.5rem; /* O něco větší */
-    font-weight: 700; /* Tučnější */
-    text-transform: uppercase;
-    /* Přidej jemný gradient do textu místo jen šedé */
-    background: linear-gradient(180deg, #fff, #aaa);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px; /* Úprava odsazení */
-}
-
-.motivation {
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    opacity: 0.8; /* Místo barvy #a3a3a3 použij opacitu, lépe to reaguje na pozadí */
-}
-
-/* V media queries (pro mobil) */
+/* V media queries (pro mobil - PLAYER) */
 @media (max-width: 600px) {
     #music-player {
-        width: 90%; /* Přehrávač přes téměř celou šířku */
-        left: 5%; /* Vycentrování */
+        width: 90%;
+        left: 5%;
         right: auto;
         bottom: 20px;
-        transform: none; /* Odstranit scale */
+        transform: none;
         padding: 15px;
-        flex-direction: row; /* Zachovat řádek, ne pod sebe */
+        flex-direction: row;
         align-items: center;
     }
 
-    #album-art {
-        flex: 0 0 60px; /* Menší cover art */
-        height: 60px;
-    }
+    #album-art { flex: 0 0 60px; height: 60px; }
     
-    /* Skrýt volume slider na mobilu (lidé ovládají hlasitost tlačítky telefonu) */
-    #volume-control {
-        display: none;
-    }
-    
-    #track-title {
-        font-size: 14px;
-    }
+    #volume-control { display: none; }
+    #track-title { font-size: 14px; }
 }
 
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-body {
-    opacity: 0;
-    animation: fadeIn 1.5s ease-out forwards;
-}
+@keyframes fadeIn { to { opacity: 1; } }
+body { opacity: 0; animation: fadeIn 1.5s ease-out forwards; }
 
-/* --- PLAYLIST STYLES --- */
 
+/* --- PLAYLIST STYLES (Zachováno) --- */
 #playlist-wrap {
     position: fixed;
-    bottom: 140px; /* Umístění nad přehrávačem */
+    bottom: 140px;
     right: 15px;
     width: 350px;
-    max-height: 300px; /* Aby nebyl moc dlouhý */
-    overflow-y: auto; /* Scrollování */
-    
-    background: rgba(0, 0, 0, 0.4); /* Tmavší pozadí pro čitelnost */
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     border-radius: 12px;
-    
     padding: 10px;
-    z-index: 10000; /* Pod Burger menu, ale nad hvězdami */
-    
+    z-index: 10000;
     opacity: 1;
     transform: translateY(0);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Třída pro skrytí */
-#playlist-wrap.hidden {
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-}
+#playlist-wrap.hidden { opacity: 0; transform: translateY(20px); pointer-events: none; }
 
-/* Položka v seznamu */
 .playlist-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
+    display: flex; align-items: center; padding: 10px;
+    border-radius: 8px; cursor: pointer;
     transition: background 0.2s ease;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
+.playlist-item:hover { background: rgba(255, 255, 255, 0.1); }
+.playlist-item.active { background: rgba(255, 255, 255, 0.15); border-left: 3px solid #fff; }
 
-.playlist-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
+.playlist-thumb { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; margin-right: 12px; }
+.playlist-info { display: flex; flex-direction: column; }
+.playlist-title { font-size: 0.9rem; color: #fff; font-weight: 500; }
+.playlist-artist { font-size: 0.75rem; color: #aaa; }
 
-/* Aktivní skladba (právě hraje) */
-.playlist-item.active {
-    background: rgba(255, 255, 255, 0.15);
-    border-left: 3px solid #fff;
-}
+#playlist-wrap::-webkit-scrollbar { width: 6px; }
+#playlist-wrap::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+#playlist-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
 
-.playlist-thumb {
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    object-fit: cover;
-    margin-right: 12px;
-}
-
-.playlist-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.playlist-title {
-    font-size: 0.9rem;
-    color: #fff;
-    font-weight: 500;
-}
-
-.playlist-artist {
-    font-size: 0.75rem;
-    color: #aaa;
-}
-
-/* Custom Scrollbar pro playlist (aby ladil s designem) */
-#playlist-wrap::-webkit-scrollbar {
-    width: 6px;
-}
-#playlist-wrap::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.1);
-}
-#playlist-wrap::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.2);
-    border-radius: 3px;
-}
-
-/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 600px) {
     #playlist-wrap {
-        width: 90%; /* Stejná šířka jako player */
-        right: auto;
-        left: 5%; /* Vycentrování */
-        bottom: 110px; /* Posunutí výše nad mobilní player */
-        max-height: 40vh; /* Maximálně 40% výšky displeje */
+        width: 90%; right: auto; left: 5%; bottom: 110px; max-height: 40vh;
     }
 }
-#playlist-toggle {
-    color: #fff; /* Bílá barva */
-    opacity: 0.8;
-    transform: scale(1.1); /* Trochu větší než ostatní */
-}
 
-#playlist-toggle:hover {
-    color: #7289da; /* Při najetí zmodrá (Discord barva), aby bylo jasné, že je to ono */
-    text-shadow: 0 0 8px rgba(114, 137, 218, 0.6);
-}
-/* --- PLAYLIST CLICK ANIMATION --- */
+#playlist-toggle { color: #fff; opacity: 0.8; transform: scale(1.1); }
+#playlist-toggle:hover { color: #7289da; text-shadow: 0 0 8px rgba(114, 137, 218, 0.6); }
 
-/* Definice animace "pulsu" */
+/* Playlist Animation */
 @keyframes clickPulse {
-    0% {
-        transform: scale(1);
-        background: rgba(255, 255, 255, 0.1); /* Výchozí stav */
-    }
-    40% {
-        transform: scale(1.03); /* Jemné zvětšení */
-        background: rgba(255, 255, 255, 0.3); /* Probliknutí světla */
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Jemná záře okolo */
-    }
-    100% {
-        transform: scale(1);
-        /* Pozadí se vrátí do normálu (nebo do .active stavu) */
-    }
+    0% { transform: scale(1); background: rgba(255, 255, 255, 0.1); }
+    40% { transform: scale(1.03); background: rgba(255, 255, 255, 0.3); box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
+    100% { transform: scale(1); }
 }
-
-/* Třída, kterou na chvíli přidáme Javascriptem */
 .playlist-item.animating {
     animation: clickPulse 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    z-index: 2; /* Aby při zvětšení překryla sousedy */
-    position: relative;
+    z-index: 2; position: relative;
 }
-
-/* Speciální efekt pro obrázek uvnitř animované položky */
 .playlist-item.animating .playlist-thumb {
-    transition: box-shadow 0.3s ease;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Záře kolem coveru */
+    transition: box-shadow 0.3s ease; box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
