@@ -360,3 +360,8 @@ p.motivation:hover {
     transform: scale(1.1);
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
+.glass-nav-links a:hover,
+.glass-nav-links a.active {  /* Přidán tento řádek */
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
