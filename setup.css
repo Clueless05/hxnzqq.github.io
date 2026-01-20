@@ -1,29 +1,32 @@
 /* --- Reset a základ --- */
 * {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Rubik', sans-serif;
-    overflow: hidden;
+    /* Povolíme scrollování, protože setup může být dlouhý */
+    overflow-x: hidden; 
+    overflow-y: auto; 
     background: #000;
     color: #fff;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
 /* --- Hvězdy --- */
 .stars {
     position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; /* Aby neblokovaly klikání */
 }
 
 .star {
@@ -35,599 +38,325 @@ body {
     opacity: 0.8;
 }
 
-
+/* --- Hlavní Kontejner (Nadpis) --- */
 .container {
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 480px;
+    max-width: 600px;
     padding: 0 15px;
+    margin-top: 120px; /* Odsazení od vrchu (aby nelezlo pod navbar) */
+    margin-bottom: 40px;
 }
 
 .hytro {
-     cursor: default;
+    cursor: default;
     font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: #d3d3d3;
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    /* Gradient text */
+    background: linear-gradient(180deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
 }
 
+p.motivation {
+    cursor: default;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.1rem;
+    color: #a3a3a3;
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
 
 p.motivation:hover {
-     cursor: default;
-    color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff, 
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-p.motivation {
-     cursor: default;
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-    color: #a3a3a3;
-    font-weight: 500;
-}
-
-
-
-h1 {
-  display: none;
-    transition: all 0.3s ease;
-}
-p.motivation{
-  display: none;
-    transition: all 0.3s ease;
-}
-
-.hytro:hover {
-    color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,   
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-
-@media (max-width: 500px) {
-    h1 {
-      display: block;
-        font-size: 2.2rem;
-    }
-    p.motivation {
-       display: block;
-        font-size: 1rem;
-    }
-    .social-buttons a {
-        width: 40px;
-        height: 40px;
-        font-size:16px;
-    }
-}
-
-.burger-menu input {
-  display: none;
-}
-
-
-.burger-menu {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 100;
-}
-
-.burger-label {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;  
-  height: 22px; 
-  cursor: pointer;
-  z-index: 110;
-}
-
-.burger-label span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
-
-
-#menu-toggle:checked + .burger-label span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-#menu-toggle:checked + .burger-label span:nth-child(2) {
-  opacity: 0;
-}
-
-#menu-toggle:checked + .burger-label span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-
-
-.burger-label {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 30px;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: default;
-  z-index: 120; 
-}
-
-.burger-label span {
-  display: block;
-  height: 3px;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
-
-
-#menu-toggle:checked + .burger-label span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-#menu-toggle:checked + .burger-label span:nth-child(2) {
-  opacity: 0;
-}
-#menu-toggle:checked + .burger-label span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-
-.burger-date-time {
-    position: absolute;   
-    bottom: 20px;        
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Nunito', sans-serif; 
-    font-size: 18px;      
     color: #fff;
-    text-align: center;
-    letter-spacing: 1px;
-    text-transform: uppercase; 
-    opacity: 0.9;
-}
-.burger-date-time:hover {
-     cursor: default;
-    color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,   
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
-#menu-toggle {
-  display: none;
-}
-
-.toggle {
-  position: fixed;       
-  top: 15px;
-  left: 15px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition-duration: .3s;
-  z-index: 100;          
-}
-
-.bars {
-  width: 100%;
-  height: 4px;
-  background-color: rgb(253, 255, 243);
-  border-radius: 5px;
-  transition-duration: .3s;
-}
-
-
-#menu-toggle:checked + .toggle #bar2 {
-  transform: translateY(14px) rotate(60deg);
-  transform-origin: right;
-  transition-duration: .3s;
-  z-index: 2;
-}
-
-#menu-toggle:checked + .toggle #bar1 {
-  transform: translateY(28px) rotate(-60deg);
-  transition-duration: .3s;
-  transform-origin: left;
-  z-index: 1;
-}
-
-#menu-toggle:checked + .toggle {
-  transform: rotate(-90deg);
-}
-
-
-.burger-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-  padding-top: 60px;
-  z-index: 90;
-}
-
-#menu-toggle:checked ~ .burger-nav {
-  transform: translateX(0);
-}
-
-.burger-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0 20px;
-}
-
-.burger-nav ul li {
-  margin: 20px 0;
-}
-
-.burger-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: normal;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1em;
-  transition: color 0.3s;
-}
-
-.burger-nav ul li a:hover {
-     color: #e0e0e0; 
-    text-shadow: 
-        0 0 2px #fff,  
-        0 0 4px #ccc,
-        0 0 6px #aaa;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-.toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  width: 25px;       
-  height: 25px;      
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;           
-  transition-duration: .3s;
-  z-index: 100;
-}
-
-@media (max-width: 768px) {
-  .burger-nav {
-    background: rgba(0, 0, 0, 0.95); 
-  }
-}
-
-
-
-.burger-nav {
-  z-index: 950; 
-}
-
-
-.burger-label {
-  z-index: 1000; 
-}
-
-
-@media (max-width: 768px) {
-    .burger-date-time {
-        display: none;
-    }
-}
-
-.container {
-    position: absolute;
-    top: 50px; 
-    left: 50%;
-    transform: translateX(-50%); 
-    
-    z-index: 2;
-    text-align: center;
-    max-width: 480px;
-    padding: 0 15px;
-}
-
+/* --- GRID PRO SPECIFIKACE (To hlavní vylepšení) --- */
 .specs-grid {
-  display: grid;
-  grid-auto-flow: column;               
-  grid-auto-columns: minmax(220px, 1fr);
-  grid-template-rows: repeat(3, auto); 
-  gap: 24px;
-  margin-top: 50px;
-  z-index: 2;
-  font-family: 'Inter', 'Segoe UI', sans-serif; 
+    display: grid;
+    /* Automaticky vytvoří sloupce, min 250px šířka, zbytek se roztáhne */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px; /* Aby to na velkém monitoru nebylo roztažené do krajů */
+    padding: 0 20px 50px 20px; /* Padding dole pro scroll */
+    z-index: 2;
+    position: relative;
 }
 
 .spec-card {
-  cursor: default;
-  background: rgba(0, 0, 0, 0);
-  border: 1px solid rgba(235, 235, 235, 0);
-  border-radius: 14px;
-  padding: 22px 18px;
-  text-align: center;
-  color: #808080;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(3px);
+    cursor: default;
+    background: rgba(255, 255, 255, 0.03); /* Velmi jemné pozadí */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Tenká linka */
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    color: #808080;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .spec-card i {
-  font-size: 2.2rem;
-  margin-bottom: 14px;
-  color: rgb(170, 170, 170);
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.spec-card i:hover {
-  color: rgb(255, 255, 255);
-  transform: scale(1.1);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #cfcfcf;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .spec-card h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.8;
 }
 
 .spec-card p {
-  font-size: 0.95rem;
-  font-weight: 500;
-  line-height: 1.4;
-  margin: 0;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-}
-
-@keyframes glowBreath {
-  0% {
-    box-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgba(255, 255, 255, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 16px rgb(255, 255, 255), 0 0 32px rgba(255, 255, 255, 0.6);
-  }
-  100% {
-    box-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgba(255, 255, 255, 0.5);
-  }
-}
-
-.spec-card:hover {
-  transform: translateY(-6px) scale(1.04);
-  border-color: rgb(85, 85, 85);
-  color: #fff;
-  animation: glowBreath 1.5s infinite ease-in-out;
-}
-
-
-
-
-@media (max-width: 1024px) {
-  .specs-grid {
-    grid-auto-columns: minmax(180px, 1fr);
-    gap: 20px;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .specs-grid {
-    display: grid;
-    grid-template-columns: 1fr; 
-    grid-auto-flow: row;
-    gap: 18px;
-    margin-top: 40px;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .specs-grid {
-    grid-template-columns: 1fr; 
-    gap: 15px;
-    margin-top: 30px;
-  }
-
-  .spec-card {
-    padding: 15px 12px;
-  }
-
-  .spec-card i {
-    font-size: 1.7rem;
-    margin-bottom: 10px;
-  }
-
-  .spec-card h3 {
+    font-family: 'Rubik', sans-serif;
     font-size: 1rem;
-  }
-
-  .spec-card p {
-    font-size: 0.85rem;
-  }
+    font-weight: 400;
+    color: #bbb;
 }
 
-@media (max-width: 768px) {
-  body {
-    overflow-y: auto; 
-    height: auto;     
-    padding-bottom: 40px; 
-  }
-
-  .container {
-    top: 30px; 
-  }
-
-  .specs-grid {
-    margin-top: 180px; 
-    grid-auto-columns: 100%; 
-    grid-template-rows: auto; 
-    grid-auto-flow: row;      
-    gap: 20px;                
-  }
+/* Hover efekt pro karty - Profesionální Glow */
+.spec-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Větší stín */
 }
-@media (min-width: 375px) and (max-width: 768px) {
-  .specs-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-flow: row;  
-    gap: 18px;
-  }
+
+.spec-card:hover i {
+    color: #fff;
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
 }
+
+/* --- Navbar (Glass) --- */
 .glass-navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  padding: 0 40px;
-  background: transparent;
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-  border-bottom: 1px solid rgba(77, 77, 77, 0.164);
-  z-index: 1000;
-  font-family: 'Orbitron', sans-serif;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px; /* Trochu vyšší pro vzdušnost */
+    display: flex;
+    justify-content: space-between; /* Logo vlevo, linky vpravo */
+    align-items: center;
+    padding: 0 40px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 1000;
 }
 
 .logo {
-  cursor: default;
-  position: absolute;
-  left: 40px; /* zachová logo vlevo */
-  font-size: 1.8rem;
-  font-weight: normal;
-  color: #fff;
-  letter-spacing: 2px;
-}
-.logo:hover {
-  cursor: default;
-    color: #e0e0e0;
-  text-shadow:
-    0 0 2px #fff,
-    0 0 4px #ccc,
-    0 0 6px #aaa;
-  transition: color 0.3s, text-shadow 0.3s;
-}
-.glass-nav-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: 2px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .glass-nav-links a {
-  margin-left: 30px;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  transition: color 0.3s ease;
+    margin-left: 30px;
+    text-decoration: none;
+    color: #aaa;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
 .glass-nav-links a:hover {
-  color: #e0e0e0;
-  text-shadow:
-    0 0 2px #fff,
-    0 0 4px #ccc,
-    0 0 6px #aaa;
-  transition: color 0.3s, text-shadow 0.3s;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 600px) {
-  .glass-navbar {
-    display: none;
-  }
-}
+/* --- Burger Menu --- */
+#menu-toggle { display: none; }
+.burger-label { display: none; } /* Defaultně skryto */
 
-@media (max-width: 600px) {
-  .burger-nav {
-    display: block;
-  }
-}
-@media (max-width: 500px) {
-    h1 {
-      display: block;
-        font-size: 2.2rem;
-    }
-    p.motivation {
-        font-size: 1rem;
-    }
-    .social-buttons a {
-        width: 40px;
-        height: 40px;
-        font-size:16px;
-    }
-}
-/* default - desktop: skryté */
-
-.burger-label span {
-  cursor: default;
-  display: none;   
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
-
-/* show burger icon only on mobile */
-@media (max-width: 600px) {
-  .burger-label span {
-    display: block;
-  }
-  .burger-label {
-    display: flex;
-    flex-direction: column; /* proužky pod sebe */
-    justify-content: space-between;
-    width: 25px;            /* nastavíš šířku burgeru */
-    height: 20px;           /* výšku burgeru */
-    overflow: visible;      /* důležité, aby nic neskrylo proužky */
-  }
-  .burger-nav {
-    display: block;
-  }
-}
 .burger-nav {
-  cursor: default;
-  display: none;          /* úplně skryté na desktopu */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.938);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-  padding-top: 60px; 
-  z-index: 90;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Na mobilu přes celou šířku */
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 990;
+    padding-top: 80px;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* mobil: zobrazit a připravit na animaci */
-@media (max-width: 600px) {
-  .burger-nav {
-    display: block;
-  }
+.burger-nav ul { list-style: none; text-align: center; }
+.burger-nav li { margin: 25px 0; }
+.burger-nav a {
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+.burger-date-time {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+    color: #888;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* --- Responsivita --- */
+
+@media (max-width: 768px) {
+    .glass-navbar { display: none; } /* Skrýt desktop menu */
+    
+    .burger-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        z-index: 1000;
+        cursor: pointer;
+    }
+    
+    .burger-label span {
+        height: 2px;
+        width: 100%;
+        background: #fff;
+        transition: 0.3s;
+    }
+
+    /* Animace burger ikony */
+    #menu-toggle:checked + .burger-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    #menu-toggle:checked + .burger-label span:nth-child(2) { opacity: 0; }
+    #menu-toggle:checked + .burger-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    /* Zobrazení menu po kliknutí */
+    #menu-toggle:checked ~ .burger-nav {
+        display: flex; /* Změna na flex pro centrování */
+    }
+
+    .container { margin-top: 80px; }
+    .hytro { font-size: 2.5rem; }
+    
+    .specs-grid {
+        grid-template-columns: 1fr; /* Na mobilu karty pod sebou */
+        padding: 0 15px 40px 15px;
+    }
+}/* --- KARTA KOMPONENTY - DARK STEALTH VERZE --- */
+.spec-card {
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    
+    /* 1. ZTMAVENÍ KARTY: */
+    /* Místo 0.03 dáme 0.01 (téměř neviditelná výplň), nebo můžeme dát černou tintu */
+    background: rgba(0, 0, 0, 0.2); 
+    
+    backdrop-filter: blur(5px); /* Menší blur pro ostřejší "tech" look */
+    -webkit-backdrop-filter: blur(5px);
+    
+    /* 2. ZTMAVENÍ OKRAJE: */
+    /* Velmi jemná linka, skoro neviditelná */
+    border: 1px solid rgba(255, 255, 255, 0.03); 
+    
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Jemnější stín */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    /* Proměnné pro myš */
+    --x: 50%;
+    --y: 50%;
+}
+
+/* --- "Spotlight" vrstva (GLOW) --- */
+.spec-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
+    /* 3. ZTMAVENÍ GLOW EFEKTU: */
+    /* Snížil jsem jas z 0.15 na 0.06 (velmi jemné světlo) */
+    background: radial-gradient(
+        500px circle at var(--x) var(--y), 
+        rgba(255, 255, 255, 0.15), 
+        transparent 40%
+    );
+    
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* --- Hover Stavy --- */
+
+.spec-card:hover::before {
+    opacity: 1;
+}
+
+.spec-card:hover {
+    transform: translateY(-3px);
+    /* Při hoveru se okraj jen lehce rozsvítí */
+    border-color: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.spec-card i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    /* Tmavší šedá pro ikony v klidu */
+    color: #555; 
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: relative; z-index: 2; 
+}
+.spec-card h3 {
+    position: relative; z-index: 2;
+    color: #ddd; /* Trochu tmavší bílá */
+}
+.spec-card p {
+    position: relative; z-index: 2;
+    color: #888; /* Tmavší text */
+}
+
+/* Při hoveru ikona zbělá */
+.spec-card:hover i {
+    color: #fff;
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
