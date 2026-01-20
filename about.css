@@ -169,4 +169,91 @@ body {
     .main-wrapper { padding: 80px 15px; }
     .about-card { transform: none !important; }
     .card-content { transform: none; }
+}/* --- RESPONSIVITA PRO MOBILY A TABLETY --- */
+@media (max-width: 900px) { /* Zvýšil jsem hranici na 900px pro bezpečí */
+    
+    /* 1. Reset Body - Povolit scrollovaní */
+    body {
+        overflow-x: hidden;
+        overflow-y: auto !important; /* Důležité: Povolit vertikální scroll */
+        height: auto !important;
+        padding-bottom: 40px; /* Místo dole */
+        perspective: none; /* Vypnout 3D perspektivu */
+    }
+
+    .main-wrapper {
+        padding: 90px 15px 40px 15px; /* Více místa nahoře kvůli navbaru */
+        height: auto; /* Aby se wrapper natáhl podle obsahu */
+        display: block; /* Změna z flexu na blok, lepší pro scrollovaní */
+    }
+
+    /* 2. Reset Karty - Žádné 3D, žádný tilt */
+    .about-card {
+        transform: none !important; /* Vypnout tilt */
+        transition: none !important;
+        margin: 0 auto; /* Vycentrovat */
+        width: 100%;
+        max-width: 100%;
+        
+        /* Zjednodušení efektů pro výkon */
+        backdrop-filter: blur(10px); 
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Vypnout vnitřní 3D posuny */
+    .card-content, 
+    .profile-icon, 
+    .glitch, 
+    .role-badge, 
+    .bio-section p, 
+    .skills-section h2, 
+    .skills-grid {
+        transform: none !important;
+    }
+
+    /* 3. Úprava Navbaru */
+    .glass-navbar { display: none; } /* Desktop menu pryč */
+    
+    /* Burger menu styl */
+    .burger-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        z-index: 1000;
+        cursor: pointer;
+    }
+    
+    .burger-label span {
+        height: 2px;
+        width: 100%;
+        background: #fff;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    /* Animace burgeru */
+    #menu-toggle:checked + .burger-label span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    #menu-toggle:checked + .burger-label span:nth-child(2) { opacity: 0; }
+    #menu-toggle:checked + .burger-label span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    
+    #menu-toggle:checked ~ .burger-nav { display: flex; }
+
+    /* 4. Texty a čitelnost */
+    .about-card h1 { font-size: 2.2rem; }
+    .profile-icon { font-size: 2.5rem; margin-bottom: 15px; }
+    .role-badge { margin-bottom: 20px; }
+    
+    /* Skills grid na mobilu */
+    .skills-grid {
+        gap: 10px;
+    }
+    .skill-chip {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
 }
