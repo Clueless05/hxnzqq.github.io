@@ -25,8 +25,14 @@ body {
     height:100%;
     z-index:0;
 }
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
 
 .star {
+  animation: twinkle var(--duration) ease-in-out infinite;
     position: absolute;
     width: 2px;
     height: 2px;
@@ -820,3 +826,197 @@ ul {
 }
 
 
+.hytro {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem; /* O něco větší */
+    font-weight: 700; /* Tučnější */
+    text-transform: uppercase;
+    /* Přidej jemný gradient do textu místo jen šedé */
+    background: linear-gradient(180deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px; /* Úprava odsazení */
+}
+
+.motivation {
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    opacity: 0.8; /* Místo barvy #a3a3a3 použij opacitu, lépe to reaguje na pozadí */
+}
+
+/* V media queries (pro mobil) */
+@media (max-width: 600px) {
+    #music-player {
+        width: 90%; /* Přehrávač přes téměř celou šířku */
+        left: 5%; /* Vycentrování */
+        right: auto;
+        bottom: 20px;
+        transform: none; /* Odstranit scale */
+        padding: 15px;
+        flex-direction: row; /* Zachovat řádek, ne pod sebe */
+        align-items: center;
+    }
+
+    #album-art {
+        flex: 0 0 60px; /* Menší cover art */
+        height: 60px;
+    }
+    
+    /* Skrýt volume slider na mobilu (lidé ovládají hlasitost tlačítky telefonu) */
+    #volume-control {
+        display: none;
+    }
+    
+    #track-title {
+        font-size: 14px;
+    }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+body {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+/* --- PLAYLIST STYLES --- */
+
+#playlist-wrap {
+    position: fixed;
+    bottom: 140px; /* Umístění nad přehrávačem */
+    right: 15px;
+    width: 350px;
+    max-height: 300px; /* Aby nebyl moc dlouhý */
+    overflow-y: auto; /* Scrollování */
+    
+    background: rgba(0, 0, 0, 0.4); /* Tmavší pozadí pro čitelnost */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    
+    padding: 10px;
+    z-index: 10000; /* Pod Burger menu, ale nad hvězdami */
+    
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Třída pro skrytí */
+#playlist-wrap.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+/* Položka v seznamu */
+.playlist-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.playlist-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Aktivní skladba (právě hraje) */
+.playlist-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    border-left: 3px solid #fff;
+}
+
+.playlist-thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.playlist-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-title {
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.playlist-artist {
+    font-size: 0.75rem;
+    color: #aaa;
+}
+
+/* Custom Scrollbar pro playlist (aby ladil s designem) */
+#playlist-wrap::-webkit-scrollbar {
+    width: 6px;
+}
+#playlist-wrap::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+#playlist-wrap::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 3px;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 600px) {
+    #playlist-wrap {
+        width: 90%; /* Stejná šířka jako player */
+        right: auto;
+        left: 5%; /* Vycentrování */
+        bottom: 110px; /* Posunutí výše nad mobilní player */
+        max-height: 40vh; /* Maximálně 40% výšky displeje */
+    }
+}
+#playlist-toggle {
+    color: #fff; /* Bílá barva */
+    opacity: 0.8;
+    transform: scale(1.1); /* Trochu větší než ostatní */
+}
+
+#playlist-toggle:hover {
+    color: #7289da; /* Při najetí zmodrá (Discord barva), aby bylo jasné, že je to ono */
+    text-shadow: 0 0 8px rgba(114, 137, 218, 0.6);
+}
+/* --- PLAYLIST CLICK ANIMATION --- */
+
+/* Definice animace "pulsu" */
+@keyframes clickPulse {
+    0% {
+        transform: scale(1);
+        background: rgba(255, 255, 255, 0.1); /* Výchozí stav */
+    }
+    40% {
+        transform: scale(1.03); /* Jemné zvětšení */
+        background: rgba(255, 255, 255, 0.3); /* Probliknutí světla */
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Jemná záře okolo */
+    }
+    100% {
+        transform: scale(1);
+        /* Pozadí se vrátí do normálu (nebo do .active stavu) */
+    }
+}
+
+/* Třída, kterou na chvíli přidáme Javascriptem */
+.playlist-item.animating {
+    animation: clickPulse 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    z-index: 2; /* Aby při zvětšení překryla sousedy */
+    position: relative;
+}
+
+/* Speciální efekt pro obrázek uvnitř animované položky */
+.playlist-item.animating .playlist-thumb {
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Záře kolem coveru */
+}
