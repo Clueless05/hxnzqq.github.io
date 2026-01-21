@@ -1,55 +1,44 @@
-/* --- RESET A ZÁKLAD --- */
+/* --- GAMES PAGE STYLES --- */
+
+/* RESET & BODY */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: var(--primary-font);
     background: #000; 
     color: #fff; 
-    /* DŮLEŽITÉ: Povolit scroll na body, ale skrýt horizontální přetečení */
     min-height: 100vh;
     display: flex; flex-direction: column; align-items: center;
     overflow-x: hidden;
     overflow-y: auto; 
 }
 
-/* --- HVĚZDY (FIX: Zůstanou na místě při scrollu) --- */
+/* --- POZADÍ (Fixní) --- */
 .stars { 
-    position: fixed; /* Tady je klíč - fixní pozice vůči oknu */
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100vh; /* Plná výška okna */
-    z-index: 0; 
-    pointer-events: none; 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    z-index: 0; pointer-events: none; 
 }
-
 .star { 
-    position: absolute; 
-    width: 2px; height: 2px; 
-    background: #fff; 
-    border-radius: 50%; 
-    opacity: 0.8; 
+    position: absolute; width: 2px; height: 2px; 
+    background: #fff; border-radius: 50%; opacity: 0.8; 
+}
+.nebula-glow { 
+    position: fixed; z-index: 0; pointer-events: none; 
 }
 
-/* --- MLHOVINA (Taky fixní, aby byla pořád vidět) --- */
-.nebula-glow {
-    position: fixed; /* Fixní pozice */
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* --- HLAVNÍ CONTAINER --- */
+/* --- MAIN CONTAINER --- */
 .container {
     position: relative; z-index: 2;
     display: flex; flex-direction: column; align-items: center;
     width: 100%;
-    /* OPRAVA: Odstraněna fixní výška 100vh, aby stránka rostla s obsahem */
+    /* Aby se obsah mohl vycentrovat, potřebujeme minimální výšku */
     min-height: 100vh; 
+    padding-bottom: 40px; 
 }
 
-/* --- HEADER --- */
+/* --- HEADER (Desktop) --- */
 .games-header {
-    margin-top: 100px; /* Více místa od vrchu */
+    margin-top: 120px; 
     margin-bottom: 40px;
     text-align: center;
     animation: fadeInUp 0.8s ease-out forwards;
@@ -79,47 +68,47 @@ body {
 /* --- LAYOUT: GRID + FILTRY --- */
 .content-with-filters {
     display: flex;
-    justify-content: center; /* Vycentrování celého bloku */
+    justify-content: center;
     width: 100%;
     max-width: 1400px; 
     gap: 30px;
     position: relative;
-    padding: 0 20px 60px 20px; /* Padding dole */
+    padding: 0 20px 60px 20px;
+    flex-grow: 1; 
     animation: fadeInUp 1s ease-out 0.2s forwards;
     opacity: 0;
 }
 
-/* --- GAMES GRID --- */
+/* --- GAMES GRID (DESKTOP: Vycentrovaný, kompaktní) --- */
 .games-grid {
     display: grid;
-    /* Automatické sloupce, min 240px pro lepší čitelnost */
+    /* Automatické sloupce */
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
     gap: 20px;
     
-    /* Mřížka zabere zbytek místa */
     flex-grow: 1;
     width: 100%; 
+
+    /* Desktop logika: Karty se nenatahují a blok je uprostřed */
+    grid-auto-rows: max-content; 
+    align-content: center;        
 }
 
-/* --- GAME BOX (Premium Glass Card) --- */
+/* --- GAME BOX --- */
 .game-box {
     display: flex; 
     flex-direction: column;
-    
     background: rgba(15, 15, 15, 0.65);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
-    
     padding: 12px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: default;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    
-    /* Aby karty měly stejnou výšku */
     height: 100%; 
 }
 
@@ -208,17 +197,13 @@ body {
 .filters {
     width: 260px;
     flex-shrink: 0;
-    
     background: rgba(15, 15, 15, 0.65);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
-    
     padding: 25px;
     display: flex; flex-direction: column; gap: 15px;
-    
-    /* Sticky sidebar - pojede dolů s tebou */
     align-self: flex-start; 
     position: sticky; 
     top: 100px; 
@@ -226,43 +211,30 @@ body {
 }
 
 .filters h2 {
-    font-family: var(--display-font); 
-    font-size: 1rem; 
-    color: #fff;
-    margin-bottom: 10px; 
-    display: flex; align-items: center; gap: 10px;
-    padding-bottom: 15px; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--display-font); font-size: 1rem; color: #fff;
+    margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+    padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     letter-spacing: 1px;
 }
 
 .filter-group { display: flex; flex-direction: column; gap: 8px; }
-
 .filters input[type="checkbox"] { display: none; }
 
 .filters label {
     position: relative; padding: 10px 15px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem; color: #aaa;
-    font-family: var(--primary-font);
-    transition: all 0.2s ease;
-    display: flex; justify-content: space-between; align-items: center;
+    border-radius: 8px; cursor: pointer;
+    font-size: 0.9rem; color: #aaa; font-family: var(--primary-font);
+    transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center;
 }
 
 .filters label:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08); color: #fff; border-color: rgba(255, 255, 255, 0.2);
 }
 
 .filters input[type="checkbox"]:checked + label {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-    font-weight: 500;
+    background: #fff; color: #000; border-color: #fff; font-weight: 500;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
@@ -273,12 +245,16 @@ body {
     font-family: var(--primary-font);
 }
 .game-count i { color: #fff; }
-
 .game-count-mobile { display: none; }
 
-/* --- RESPONSIVITA --- */
+/* --- RESPONSIVITA (MOBIL) --- */
 @media (max-width: 900px) {
-    .games-header { margin-top: 60px; margin-bottom: 10px; }
+    /* 1. Header padding (Bezpečný odstup pro nadpis) */
+    .games-header { 
+        margin-top: 0 !important;
+        padding-top: 200px !important; 
+        margin-bottom: 20px;
+    }
     .hytro-title-small { font-size: 2.5rem; }
     .motivation { display: none; } 
 
@@ -287,49 +263,53 @@ body {
         padding: 0 15px 40px 15px;
     }
 
-    /* Skrýt sidebar filtry na mobilu */
     .filters { display: none; }
 
-    /* Mobilní počítadlo */
     .game-count-mobile {
         display: flex; align-items: center; justify-content: center; gap: 10px;
         color: #aaa; margin-bottom: 20px; font-family: var(--display-font); font-size: 0.9rem;
         position: relative; z-index: 5;
     }
 
-    /* --- MOBILE GRID --- */
+    /* 2. GRID - 2 Sloupce pro mobil */
     .games-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 sloupce */
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr); /* Tady to dělá 2 sloupce */
+        gap: 12px; /* Menší mezera */
         width: 100%;
+        align-content: start; /* Na mobilu raději odshora */
     }
     
     .game-box {
-        padding: 10px;
+        padding: 10px; /* Menší padding uvnitř */
         border-radius: 12px;
     }
 
     .media-wrapper {
         border-radius: 6px;
+        aspect-ratio: 16/9;
     }
 
-    .game-info {
-        margin-top: 8px;
+    .game-info { 
+        margin-top: 8px; 
+        flex-direction: column; 
+        align-items: flex-start;
     }
-
-    .game-title {
-        font-size: 0.8rem;
-    }
-
-    .game-dev { display: none; } /* Šetříme místo */
-
-    .rating-circle {
-        width: 26px; height: 26px; margin-left: 5px;
+    
+    .text { width: 100%; }
+    
+    .game-title { font-size: 0.8rem; }
+    .game-dev { display: none; } /* Ušetříme místo skrytím žánru na mobilu */
+    
+    .rating-circle { 
+        width: 28px; height: 28px; 
+        margin-left: 0; margin-top: 5px; /* Rating pod názvem */
+        align-self: flex-end; 
+        margin-top: -20px; /* Hack pro umístění vpravo dole */
     }
     .percentage { font-size: 0.7em; }
 }
 
 @media (max-width: 380px) {
-    .games-grid { grid-template-columns: 1fr; } /* Pro malé mobily 1 sloupec */
-    .game-dev { display: block; }
+    /* Pro úplně malinké telefony raději 1 sloupec */
+    .games-grid { grid-template-columns: 1fr; } 
 }
