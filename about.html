@@ -6,102 +6,105 @@
     <title>HYTRO. | About</title>
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" href="https://i.ibb.co/cKSN11hp/logo-for-website-modified.png">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     
+    <link rel="stylesheet" href="altir.css">
     <link rel="stylesheet" href="about.css">
 </head>
 <body>
 
+    <input type="checkbox" id="menu-toggle" hidden>
+
+    <div class="stars"></div>
+    <div class="nebula-glow"></div>
+
     <header class="glass-navbar">
         <div class="logo">HYTRO.</div>
         <nav class="glass-nav-links">
-            <a href="https://hxnzqq.kdoseptal.eu/">HOME</a>
-            <a href="https://hxnzqq.kdoseptal.eu/contact">CONTACT</a>
-            <a href="https://hxnzqq.kdoseptal.eu/about" class="active">ABOUT</a>
-            <a href="https://hxnzqq.kdoseptal.eu/setup">SETUP</a>
-            <a href="https://hxnzqq.kdoseptal.eu/games">GAMES</a>
+            <a href="/">HOME</a>
+            <a href="/contact">CONTACT</a>
+            <a href="/about" class="active">ABOUT</a>
+            <a href="/setup">SETUP</a>
+            <a href="/games">GAMES</a>
         </nav>
+        
+        <label for="menu-toggle" class="burger-label">
+            <span></span><span></span><span></span>
+        </label>
     </header>
-
-    <input type="checkbox" id="menu-toggle" hidden>
-    <label for="menu-toggle" class="burger-label">
-        <span></span><span></span><span></span>
-    </label>
 
     <nav class="burger-nav">
         <ul>
-            <li><a href="https://hxnzqq.kdoseptal.eu/">HOME</a></li>
-            <li><a href="https://hxnzqq.kdoseptal.eu/contact">CONTACT</a></li>
-            <li><a href="https://hxnzqq.kdoseptal.eu/about">ABOUT</a></li>
-            <li><a href="https://hxnzqq.kdoseptal.eu/setup">SETUP</a></li>
-            <li><a href="https://hxnzqq.kdoseptal.eu/games">GAMES</a></li>
-           
+            <li style="--i:1"><a href="/">HOME</a></li>
+            <li style="--i:2"><a href="/contact">CONTACT</a></li>
+            <li style="--i:3"><a href="/about" class="active">ABOUT</a></li>
+            <li style="--i:4"><a href="/setup">SETUP</a></li>
+            <li style="--i:5"><a href="/games">GAMES</a></li>
         </ul>
     </nav>
 
-    <div class="stars"></div> 
+    <main class="container">
+        
+        <div class="about-wrapper">
+            <div class="about-card glass-tilt">
+                
+                <div class="scan-line"></div>
 
-    <div class="main-wrapper">
-        <div class="about-card glow-card" id="tilt-card">
-            
-            <div class="scan-line"></div>
-
-            <div class="card-content">
-                <div class="profile-header">
-                    <div class="profile-icon">
-                        <i class="fa-solid fa-user-astronaut"></i>
+                <div class="card-content">
+                    <div class="profile-header">
+                        <div class="profile-icon">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </div>
+                        <h1 class="hytro-title-small">HYTRO.</h1>
+                        <span class="role-badge">CREATIVE DEVELOPER</span>
                     </div>
-                    <h1>HYTRO.</h1>
-                    <span class="role-badge">CREATIVE DEVELOPER</span>
-                </div>
 
-                <div class="bio-section">
-                    <p>
-                        I'm a creative developer passionate about crafting modern, sleek user interfaces with fluid animations and immersive experiences.
-                        I thrive on making digital spaces that feel alive and interactive.
-                    </p>
-                    <p>
-                        Beyond coding, I explore the world of streaming and content creation, sharing my gaming adventures and insights on platforms like Twitch.
-                        Always experimenting, always learning.
-                    </p>
-                </div>
+                    <div class="bio-section">
+                        <p>
+                            I'm a creative developer passionate about crafting modern, sleek user interfaces with fluid animations and immersive experiences.
+                            I thrive on making digital spaces that feel alive and interactive.
+                        </p>
+                        <p>
+                            Beyond coding, I explore the world of streaming and content creation, sharing my gaming adventures and insights on platforms like Twitch.
+                            Always experimenting, always learning.
+                        </p>
+                    </div>
 
-                <div class="divider"></div>
+                    <div class="divider"></div>
 
-                <div class="skills-section">
-                    <h2>System Modules</h2>
-                    <div class="skills-grid">
-                        <div class="skill-chip">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML</span>
-                        </div>
-                        <div class="skill-chip">
-                            <i class="fab fa-css3-alt"></i>
-                            <span>CSS</span>
-                        </div>
-                        <div class="skill-chip">
-                            <i class="fab fa-js-square"></i>
-                            <span>JS</span>
-                        </div>
-                        <div class="skill-chip">
-                            <i class="fas fa-cube"></i>
-                            <span>Blender</span>
-                        </div>
-                        <div class="skill-chip">
-                            <i class="fas fa-paint-brush"></i>
-                            <span>UI/UX</span>
+                    <div class="skills-section">
+                        <h2>System Modules</h2>
+                        <div class="skills-grid">
+                            <div class="skill-chip">
+                                <i class="fab fa-html5"></i>
+                                <span>HTML</span>
+                            </div>
+                            <div class="skill-chip">
+                                <i class="fab fa-css3-alt"></i>
+                                <span>CSS</span>
+                            </div>
+                            <div class="skill-chip">
+                                <i class="fab fa-js-square"></i>
+                                <span>JS</span>
+                            </div>
+                            <div class="skill-chip">
+                                <i class="fas fa-cube"></i>
+                                <span>Blender</span>
+                            </div>
+                            <div class="skill-chip">
+                                <i class="fas fa-paint-brush"></i>
+                                <span>UI/UX</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="about.js"></script>
+    </main>
+
+    <script src="altir.js"></script> 
 </body>
 </html>

@@ -4,82 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HYTRO. | Contact</title>
+    
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" href="https://i.ibb.co/cKSN11hp/logo-for-website-modified.png">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <link rel="stylesheet" href="altir.css">
     <link rel="stylesheet" href="contact.css">
 </head>
 <body>
 
+    <input type="checkbox" id="menu-toggle" hidden>
+
+    <div class="stars"></div>
+    <div class="nebula-glow"></div>
+
     <header class="glass-navbar">
         <div class="logo">HYTRO.</div>
         <nav class="glass-nav-links">
-            <a href="https://hxnzqq.kdoseptal.eu/">HOME</a>
-            <a href="https://hxnzqq.kdoseptal.eu/contact" class="active">CONTACT</a>
-            <a href="https://hxnzqq.kdoseptal.eu/about">ABOUT</a>
-            <a href="https://hxnzqq.kdoseptal.eu/setup">SETUP</a>
-            <a href="https://hxnzqq.kdoseptal.eu/games">GAMES</a>
+            <a href="/">HOME</a>
+            <a href="/contact" class="active">CONTACT</a>
+            <a href="/about">ABOUT</a>
+            <a href="/setup">SETUP</a>
+            <a href="/games">GAMES</a>
         </nav>
+        
+        <label for="menu-toggle" class="burger-label">
+            <span></span><span></span><span></span>
+        </label>
     </header>
-
-    <input type="checkbox" id="menu-toggle" hidden>
-    <label for="menu-toggle" class="burger-label">
-        <span></span><span></span><span></span>
-    </label>
 
     <nav class="burger-nav">
         <ul>
-            <li><a href="https://hxnzqq.kdoseptal.eu/">HOME</a></li>
-            <li><a href="https://hxnzqq.kdoseptal.eu/contact">CONTACT</a></li>
-            <li><a href="https://hxnzqq.kdoseptal.eu/about">ABOUT</a></li>
-            <li><a href="https://hxnzqq.kdoseptal.eu/setup">SETUP</a></li>
-            <li><a href="https://hxnzqq.kdoseptal.eu/games">GAMES</a></li>
-         
+            <li style="--i:1"><a href="/">HOME</a></li>
+            <li style="--i:2"><a href="/contact" class="active">CONTACT</a></li>
+            <li style="--i:3"><a href="/about">ABOUT</a></li>
+            <li style="--i:4"><a href="/setup">SETUP</a></li>
+            <li style="--i:5"><a href="/games">GAMES</a></li>
         </ul>
     </nav>
 
-    <div class="stars"></div> 
-
-    <div class="main-wrapper">
-        <div class="contact-card glow-card">
-            
-            <div class="form-header">
-                <h2>Get in Touch</h2>
-                <p>Have a project in mind or just want to say hi? <br> Send me a message.</p>
-            </div>
-
-            <form action="https://formspree.io/f/xrblwbyz" method="POST">
+    <main class="container">
+        
+        <div class="contact-card-wrapper">
+            <div class="contact-card">
                 
-                <div class="input-wrapper">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" id="name" name="name" required autocomplete="off">
-                    <label for="name" class="animated-label">Name</label>
+                <div class="form-header">
+                    <h2 class="hytro-title-small">GET IN TOUCH</h2>
+                    <p>Have a project in mind or just want to say hi?</p>
                 </div>
 
-                <div class="input-wrapper">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="email" id="email" name="email" required autocomplete="off">
-                    <label for="email" class="animated-label">Email</label>
-                </div>
+                <form action="https://formspree.io/f/xrblwbyz" method="POST">
+                    
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="name" name="name" required autocomplete="off">
+                        <label for="name" class="animated-label">Name</label>
+                    </div>
 
-                <div class="input-wrapper textarea-wrapper">
-                    <i class="fa-solid fa-comment-dots"></i>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                    <label for="message" class="animated-label">Message</label>
-                </div>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" name="email" required autocomplete="off">
+                        <label for="email" class="animated-label">Email</label>
+                    </div>
 
-                <button type="submit" class="send-btn galaxy-btn">
-                    <span>SEND</span>
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
-            </form>
+                    <div class="input-wrapper textarea-wrapper">
+                        <i class="fa-solid fa-comment-dots"></i>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message" class="animated-label">Message</label>
+                    </div>
 
+                    <button type="submit" class="send-btn glass-btn">
+                        <span>SEND MESSAGE</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+            </div>
         </div>
-    </div>
 
-    <script src="contact.js"></script>
+    </main>
+
+    <script src="altir.js"></script> 
+    <script src="contact.js"></script> 
 </body>
-
 </html>

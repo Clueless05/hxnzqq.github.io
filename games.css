@@ -2,106 +2,155 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Rubik', sans-serif;
-    background: #000; color: #fff; min-height: 100vh;
+    font-family: var(--primary-font);
+    background: #000; 
+    color: #fff; 
+    /* DŮLEŽITÉ: Povolit scroll na body, ale skrýt horizontální přetečení */
+    min-height: 100vh;
     display: flex; flex-direction: column; align-items: center;
     overflow-x: hidden;
+    overflow-y: auto; 
 }
 
-/* --- HVĚZDY --- */
-.stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-.star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0.8; }
+/* --- HVĚZDY (FIX: Zůstanou na místě při scrollu) --- */
+.stars { 
+    position: fixed; /* Tady je klíč - fixní pozice vůči oknu */
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100vh; /* Plná výška okna */
+    z-index: 0; 
+    pointer-events: none; 
+}
+
+.star { 
+    position: absolute; 
+    width: 2px; height: 2px; 
+    background: #fff; 
+    border-radius: 50%; 
+    opacity: 0.8; 
+}
+
+/* --- MLHOVINA (Taky fixní, aby byla pořád vidět) --- */
+.nebula-glow {
+    position: fixed; /* Fixní pozice */
+    z-index: 0;
+    pointer-events: none;
+}
 
 /* --- HLAVNÍ CONTAINER --- */
 .container {
     position: relative; z-index: 2;
     display: flex; flex-direction: column; align-items: center;
-    max-width: 1600px; /* Širší kontejner, aby se vešlo víc her */
-    width: 95%;
-    height: 100vh;
-    padding-top: 80px; 
+    width: 100%;
+    /* OPRAVA: Odstraněna fixní výška 100vh, aby stránka rostla s obsahem */
+    min-height: 100vh; 
 }
 
-/* --- NADPISY --- */
-.hytro {
-    font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 700;
-    margin-bottom: 5px; letter-spacing: 3px; color: #fff;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    cursor: default;
+/* --- HEADER --- */
+.games-header {
+    margin-top: 100px; /* Více místa od vrchu */
+    margin-bottom: 40px;
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out forwards;
 }
 
-p.motivation {
-    font-family: 'Orbitron', sans-serif; font-size: 1rem;
-    margin-bottom: 30px; color: #888; letter-spacing: 2px; text-transform: uppercase;
-    cursor: default;
+.hytro-title-small {
+    font-family: var(--display-font);
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-bottom: 5px;
+    background: linear-gradient(180deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.motivation {
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 /* --- LAYOUT: GRID + FILTRY --- */
 .content-with-filters {
-    display: flex; width: 100%; gap: 20px;
-    flex-grow: 1; min-height: 0; 
+    display: flex;
+    justify-content: center; /* Vycentrování celého bloku */
+    width: 100%;
+    max-width: 1400px; 
+    gap: 30px;
     position: relative;
+    padding: 0 20px 60px 20px; /* Padding dole */
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+    opacity: 0;
 }
 
-/* --- GAMES GRID (Seznam her) --- */
+/* --- GAMES GRID --- */
 .games-grid {
     display: grid;
-    /* TADY JE ZMĚNA: 200px zajistí 4-6 sloupců */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-    grid-auto-rows: min-content;
+    /* Automatické sloupce, min 240px pro lepší čitelnost */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
     gap: 20px;
+    
+    /* Mřížka zabere zbytek místa */
     flex-grow: 1;
-    overflow-y: auto; 
-    padding-right: 10px;
-    padding-bottom: 50px;
-    scrollbar-width: none; 
+    width: 100%; 
 }
-.games-grid::-webkit-scrollbar { display: none; }
 
-/* --- GAME BOX (Karta hry) --- */
+/* --- GAME BOX (Premium Glass Card) --- */
 .game-box {
-    display: flex; flex-direction: column;
-    background: rgba(255, 255, 255, 0.03); 
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 10px;
+    display: flex; 
+    flex-direction: column;
+    
+    background: rgba(15, 15, 15, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    
+    padding: 12px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: default;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    
+    /* Aby karty měly stejnou výšku */
+    height: 100%; 
 }
 
 .game-box:hover {
- 
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    background: rgba(25, 25, 25, 0.75);
+    z-index: 5;
 }
 
 /* Media (Obrázek/Video) */
 .media-wrapper {
-    position: relative; width: 100%; aspect-ratio: 16/9;
-    overflow: hidden; border-radius: 8px;
-    background: #000; /* Černé pozadí pro letterbox efekt */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    display: flex; align-items: center; justify-content: center;
+    position: relative; 
+    width: 100%; 
+    aspect-ratio: 16/9;
+    overflow: hidden; 
+    border-radius: 8px;
+    background: #000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.media-wrapper img, .media-wrapper video, .media-wrapper iframe {
+.media-wrapper img, 
+.media-wrapper video, 
+.media-wrapper iframe {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     transition: opacity 0.4s ease;
 }
 
-/* OPRAVA OBRÁZKU: Aby byl vidět celý */
-.media-wrapper img {
-    object-fit: contain; 
-}
-
-/* Video necháme přes celou plochu */
-.media-wrapper video, .media-wrapper iframe {
-    object-fit: cover; 
-}
+.media-wrapper img { object-fit: cover; } 
+.media-wrapper video, .media-wrapper iframe { object-fit: cover; }
 
 .media-wrapper video { opacity: 0; }
 .game-box:hover .media-wrapper img { opacity: 0; }
@@ -118,22 +167,29 @@ p.motivation {
 /* Info pod kartou */
 .game-info {
     display: flex; justify-content: space-between; align-items: center;
-    margin-top: 10px; padding: 0 2px;
+    margin-top: 12px; padding: 0 4px;
 }
 
-.text { display: flex; flex-direction: column; gap: 2px; }
+.text { display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
 
 .game-title {
-    font-family: 'Rubik', sans-serif; font-size: 0.9rem; font-weight: 600; color: #eee;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;
+    font-family: var(--primary-font); 
+    font-size: 0.95rem; 
+    font-weight: 500; 
+    color: #fff;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
 }
 
 .game-dev {
-    font-family: 'Nunito', sans-serif; font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px;
+    font-family: 'Nunito', sans-serif; 
+    font-size: 0.7rem; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
 }
 
 /* Rating Circle */
-.rating-circle { width: 32px; height: 32px; position: relative; }
+.rating-circle { width: 34px; height: 34px; position: relative; flex-shrink: 0; margin-left: 10px; }
 .circular-chart { display: block; margin: 0 auto; max-width: 100%; max-height: 100%; }
 .circle-bg { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 3; }
 .circle {
@@ -143,29 +199,41 @@ p.motivation {
     filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5)); 
 }
 .percentage {
-    font-family: 'Orbitron', sans-serif; fill: #fff; font-size: 0.8em; font-weight: 700;
+    font-family: var(--display-font); 
+    fill: #fff; font-size: 0.8em; font-weight: 700;
     text-anchor: middle; dominant-baseline: middle; 
 }
 
-
-/* --- FILTERS SIDEBAR --- */
+/* --- FILTERS SIDEBAR (Sticky) --- */
 .filters {
-    width: 240px; /* Užší panel */
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 20px;
+    width: 260px;
+    flex-shrink: 0;
+    
+    background: rgba(15, 15, 15, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    
+    padding: 25px;
     display: flex; flex-direction: column; gap: 15px;
-    height: fit-content;
-    max-height: 80vh;
-    overflow-y: auto;
+    
+    /* Sticky sidebar - pojede dolů s tebou */
+    align-self: flex-start; 
+    position: sticky; 
+    top: 100px; 
+    z-index: 10;
 }
 
 .filters h2 {
-    font-family: 'Orbitron', sans-serif; font-size: 1rem; color: #fff;
-    margin-bottom: 5px; display: flex; align-items: center; gap: 10px;
-    padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--display-font); 
+    font-size: 1rem; 
+    color: #fff;
+    margin-bottom: 10px; 
+    display: flex; align-items: center; gap: 10px;
+    padding-bottom: 15px; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 1px;
 }
 
 .filter-group { display: flex; flex-direction: column; gap: 8px; }
@@ -173,12 +241,13 @@ p.motivation {
 .filters input[type="checkbox"] { display: none; }
 
 .filters label {
-    position: relative; padding: 8px 12px;
+    position: relative; padding: 10px 15px;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.85rem; color: #aaa;
+    font-size: 0.9rem; color: #aaa;
+    font-family: var(--primary-font);
     transition: all 0.2s ease;
     display: flex; justify-content: space-between; align-items: center;
 }
@@ -186,129 +255,81 @@ p.motivation {
 .filters label:hover {
     background: rgba(255, 255, 255, 0.08);
     color: #fff;
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .filters input[type="checkbox"]:checked + label {
     background: #fff;
     color: #000;
     border-color: #fff;
-    font-weight: 600;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .game-count {
-    margin-top: 5px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center; color: #888; font-size: 0.85rem;
+    margin-top: 10px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center; color: var(--text-muted); font-size: 0.9rem;
     display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: var(--primary-font);
 }
 .game-count i { color: #fff; }
-
-
-/* --- NAVBAR & BURGER (Standard) --- */
-.glass-navbar { position: fixed; top: 0; width: 100%; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000; }
-.logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; letter-spacing: 2px; cursor: default; }
-.glass-nav-links a { margin-left: 30px; text-decoration: none; color: #aaa; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; transition: color 0.3s ease; }
-.glass-nav-links a:hover, .glass-nav-links a.active { color: #fff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); }
-#menu-toggle { display: none; } .burger-label { display: none; }
-.burger-nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); z-index: 990; padding-top: 80px; flex-direction: column; align-items: center; }
-.burger-nav ul { list-style: none; text-align: center; } .burger-nav li { margin: 25px 0; }
-.burger-nav a { color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; text-decoration: none; }
-.burger-date-time { position: absolute; bottom: 40px; width: 100%; text-align: center; color: #888; font-family: 'Nunito', sans-serif; }
 
 .game-count-mobile { display: none; }
 
 /* --- RESPONSIVITA --- */
 @media (max-width: 900px) {
-    /* Navbar pryč, burger sem */
-    .glass-navbar { display: none; }
-    
-    .burger-label {
-        display: flex; flex-direction: column; justify-content: space-between;
-        width: 30px; height: 22px; position: fixed; top: 25px; left: 25px; z-index: 1000; cursor: pointer;
-    }
-    .burger-label span { height: 2px; width: 100%; background: #fff; transition: 0.3s; }
-    
-    #menu-toggle:checked + .burger-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    #menu-toggle:checked + .burger-label span:nth-child(2) { opacity: 0; }
-    #menu-toggle:checked + .burger-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-    #menu-toggle:checked ~ .burger-nav { display: flex; }
-
-    /* Layout */
-    .container { padding-top: 10px; width: 100%; max-width: 100%; }
-    
-    .hytro { margin-top: 60px; font-size: 2rem; margin-bottom: 5px; }
+    .games-header { margin-top: 60px; margin-bottom: 10px; }
+    .hytro-title-small { font-size: 2.5rem; }
     .motivation { display: none; } 
 
+    .content-with-filters {
+        flex-direction: column;
+        padding: 0 15px 40px 15px;
+    }
+
+    /* Skrýt sidebar filtry na mobilu */
+    .filters { display: none; }
+
+    /* Mobilní počítadlo */
     .game-count-mobile {
         display: flex; align-items: center; justify-content: center; gap: 10px;
-        color: #aaa; margin-top: 5px; margin-bottom: 15px; font-family: 'Orbitron', sans-serif; font-size: 0.9rem;
+        color: #aaa; margin-bottom: 20px; font-family: var(--display-font); font-size: 0.9rem;
         position: relative; z-index: 5;
     }
 
-    /* Skrýt filtry */
-    .filters { display: none; }
-
-    /* --- MOBILE GRID (2 SLOUPCE) --- */
+    /* --- MOBILE GRID --- */
     .games-grid {
-        /* Vynutíme 2 sloupce */
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 12px; /* Menší mezery */
-        padding: 0 12px 80px 12px; /* Menší okraje */
+        grid-template-columns: repeat(2, 1fr); /* 2 sloupce */
+        gap: 12px;
+        width: 100%;
     }
     
-    /* Kompaktní karta */
     .game-box {
-        padding: 8px; /* Méně vaty uvnitř */
-        border-radius: 10px;
+        padding: 10px;
+        border-radius: 12px;
     }
 
     .media-wrapper {
         border-radius: 6px;
-        /* Poměr stran na mobilu může být trochu vyšší, aby byl obrázek větší */
-        aspect-ratio: 16/10; 
     }
 
-    /* Info pod kartou */
     .game-info {
         margin-top: 8px;
-        flex-direction: row; /* Vedle sebe */
-        align-items: center;
-    }
-
-    .text {
-        width: 100%;
-        overflow: hidden;
     }
 
     .game-title {
-        font-size: 0.8rem; /* Menší písmo */
-        margin-bottom: 0;
-        white-space: nowrap; 
-        overflow: hidden; 
-        text-overflow: ellipsis;
+        font-size: 0.8rem;
     }
 
-    /* Na mobilu skryjeme jméno vývojáře/žánr, aby to nebylo přeplácané */
-    .game-dev {
-        display: none; 
-    }
+    .game-dev { display: none; } /* Šetříme místo */
 
-    /* Menší kolečko hodnocení */
     .rating-circle {
-        width: 24px; 
-        height: 24px;
-        margin-left: 5px;
-        flex-shrink: 0; /* Aby se nesmrsklo */
+        width: 26px; height: 26px; margin-left: 5px;
     }
-    
-    .percentage {
-        font-size: 0.7em; /* Menší číslo */
-    }
+    .percentage { font-size: 0.7em; }
 }
 
-/* Extra malé mobily (iPhone SE apod.) - raději 1 sloupec, jinak to bude nečitelné */
-@media (max-width: 360px) {
-    .games-grid { grid-template-columns: 1fr; }
-    .game-dev { display: block; } /* Tady už se vejde */
+@media (max-width: 380px) {
+    .games-grid { grid-template-columns: 1fr; } /* Pro malé mobily 1 sloupec */
+    .game-dev { display: block; }
 }

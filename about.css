@@ -1,259 +1,157 @@
-/* --- RESET A ZÁKLAD --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* --- ABOUT CARD WRAPPER --- */
+/* Zbytek layoutu řeší altir.css */
 
-body {
-    font-family: 'Rubik', sans-serif;
-    background: #000; color: #fff; min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center;
+.about-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    animation: fadeInUp 0.8s ease-out forwards;
     perspective: 1000px;
-    
-    /* DEFAULTNĚ (MOBIL): Povolit scroll */
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
-/* NA DESKTOPU: Zakázat scrollbar, aby tilt nedělal bordel */
-@media (min-width: 1000px) {
-    body {
-        overflow: hidden; /* Žádný scrollbar, vše se vejde */
-    }
-}
-
-/* --- HVĚZDY --- */
-.stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-.star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0.8; }
-
-/* --- WRAPPER --- */
-.main-wrapper {
-    position: relative; z-index: 2; width: 100%; min-height: 100vh;
-    display: flex; justify-content: center; align-items: center;
-    padding: 100px 20px 40px 20px;
-}
-
-/* --- ABOUT CARD (3D STEALTH) --- */
 .about-card {
-    position: relative; width: 100%; max-width: 650px;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08); 
-    border-radius: 20px; 
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Trochu širší než kontakt, aby se vešel text */
+    
+    /* Premium Glassmorphism */
+    background: rgba(15, 15, 15, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    
     padding: 50px 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); 
-    text-align: center;
-    
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     transform-style: preserve-3d;
-    transform: perspective(1000px);
-    
-    will-change: transform; 
-    
-    --x: 50%; --y: 50%;
-    --rotateX: 0deg; --rotateY: 0deg;
+    overflow: hidden; /* Pro scan-line */
 }
 
-.about-card {
-    transform: perspective(1000px) rotateX(var(--rotateX)) rotateY(var(--rotateY));
-    transition: transform 0.1s ease-out;
-}
-
-/* Glow efekt */
-.about-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-    background: radial-gradient(800px circle at var(--x) var(--y), rgba(255, 255, 255, 0.08), transparent 40%);
-    opacity: 0; transition: opacity 0.3s ease; pointer-events: none; border-radius: 20px;
-}
-.about-card:hover::before { opacity: 1; }
-
-/* SCAN LINE */
+/* SCAN LINE EFFECT (Zjemněno) */
 .scan-line {
     position: absolute; left: 0; top: 0; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    opacity: 0.1;
-    animation: scan 4s linear infinite;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0.5;
+    animation: scan 6s linear infinite;
     pointer-events: none;
     z-index: 0;
 }
 @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
 
 .card-content {
-    transform: translateZ(30px);
-    position: relative; z-index: 1;
+    position: relative; 
+    z-index: 1;
+    transform: translateZ(20px); /* Vystoupení obsahu */
 }
 
-/* --- PROFILE & HEADER --- */
+/* --- PROFILE HEADER --- */
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 .profile-icon {
-    font-size: 3.5rem; color: #fff; margin-bottom: 20px;
-    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+    font-size: 3rem; color: #fff; margin-bottom: 15px;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
     animation: float 6s ease-in-out infinite;
-    transform: translateZ(50px);
 }
-@keyframes float { 0%, 100% { transform: translateY(0) translateZ(50px); } 50% { transform: translateY(-10px) translateZ(50px); } }
+@keyframes float { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-10px); } 
+}
 
-/* ČISTÝ NADPIS (BEZ GLITCHE) */
-.about-card h1 {
-    font-family: 'Orbitron', sans-serif; 
-    font-size: 3rem; 
-    letter-spacing: 5px; 
-    font-weight: 900;
-    color: #fff; 
+.hytro-title-small {
+    font-family: var(--display-font);
+    font-size: 2.5rem; 
+    font-weight: 700;
+    color: #fff;
     margin-bottom: 5px;
-    /* Ponecháno 3D vystoupení, aby to nebylo ploché */
-    transform: translateZ(40px);
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Jemná statická záře */
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
 .role-badge {
     display: inline-block; padding: 6px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50px;
-    font-size: 0.75rem; font-family: 'Orbitron', sans-serif; letter-spacing: 2px;
-    color: #ccc; margin-bottom: 30px; background: rgba(255, 255, 255, 0.05);
-    transform: translateZ(30px);
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    border-radius: 50px;
+    font-size: 0.75rem; 
+    font-family: var(--display-font); 
+    letter-spacing: 2px;
+    color: var(--text-muted); 
+    background: rgba(255, 255, 255, 0.03);
 }
 
-/* --- BIO & SKILLS --- */
+/* --- BIO --- */
 .bio-section p {
-    font-size: 1rem; line-height: 1.7; color: #ccc; margin-bottom: 20px;
-    text-align: justify; text-align-last: center; transform: translateZ(20px);
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    color: #ccc; 
+    margin-bottom: 15px;
+    text-align: center; /* Centrovaný text vypadá lépe v kartě */
+    font-family: var(--primary-font);
 }
 
 .divider {
-    height: 1px; width: 80%; margin: 30px auto;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    height: 1px; width: 60%; margin: 30px auto;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 
+/* --- SKILLS --- */
 .skills-section h2 {
-    font-family: 'Orbitron', sans-serif; font-size: 1.2rem; margin-bottom: 25px;
-    color: #888; text-transform: uppercase; letter-spacing: 2px;
-    transform: translateZ(25px);
+    font-family: var(--display-font); 
+    font-size: 1.1rem; 
+    margin-bottom: 20px;
+    color: #888; 
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    text-align: center;
 }
 
 .skills-grid {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;
-    transform: translateZ(35px);
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
 }
 
+/* Skill Chips - Glassy Style */
 .skill-chip {
-    display: flex; align-items: center; gap: 10px; padding: 12px 20px;
-    background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px; cursor: default; transition: all 0.3s ease;
+    display: flex; align-items: center; gap: 8px; padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid var(--glass-border);
+    border-radius: 12px; 
+    cursor: default; 
+    transition: all 0.3s ease;
 }
-.skill-chip i { font-size: 1.2rem; color: #666; transition: color 0.3s; }
-.skill-chip span { font-family: 'Rubik', sans-serif; font-size: 0.9rem; color: #888; font-weight: 500; transition: color 0.3s; }
+
+.skill-chip i { font-size: 1rem; color: #666; transition: color 0.3s; }
+.skill-chip span { 
+    font-family: var(--primary-font); 
+    font-size: 0.85rem; 
+    color: #888; 
+    font-weight: 500; 
+    transition: color 0.3s; 
+}
 
 .skill-chip:hover {
-    transform: translateY(-3px) scale(1.05);
-    border-color: rgba(255, 255, 255, 0.6); background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.4); 
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 .skill-chip:hover i { color: #fff; }
 .skill-chip:hover span { color: #fff; }
 
-/* NAVBAR & BURGER */
-.glass-navbar { position: fixed; top: 0; width: 100%; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000; }
-.logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; letter-spacing: 2px; cursor: default; }
-.glass-nav-links a { margin-left: 30px; text-decoration: none; color: #aaa; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; transition: color 0.3s ease; }
-.glass-nav-links a:hover, .glass-nav-links a.active { color: #fff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); }
-#menu-toggle { display: none; } .burger-label { display: none; }
-.burger-nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); z-index: 990; padding-top: 80px; flex-direction: column; align-items: center; }
-.burger-nav ul { list-style: none; text-align: center; } .burger-nav li { margin: 25px 0; }
-.burger-nav a { color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; text-decoration: none; }
-.burger-date-time { position: absolute; bottom: 40px; width: 100%; text-align: center; color: #888; font-family: 'Nunito', sans-serif; }
-
-@media (max-width: 768px) {
-    .glass-navbar { display: none; }
-    .burger-label { display: flex; flex-direction: column; justify-content: space-between; width: 30px; height: 20px; position: fixed; top: 25px; left: 25px; z-index: 1000; cursor: pointer; }
-    .burger-label span { height: 2px; width: 100%; background: #fff; transition: 0.3s; }
-    #menu-toggle:checked + .burger-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    #menu-toggle:checked + .burger-label span:nth-child(2) { opacity: 0; }
-    #menu-toggle:checked + .burger-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-    #menu-toggle:checked ~ .burger-nav { display: flex; }
-    .main-wrapper { padding: 80px 15px; }
-    .about-card { transform: none !important; }
-    .card-content { transform: none; }
-}/* --- RESPONSIVITA PRO MOBILY A TABLETY --- */
-@media (max-width: 900px) { /* Zvýšil jsem hranici na 900px pro bezpečí */
-    
-    /* 1. Reset Body - Povolit scrollovaní */
-    body {
-        overflow-x: hidden;
-        overflow-y: auto !important; /* Důležité: Povolit vertikální scroll */
-        height: auto !important;
-        padding-bottom: 40px; /* Místo dole */
-        perspective: none; /* Vypnout 3D perspektivu */
-    }
-
-    .main-wrapper {
-        padding: 90px 15px 40px 15px; /* Více místa nahoře kvůli navbaru */
-        height: auto; /* Aby se wrapper natáhl podle obsahu */
-        display: block; /* Změna z flexu na blok, lepší pro scrollovaní */
-    }
-
-    /* 2. Reset Karty - Žádné 3D, žádný tilt */
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
     .about-card {
-        transform: none !important; /* Vypnout tilt */
-        transition: none !important;
-        margin: 0 auto; /* Vycentrovat */
-        width: 100%;
-        max-width: 100%;
-        
-        /* Zjednodušení efektů pro výkon */
-        backdrop-filter: blur(10px); 
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Vypnout vnitřní 3D posuny */
-    .card-content, 
-    .profile-icon, 
-    .glitch, 
-    .role-badge, 
-    .bio-section p, 
-    .skills-section h2, 
-    .skills-grid {
-        transform: none !important;
-    }
-
-    /* 3. Úprava Navbaru */
-    .glass-navbar { display: none; } /* Desktop menu pryč */
-    
-    /* Burger menu styl */
-    .burger-label {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 22px;
-        position: fixed;
-        top: 25px;
-        left: 25px;
-        z-index: 1000;
-        cursor: pointer;
+        border: none; background: transparent; box-shadow: none; padding: 20px;
+        transform: none !important; /* Vypnout tilt na mobilu */
     }
     
-    .burger-label span {
-        height: 2px;
-        width: 100%;
-        background: #fff;
-        border-radius: 2px;
-        transition: 0.3s;
-    }
-
-    /* Animace burgeru */
-    #menu-toggle:checked + .burger-label span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-    #menu-toggle:checked + .burger-label span:nth-child(2) { opacity: 0; }
-    #menu-toggle:checked + .burger-label span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    .about-wrapper { margin-top: 60px; }
     
-    #menu-toggle:checked ~ .burger-nav { display: flex; }
-
-    /* 4. Texty a čitelnost */
-    .about-card h1 { font-size: 2.2rem; }
-    .profile-icon { font-size: 2.5rem; margin-bottom: 15px; }
-    .role-badge { margin-bottom: 20px; }
+    .hytro-title-small { font-size: 2rem; }
     
-    /* Skills grid na mobilu */
-    .skills-grid {
-        gap: 10px;
-    }
-    .skill-chip {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-    }
+    .card-content { transform: none; }
 }

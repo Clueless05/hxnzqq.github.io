@@ -1,257 +1,148 @@
-/* --- RESET A ZÁKLAD --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Rubik', sans-serif;
-    overflow-x: hidden; overflow-y: auto;
-    background: #000; color: #fff; min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center;
-}
-
-/* --- HVĚZDY --- */
-.stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-.star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0.8; }
-
-/* --- WRAPPER --- */
-.main-wrapper {
-    position: relative; z-index: 2; width: 100%; min-height: 100vh;
-    display: flex; justify-content: center; align-items: center;
-    padding: 100px 20px 40px 20px;
-}
-
 /* --- CONTACT CARD --- */
+.contact-card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 80px; 
+    margin-bottom: 100px;
+    animation: fadeInUp 0.8s ease-out forwards;
+    perspective: 1000px; /* Nutné pro 3D efekt */
+}
+
 .contact-card {
-    position: relative; width: 100%; max-width: 550px;
-    background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px 40px 50px 40px; /* Větší padding dole kvůli tlačítku */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); overflow: hidden;
-    --x: 50%; --y: 50%;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    
+    background: rgba(15, 15, 15, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform-style: preserve-3d; /* Nutné pro 3D efekt */
 }
-.contact-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-    background: radial-gradient(600px circle at var(--x) var(--y), rgba(255, 255, 255, 0.06), transparent 40%);
-    opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
-}
-.contact-card:hover::before { opacity: 1; }
 
-/* --- FORM HEADER --- */
-.form-header { text-align: center; margin-bottom: 40px; }
-.form-header h2 {
-    font-family: 'Orbitron', sans-serif; font-size: 2rem; letter-spacing: 2px;
-    margin-bottom: 10px; color: #fff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+/* Header */
+.form-header { text-align: center; margin-bottom: 30px; transform: translateZ(20px); }
+.hytro-title-small {
+    font-family: var(--display-font);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
-.form-header p { color: #aaa; font-size: 0.95rem; line-height: 1.5; }
+.form-header p { color: var(--text-muted); font-size: 0.9rem; }
 
-/* --- INPUT WRAPPER (Relativní kontejner) --- */
+/* --- INPUTS UI --- */
 .input-wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 35px; /* Větší mezera mezi poli kvůli vyjíždějícímu labelu */
+    margin-bottom: 25px;
+    transform: translateZ(10px); /* Vystoupí do prostoru při 3D tiltu */
 }
 
-/* Ikonka */
 .input-wrapper > i {
-    position: absolute; left: 15px; color: #666; transition: color 0.3s ease; pointer-events: none; z-index: 3;
+    position: absolute; left: 15px; top: 18px; 
+    color: #555; transition: all 0.3s ease;
+    pointer-events: none; z-index: 3; font-size: 0.9rem;
 }
-.textarea-wrapper > i { top: 20px; }
+.textarea-wrapper > i { top: 18px; }
 
-/* --- INPUTY --- */
 .input-wrapper input,
 .input-wrapper textarea {
     width: 100%;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
-    padding: 18px 15px 18px 45px; /* Větší padding pro text */
+    padding: 15px 15px 15px 45px;
     color: #fff;
-    font-family: 'Rubik', sans-serif;
-    font-size: 1rem;
+    font-family: var(--primary-font);
+    font-size: 0.95rem;
     outline: none;
     transition: all 0.3s ease;
-    position: relative;
-    z-index: 2; /* Input musí být nad labelem */
 }
 
-/* --- ANIMOVANÉ LABELY (To hlavní kouzlo) --- */
-.animated-label {
-    position: absolute;
-    left: 45px; /* Zarovnání s textem inputu */
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-    font-size: 1rem;
-    font-weight: 400;
-    pointer-events: none; /* Aby přes něj šlo kliknout do inputu */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1; /* Label je pod inputem */
-    font-family: 'Orbitron', sans-serif; /* Sci-fi font pro label */
-    letter-spacing: 1px;
-}
-.textarea-wrapper .animated-label {
-    top: 20px;
-    transform: translateY(0);
-}
-
-/* Jednotlivá písmenka v labelu (vytvoří je JS) */
-.animated-label span {
-    display: inline-block;
-    opacity: 0.6; /* V základu tmavší */
-    transition: all 0.3s ease;
-}
-
-/* --- STAVY KDYŽ JE INPUT AKTIVNÍ --- */
-/* Kouzlo: Když je input focusovaný NEBO když má třídu .has-value (přidá JS),
-   tak se label posune nahoru a písmenka se rozsvítí.
-*/
-
-/* 1. Posun labelu nahoru */
-.input-wrapper input:focus ~ .animated-label,
-.input-wrapper textarea:focus ~ .animated-label,
-.input-wrapper.has-value .animated-label {
-    top: -17px;
-    left: 10px;
-    font-size: 0.8rem;
-    color: #aaa;
-    transform: translateY(0);
-}
-
-/* 2. Rozsvícení písmenek (letter-by-letter efekt) */
-.input-wrapper input:focus ~ .animated-label span,
-.input-wrapper textarea:focus ~ .animated-label span,
-.input-wrapper.has-value .animated-label span {
-    opacity: 1;
-    color: #fff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(90, 90, 90, 0.6); /* Modrá záře */
-}
-
-/* 3. Styl inputu a ikonky při focusu */
+/* ULTRA FOCUS EFFECT */
 .input-wrapper input:focus,
 .input-wrapper textarea:focus {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(68, 68, 68, 0.5); /* Modrý border */
-    box-shadow: 0 0 15px rgba(201, 201, 201, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #fff;
+    /* Bílá záře při psaní */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15); 
 }
+
+/* Ikona se rozsvítí při focusu */
 .input-wrapper input:focus ~ i,
 .input-wrapper textarea:focus ~ i {
     color: #fff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 8px rgba(255,255,255,0.8);
+    transform: scale(1.1);
 }
 
+/* --- LABELS --- */
+.animated-label {
+    position: absolute; left: 45px; top: 16px;
+    color: #888; font-size: 0.95rem;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--primary-font);
+}
 
-/* --- MONOCHROME "NOIR" BUTTON --- */
-.galaxy-btn {
-    width: 100%;
-    padding: 18px;
-    margin-top: 20px;
-    border: none;
+.input-wrapper input:focus ~ .animated-label,
+.input-wrapper textarea:focus ~ .animated-label,
+.input-wrapper.has-value .animated-label {
+    top: -10px; left: 10px;
+    font-size: 0.75rem; color: #fff;
+    background: #050505; 
+    padding: 0 5px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* --- BUTTON ANIMATION --- */
+.glass-btn {
+    width: 100%; padding: 15px; margin-top: 10px;
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-family: var(--display-font);
+    font-size: 1rem; font-weight: 700; letter-spacing: 2px;
     cursor: pointer;
     display: flex; justify-content: center; align-items: center; gap: 10px;
-    color: #fff;
-    
-    /* Černo-bílý gradient (efekt tekutého kovu) */
-    background: linear-gradient(
-        120deg,
-        #000000, /* Černá */
-        #1a1a1a, /* Tmavě šedá */
-        #555555, /* Stříbrný odlesk */
-        #000000  /* Zpět do černé */
-    );
-    background-size: 300% 300%;
-    
-    /* Jemná bílá záře místo fialové */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); 
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Tenký rámeček pro definici tvaru */
-    
-    /* Animace */
-    animation: galaxy-shift 6s ease infinite; /* Trochu pomalejší pro eleganci */
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
+    transition: all 0.3s ease;
+    transform: translateZ(15px);
     overflow: hidden;
 }
 
-/* Animace zůstává stejná (posun gradientu) */
-@keyframes galaxy-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.glass-btn span { transition: 0.3s; }
+
+.glass-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
 }
 
-/* Textura hvězd (jemnější a jen bílá) */
-.galaxy-btn::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-image: 
-        radial-gradient(white, rgba(255,255,255,.3) 2px, transparent 3px),
-        radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 2px);
-    background-size: 100px 100px, 60px 60px;
-    background-position: 0 0, 30px 30px;
-    opacity: 0.2; /* Velmi nenápadné */
-    mix-blend-mode: overlay;
+.glass-btn:hover span { letter-spacing: 4px; } /* Expand text effect */
+
+.glass-btn i { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.glass-btn:hover i { transform: translateX(5px) rotate(-45deg) scale(1.2); }
+
+/* --- SUCCESS STATE (JavaScriptem přidáno) --- */
+.send-success {
+    background: #fff !important;
+    color: #000 !important;
     pointer-events: none;
 }
 
-/* Hover Stavy - Rozzáření do bíla */
-.galaxy-btn:hover {
-    transform: translateY(-3px) scale(1.01);
-    /* Tlačítko se "rozžhaví" do bíla */
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.8) inset; 
-    border-color: rgba(255, 255, 255, 0.6);
-    color: #fff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-    
-    animation: galaxy-shift 2s ease infinite; /* Zrychlí se pohyb odlesku */
-}
-
-.galaxy-btn i { transition: transform 0.4s ease; }
-
-.galaxy-btn:hover i { 
-    transform: translateX(5px) rotate(-20deg) scale(1.2);
-    color: #fff;
-    filter: drop-shadow(0 0 5px rgba(255,255,255,0.8));
-}
-
-.galaxy-btn:active { transform: scale(0.98); }
-/* --- NAVBAR & BURGER (Zachováno) --- */
-.glass-navbar {
-    position: fixed; top: 0; width: 100%; height: 60px;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 40px;
-    background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000;
-}
-.logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; letter-spacing: 2px; cursor: default; }
-.glass-nav-links a {
-    margin-left: 30px; text-decoration: none; color: #aaa;
-    font-family: 'Orbitron', sans-serif; font-size: 0.9rem; transition: color 0.3s ease;
-}
-.glass-nav-links a:hover, .glass-nav-links a.active { color: #fff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); }
-
-#menu-toggle { display: none; } .burger-label { display: none; }
-.burger-nav {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
-    z-index: 990; padding-top: 80px; flex-direction: column; align-items: center;
-}
-.burger-nav ul { list-style: none; text-align: center; } .burger-nav li { margin: 25px 0; }
-.burger-nav a { color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; text-decoration: none; }
-.burger-date-time { position: absolute; bottom: 40px; width: 100%; text-align: center; color: #888; font-family: 'Nunito', sans-serif; }
-
-@media (max-width: 768px) {
-    .glass-navbar { display: none; }
-    .burger-label {
-        display: flex; flex-direction: column; justify-content: space-between;
-        width: 30px; height: 20px; position: fixed; top: 25px; left: 25px; z-index: 1000; cursor: pointer;
+@media (max-width: 900px) {
+    .contact-card {
+        border: none; background: transparent; box-shadow: none; padding: 20px;
     }
-    .burger-label span { height: 2px; width: 100%; background: #fff; transition: 0.3s; }
-    #menu-toggle:checked + .burger-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    #menu-toggle:checked + .burger-label span:nth-child(2) { opacity: 0; }
-    #menu-toggle:checked + .burger-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-    #menu-toggle:checked ~ .burger-nav { display: flex; }
-    .main-wrapper { padding: 60px 15px; }
-    .contact-card { padding: 30px 20px 40px 20px; }
+    .contact-card-wrapper { margin-top: 60px; }
 }

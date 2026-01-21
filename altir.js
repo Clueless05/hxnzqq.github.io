@@ -92,361 +92,335 @@ const tracks = [
   }
 ];
 
-let currentIndex = Math.floor(Math.random() * tracks.length);
+/* =========================================
+   PLAYER LOGIC (Runs ONLY if player exists)
+   ========================================= */
+if (document.getElementById('music-player')) {
 
-const audio = new Audio();
-audio.src = tracks[currentIndex].url;
-audio.volume = 0.5;
+    /* --- INIT --- */
+    let currentIndex = Math.floor(Math.random() * tracks.length);
+    const audio = new Audio();
+    audio.crossOrigin = "anonymous"; 
+    audio.src = tracks[currentIndex].url;
+    audio.volume = 0.5;
 
-/* --- ELEMENTS --- */
-const playButton = document.getElementById("play-pause");
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
-const trackTitle = document.getElementById("track-title");
-const trackArtist = document.getElementById("track-artist");
-const albumArt = document.getElementById("album-art").querySelector("img");
-const seekBar = document.getElementById("seek-bar");
-const volumeBtn = document.getElementById("volume-button");
-const volumeContainer = document.getElementById("volume-bar-container");
-const volumeBar = document.getElementById("volume-bar");
+    /* --- DOM ELEMENTS --- */
+    const playButton = document.getElementById("play-pause");
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+    const trackTitle = document.getElementById("track-title");
+    const trackArtist = document.getElementById("track-artist");
+    const albumArt = document.getElementById("album-art-img");
+    const seekBar = document.getElementById("seek-bar");
+    const currentTimeEl = document.getElementById("current-time");
+    const totalDurationEl = document.getElementById("total-duration");
+    const volumeBtn = document.getElementById("volume-button");
+    const volumeBar = document.getElementById("volume-bar");
+    const volumeContainer = document.getElementById("volume-bar-container");
 
-// Playlist Elements
-const playlistWrap = document.getElementById('playlist-wrap');
-const playlistList = document.getElementById('playlist-list');
-const playlistBtn = document.getElementById('playlist-toggle');
+    const playlistWrap = document.getElementById('playlist-wrap');
+    const playlistList = document.getElementById('playlist-list');
+    const playlistBtn = document.getElementById('playlist-toggle');
+    const playlistClose = document.getElementById('playlist-close');
 
-/* --- FUNCTIONS --- */
+    const nebulaGlow = document.querySelector('.nebula-glow');
 
-function loadTrackAnimated(index) {
-  const wasPlaying = !audio.paused;
+    /* --- AUDIO CONTEXT & VISUALIZER SETUP --- */
+    let audioCtx;
+    let analyser;
+    let source;
+    let isAudioCtxSetup = false;
 
-  albumArt.classList.add("fade-out");
-  trackTitle.classList.add("fade-out");
-  trackArtist.classList.add("fade-out");
-
-  setTimeout(() => {
-    audio.src = tracks[index].url;
-    trackTitle.textContent = tracks[index].title;
-    trackArtist.textContent = tracks[index].artist;
-    albumArt.src = tracks[index].cover;
-
-    audio.currentTime = 0;
-    seekBar.style.width = "0%";
-    volumeBar.style.width = (audio.volume * 100) + "%";
-
-    albumArt.classList.remove("fade-out");
-    albumArt.classList.add("fade-in");
-    trackTitle.classList.remove("fade-out");
-    trackTitle.classList.add("fade-in");
-    trackArtist.classList.remove("fade-out");
-    trackArtist.classList.add("fade-in");
-
-    setTimeout(() => {
-      albumArt.classList.remove("fade-in");
-      trackTitle.classList.remove("fade-in");
-      trackArtist.classList.remove("fade-in");
-
-      if (wasPlaying) audio.play().catch(() => {});
-    }, 300);
-
-    // Aktualizace playlistu (zvýraznění)
-    if (typeof updateActivePlaylistClass === "function") {
-      updateActivePlaylistClass();
-    }
-  }, 300);
-}
-
-/* --- EVENT LISTENERS (Player) --- */
-
-playButton.addEventListener("click", () => {
-  if (audio.paused) {
-    audio.play();
-    playButton.innerHTML = '<i class="fas fa-pause"></i>';
-  } else {
-    audio.pause();
-    playButton.innerHTML = '<i class="fas fa-play"></i>';
-  }
-});
-
-prevButton.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-  loadTrackAnimated(currentIndex);
-  playButton.innerHTML = '<i class="fas fa-pause"></i>';
-});
-
-nextButton.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % tracks.length;
-  loadTrackAnimated(currentIndex);
-  playButton.innerHTML = '<i class="fas fa-pause"></i>';
-});
-
-audio.addEventListener("timeupdate", () => {
-  const progress = (audio.currentTime / audio.duration) * 100;
-  seekBar.style.width = progress + "%";
-});
-
-document.getElementById("seek-bar-container").addEventListener("click", (e) => {
-  const rect = e.currentTarget.getBoundingClientRect();
-  const clickX = e.clientX - rect.left;
-  audio.currentTime = (clickX / rect.width) * audio.duration;
-});
-
-let isDragging = false;
-
-const setVolume = (e) => {
-  const rect = volumeContainer.getBoundingClientRect();
-  let x = e.clientX - rect.left;
-  x = Math.max(0, Math.min(x, rect.width));
-  const newVolume = x / rect.width;
-  audio.volume = newVolume;
-  volumeBar.style.width = (newVolume * 100) + "%";
-};
-
-audio.addEventListener('ended', () => {
-  currentIndex = (currentIndex + 1) % tracks.length;
-  loadTrackAnimated(currentIndex);
-  setTimeout(() => {
-    audio.play().catch(() => {});
-    playButton.innerHTML = '<i class="fas fa-pause"></i>';
-  }, 350);
-});
-
-volumeContainer.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  setVolume(e);
-});
-
-document.addEventListener("mousemove", (e) => {
-  if (isDragging) setVolume(e);
-});
-
-document.addEventListener("mouseup", () => {
-  isDragging = false;
-});
-
-audio.addEventListener("volumechange", () => {
-  volumeBar.style.width = (audio.volume * 100) + "%";
-});
-
-/* --- STARS & VISUALS (CORRECTED GENERATION) --- */
-
-const starsContainer = document.querySelector('.stars');
-const starsCount = 150;
-const starsArray = [];
-
-for (let i = 0; i < starsCount; i++) {
-  const star = document.createElement('span');
-  star.classList.add('star');
-  const top = Math.random() * window.innerHeight;
-  const left = Math.random() * window.innerWidth;
-  
-  // Tady si uložíme velikost
-  const size = Math.random() * 2 + 1;
-  const opacity = Math.random() * 0.7 + 0.3;
-
-  star.style.top = top + "px";
-  star.style.left = left + "px";
-  star.style.width = star.style.height = size + "px";
-  star.style.opacity = opacity;
-
-  starsContainer.appendChild(star);
-  
-  // KLÍČOVÉ: Uložíme "parallaxFactor" (velikost / 2), aby se to hýbalo jako dřív
-  starsArray.push({
-    el: star,
-    speed: Math.random() * 0.05 + 0.01, // Pro blikání
-    parallaxFactor: size / 2             // Pro pohyb (rychlost podle velikosti)
-  });
-}
-
-// Nastavení CSS animace pro hvězdy
-starsArray.forEach(starObj => {
-  const { el } = starObj;
-  el.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-});
-
-function createShootingStar() {
-  const star = document.createElement('span');
-  star.classList.add('shooting-star');
-  const startX = Math.random() * window.innerWidth * 0.8;
-  const startY = Math.random() * window.innerHeight * 0.3;
-
-  star.style.position = 'absolute';
-  star.style.top = startY + 'px';
-  star.style.left = startX + 'px';
-  star.style.width = '2px';
-  star.style.height = '2px';
-  star.style.background = 'white';
-  star.style.borderRadius = '50%';
-  star.style.boxShadow = '0 0 8px white, 0 0 16px rgba(255,255,255,0.5)';
-  star.style.opacity = '1';
-  star.style.zIndex = 2;
-
-  starsContainer.appendChild(star);
-
-  const distanceX = 200 + Math.random() * 150;
-  const distanceY = 50 + Math.random() * 50;
-
-  star.animate([{
-      transform: 'translate(0,0)',
-      opacity: 1,
-      boxShadow: '0 0 8px white, 0 0 16px rgba(255,255,255,0.5)'
-    },
-    {
-      transform: `translate(${distanceX}px, ${distanceY}px)`,
-      opacity: 0,
-      boxShadow: '0 0 4px white, 0 0 8px rgba(255,255,255,0.2)'
-    }
-  ], {
-    duration: 1000 + Math.random() * 500,
-    easing: 'ease-out'
-  });
-
-  setTimeout(() => star.remove(), 1500);
-}
-setInterval(() => {
-  if (Math.random() < 0.5) createShootingStar();
-}, 500);
-
-window.addEventListener('resize', () => {
-  const stars = document.querySelectorAll('.star');
-  stars.forEach(star => {
-    const top = Math.random() * window.innerHeight;
-    const left = Math.random() * window.innerWidth;
-    star.style.top = top + 'px';
-    star.style.left = left + 'px';
-  });
-});
-
-/* --- PARALLAX (OPTIMALIZOVANÉ & OPRAVENÁ RYCHLOST) --- */
-let targetX = 0;
-let targetY = 0;
-
-// Cachujeme ikony
-const socialIcons = document.querySelectorAll('.example-2 svg');
-
-// 1. Sledování myši
-document.addEventListener('mousemove', (e) => {
-  targetX = (e.clientX / window.innerWidth - 0.5) * 4;
-  targetY = (e.clientY / window.innerHeight - 0.5) * 4;
-});
-
-// 2. Reset při opuštění okna
-document.addEventListener('mouseleave', () => {
-  targetX = 0;
-  targetY = 0;
-});
-
-// 3. Gyroskop pro mobil
-if (window.DeviceOrientationEvent) {
-  window.addEventListener('deviceorientation', (event) => {
-    targetX = event.gamma / 45;
-    targetY = event.beta / 45;
-  });
-}
-
-// 4. Hlavní smyčka vykreslování
-function updateParallax() {
-  
-  // OPTIMALIZACE: Používáme starsArray a parallaxFactor (správná rychlost)
-  for (let i = 0; i < starsArray.length; i++) {
-      const starObj = starsArray[i];
-      // Tady používáme starObj.parallaxFactor místo starObj.speed
-      starObj.el.style.transform = `translate(${targetX * starObj.parallaxFactor * 10}px, ${targetY * starObj.parallaxFactor * 10}px)`;
-  }
-
-  // Ikony sociálních sítí
-  for (let i = 0; i < socialIcons.length; i++) {
-      socialIcons[i].style.transform = `translate(${targetX * 3}px, ${targetY * 3}px)`;
-  }
-
-  requestAnimationFrame(updateParallax);
-}
-
-// Spuštění smyčky
-updateParallax();
-
-
-/* --- PLAYLIST LOGIC --- */
-
-// 1. Generování HTML pro playlist
-function renderPlaylist() {
-  if (!playlistList) return;
-  playlistList.innerHTML = ''; 
-  tracks.forEach((track, index) => {
-    const div = document.createElement('div');
-    div.classList.add('playlist-item');
-    if (index === currentIndex) div.classList.add('active'); 
-
-    div.innerHTML = `
-            <img src="${track.cover}" class="playlist-thumb" alt="cover">
-            <div class="playlist-info">
-                <span class="playlist-title">${track.title}</span>
-                <span class="playlist-artist">${track.artist}</span>
-            </div>
-        `;
-
-    // Kliknutí na skladbu v playlistu
-    div.addEventListener('click', function() { 
+    function setupAudioContext() {
+        if (isAudioCtxSetup) return;
         
-      // --- ANIMACE KLIKNUTÍ ---
-      document.querySelectorAll('.playlist-item').forEach(item => item.classList.remove('animating'));
-      
-      this.classList.add('animating');
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+        
+        analyser = audioCtx.createAnalyser();
+        source = audioCtx.createMediaElementSource(audio);
+        
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        
+        analyser.fftSize = 256; 
+        
+        isAudioCtxSetup = true;
+        renderVisualizer();
+    }
 
-      setTimeout(() => {
-          this.classList.remove('animating');
-      }, 450); 
-      // --- KONEC ANIMACE ---
+    function renderVisualizer() {
+        if (!audio.paused) {
+            requestAnimationFrame(renderVisualizer);
+        }
+        
+        if (!analyser) return;
 
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        analyser.getByteFrequencyData(dataArray);
 
-      currentIndex = index;
-      loadTrackAnimated(currentIndex);
-      playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        let bassTotal = 0;
+        const bassRange = 10;
+        for (let i = 0; i < bassRange; i++) {
+            bassTotal += dataArray[i];
+        }
+        const bassAverage = bassTotal / bassRange;
 
-      if (window.innerWidth < 600) {
-        playlistWrap.classList.add('hidden');
-      }
+        const intensity = bassAverage / 255;
+        const newOpacity = 0.15 + (intensity * 0.5); 
+        const newScale = 1 + (intensity * 0.3);
+
+        if (nebulaGlow) {
+            nebulaGlow.style.opacity = newOpacity;
+            nebulaGlow.style.transform = `translate(-50%, -50%) scale(${newScale})`;
+        }
+    }
+
+    /* --- PLAYER FUNCTIONS --- */
+    function formatTime(seconds) {
+        if (isNaN(seconds)) return "0:00";
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    }
+
+    function loadTrack(index) {
+        const wasPlaying = !audio.paused || audio.ended;
+        const textWrapper = document.querySelector('.track-text'); 
+        
+        // Animace textu
+        if(textWrapper) textWrapper.classList.add('anim-out');
+        
+        // Animace coveru
+        if(albumArt) {
+            albumArt.style.transform = "scale(0.8) rotate(-10deg)";
+            albumArt.style.opacity = 0;
+        }
+
+        setTimeout(() => {
+            audio.src = tracks[index].url;
+            if(trackTitle) trackTitle.textContent = tracks[index].title;
+            if(trackArtist) trackArtist.textContent = tracks[index].artist;
+            if(albumArt) albumArt.src = tracks[index].cover;
+            
+            audio.currentTime = 0;
+            if(seekBar) seekBar.style.width = "0%";
+            if(volumeBar) volumeBar.style.height = (audio.volume * 100) + "%";
+            
+            if(textWrapper) {
+                textWrapper.classList.remove('anim-out');
+                textWrapper.classList.add('anim-in');
+                void textWrapper.offsetWidth; // Trigger reflow
+                textWrapper.classList.remove('anim-in');
+            }
+            
+            if(albumArt) {
+                albumArt.style.transform = "scale(1) rotate(0deg)";
+                albumArt.style.opacity = 1;
+            }
+
+            if (wasPlaying) {
+                audio.play()
+                    .then(() => { if(isAudioCtxSetup) renderVisualizer(); })
+                    .catch(e => console.log("Auto-play prevented", e));
+            }
+            updatePlaylistActive();
+        }, 400); 
+    }
+
+    /* --- EVENT LISTENERS --- */
+    if(playButton) {
+        playButton.addEventListener("click", () => {
+            if (!isAudioCtxSetup) setupAudioContext();
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+
+            if (audio.paused) {
+                audio.play();
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                document.getElementById('music-player').classList.add('playing');
+                renderVisualizer();
+            } else {
+                audio.pause();
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+                document.getElementById('music-player').classList.remove('playing');
+                if (nebulaGlow) {
+                    nebulaGlow.style.opacity = 0.3;
+                    nebulaGlow.style.transform = `translate(-50%, -50%) scale(1)`;
+                }
+            }
+        });
+    }
+
+    if(nextButton) nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % tracks.length;
+        loadTrack(currentIndex);
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
     });
 
-    playlistList.appendChild(div);
-  });
-}
+    if(prevButton) prevButton.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+        loadTrack(currentIndex);
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+    });
 
-// 2. Funkce pro aktualizaci zvýraznění v playlistu
-function updateActivePlaylistClass() {
-  const items = document.querySelectorAll('.playlist-item');
-  items.forEach((item, index) => {
-    if (index === currentIndex) {
-      item.classList.add('active');
-      item.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-      });
-    } else {
-      item.classList.remove('active');
+    audio.addEventListener('ended', () => {
+        currentIndex = (currentIndex + 1) % tracks.length;
+        loadTrack(currentIndex);
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+    });
+
+    audio.addEventListener("timeupdate", () => {
+        if(seekBar) {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            seekBar.style.width = progress + "%";
+        }
+        if(currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
+        if(totalDurationEl) totalDurationEl.textContent = formatTime(audio.duration);
+    });
+
+    if(document.getElementById("seek-bar-container")) {
+        document.getElementById("seek-bar-container").addEventListener("click", (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            audio.currentTime = (clickX / rect.width) * audio.duration;
+        });
     }
-  });
-}
 
-// 3. Toggle tlačítko
-if (playlistBtn) {
-  playlistBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); 
-    playlistWrap.classList.toggle('hidden');
-    if (!playlistWrap.classList.contains('hidden')) {
-      setTimeout(updateActivePlaylistClass, 100);
+    // Volume
+    const setVolume = (e) => {
+        const rect = volumeContainer.getBoundingClientRect();
+        let y = rect.bottom - e.clientY; 
+        y = Math.max(0, Math.min(y, rect.height));
+        const newVolume = y / rect.height;
+        
+        audio.volume = newVolume;
+        volumeBar.style.height = (newVolume * 100) + "%";
+        
+        if(newVolume === 0) volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        else if(newVolume < 0.5) volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+        else volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    };
+
+    let isDraggingVol = false;
+    if(volumeContainer) {
+        volumeContainer.addEventListener("mousedown", (e) => { 
+            isDraggingVol = true; 
+            setVolume(e); 
+            e.preventDefault(); 
+        });
     }
-  });
+    document.addEventListener("mousemove", (e) => { if(isDraggingVol) setVolume(e); });
+    document.addEventListener("mouseup", () => { isDraggingVol = false; });
+
+    /* --- PLAYLIST --- */
+    function renderPlaylist() {
+        if(!playlistList) return;
+        playlistList.innerHTML = '';
+        tracks.forEach((track, index) => {
+            const div = document.createElement('div');
+            div.classList.add('playlist-item');
+            if (index === currentIndex) div.classList.add('active');
+            
+            div.innerHTML = `
+                <img src="${track.cover}" class="playlist-thumb">
+                <div class="playlist-info">
+                    <span class="playlist-title">${track.title}</span>
+                    <span class="playlist-artist">${track.artist}</span>
+                </div>
+            `;
+            
+            div.addEventListener('click', () => {
+                if (!isAudioCtxSetup) setupAudioContext();
+                currentIndex = index;
+                loadTrack(currentIndex);
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                document.getElementById('music-player').classList.add('playing');
+            });
+            
+            playlistList.appendChild(div);
+        });
+    }
+
+    function updatePlaylistActive() {
+        const items = document.querySelectorAll('.playlist-item');
+        items.forEach((item, index) => {
+            if(index === currentIndex) item.classList.add('active');
+            else item.classList.remove('active');
+        });
+    }
+
+    if(playlistBtn) {
+        playlistBtn.addEventListener('click', () => {
+            playlistWrap.classList.toggle('hidden');
+            if(!playlistWrap.classList.contains('hidden')) {
+                const active = document.querySelector('.playlist-item.active');
+                if(active) active.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    }
+    if(playlistClose) playlistClose.addEventListener('click', () => playlistWrap.classList.add('hidden'));
+
+    /* --- 3D TILT EFFECT (DESKTOP ONLY) --- */
+    const playerCard = document.getElementById('music-player');
+
+    if (window.innerWidth > 900 && playerCard) {
+        playerCard.addEventListener('mousemove', (e) => {
+            const rect = playerCard.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const x = e.clientX - centerX;
+            const y = e.clientY - centerY;
+            
+            const rotateX = -y / 10; 
+            const rotateY = x / 10;
+            
+            playerCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        playerCard.addEventListener('mouseleave', () => {
+            playerCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            playerCard.style.transition = 'transform 0.5s ease';
+            setTimeout(() => { playerCard.style.transition = 'none'; }, 500);
+        });
+    }
+
+    // Inicializace
+    renderPlaylist();
+    loadTrack(currentIndex);
+} // Konec IF (player check)
+
+/* =========================================
+   STARS & BACKGROUND LOGIC (Runs EVERYWHERE)
+   ========================================= */
+const starsContainer = document.querySelector('.stars');
+const starCount = 200;
+
+if (starsContainer) {
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const size = Math.random() * 2;
+        const duration = Math.random() * 3 + 2;
+        
+        star.style.left = x + '%';
+        star.style.top = y + '%';
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.animation = `twinkle ${duration}s infinite alternate`;
+        
+        starsContainer.appendChild(star);
+    }
+
+    // Paralaxa jen na PC
+    if (window.innerWidth > 900) {
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 20;
+            const y = (e.clientY / window.innerHeight) * 20;
+            starsContainer.style.transform = `translate(-${x}px, -${y}px)`;
+        });
+    }
 }
-
-// 4. Zavření playlistu při kliknutí mimo
-document.addEventListener('click', (e) => {
-  if (playlistWrap && !playlistWrap.contains(e.target) && playlistBtn && !playlistBtn.contains(e.target)) {
-    playlistWrap.classList.add('hidden');
-  }
-});
-
-/* --- INITIALIZATION --- */
-renderPlaylist();
-loadTrackAnimated(currentIndex);
