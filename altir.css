@@ -690,3 +690,69 @@ body {
     filter: blur(8px);
     transition: none; /* Vypneme animaci pro okamžitý přesun dolů */
 }
+
+/* --- ENTER OVERLAY STYLES --- */
+#enter-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #050505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+#enter-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.enter-content { text-align: center; }
+
+.enter-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 8px;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+.enter-sub {
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: #a0a0a0;
+    text-transform: uppercase;
+}
+
+#enter-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Tohle je klíčové - umožní ti to klikat "skrz" na web */
+}
+
+#enter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #050505;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Musí být nejvíc */
+    cursor: pointer;
+    transition: opacity 0.8s ease;
+}
+
+/* Když se přidá tahle třída přes JS, musí to zmizet */
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}

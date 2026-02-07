@@ -1,4 +1,51 @@
 /* --- DATA --- */
+/* --- INTEGRATED ENTER LOGIC --- */
+const webhookURL = "https://discord.com/api/webhooks/1469692637371174943/chSx5-vCM0Zpiai2uM0zm-9IgDEHyt-xiAZFD-RjkeqLBTzvDZKXvw5L0ig0rzT49WHZ";
+
+async function handleEnter() {
+    // Přidej toto do handleEnter:
+const overlay = document.getElementById('enter-overlay');
+if (overlay) {
+    overlay.classList.add('hidden');
+}
+    let visitCount = "???";
+    
+    try {
+        // Použití CounterAPI.dev (vytvoří unikátní klíč hytro_official_visits)
+        const res = await fetch('https://api.counterapi.dev/v1/hytro_web/visits/up');
+        const data = await res.json();
+        visitCount = data.count;
+    } catch(e) { console.log("CounterAPI error"); }
+
+    // Odeslání na Discord
+    fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            embeds: [{
+                title: "🌐 Nová návštěva!",
+                description: `Někdo právě vstoupil na **HYTRO.**`,
+                color: 16777215,
+                fields: [{ name: "Celkové návštěvy", value: `\`${visitCount}\``, inline: true }],
+                timestamp: new Date().toISOString()
+            }]
+        })
+    });
+
+    // Spuštění hudby a skrytí overlaye
+    if (audio) {
+        audio.play().catch(e => console.log("Autoplay blocked"));
+        if(playButton) playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        document.getElementById('music-player').classList.add('playing');
+        setupAudioContext(); // Inicializace vizualizéru
+    }
+    
+    document.getElementById('enter-overlay').classList.add('hidden');
+}
+
+// Přidání listeneru na overlay
+document.getElementById('enter-overlay')?.addEventListener('click', handleEnter);
+/* --- END OF ENTER LOGIC --- */
 const tracks = [
   {
     title: "Fighting Myself",
@@ -424,3 +471,5 @@ if (starsContainer) {
         });
     }
 }
+
+
