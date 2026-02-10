@@ -188,7 +188,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0);
     border: 1px solid var(--glass-border);
     color: #ccc;
     font-size: 1.2rem;
@@ -198,7 +198,7 @@ body {
 }
 
 .social-link:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.027);
     transform: translateY(-5px) scale(1.1);
     color: #fff;
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
@@ -209,7 +209,7 @@ body {
 .tooltip {
     position: absolute;
     bottom: -35px;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0);
     color: #fff;
     font-size: 0.75rem;
     padding: 4px 8px;
@@ -227,11 +227,11 @@ body {
     transform: translateY(0);
 }
 
-.social-link.twitch:hover { box-shadow: 0 0 15px rgba(145, 70, 255, 0.4); border-color: #9146FF; }
-.social-link.discord:hover { box-shadow: 0 0 15px rgba(114, 137, 218, 0.4); border-color: #7289da; }
-.social-link.steam:hover { box-shadow: 0 0 15px rgba(45, 100, 160, 0.4); border-color: #66c0f4; }
-.social-link.tiktok:hover { box-shadow: 0 0 15px rgba(255, 40, 80, 0.4); border-color: #fe2c55; }
-.social-link.instagram:hover { box-shadow: 0 0 15px rgba(225, 48, 108, 0.4); border-color: #e1306c; }
+.social-link.twitch:hover { border-color: #9146FF; }
+.social-link.discord:hover {  border-color: #7289da; }
+.social-link.steam:hover {border-color: #66c0f4; }
+.social-link.tiktok:hover {  border-color: #fe2c55; }
+.social-link.instagram:hover { border-color: #e1306c; }
 
 /* --- MUSIC PLAYER --- */
 #music-player-container {
@@ -727,7 +727,7 @@ body {
 #enter-overlay.hidden {
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; /* Tohle je klíčové - umožní ti to klikat "skrz" na web */
+    pointer-events: none; 
 }
 
 #enter-overlay {
