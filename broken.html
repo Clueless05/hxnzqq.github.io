@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Since she left</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+h1 {
+    font-weight: 300;
+    letter-spacing: 4px;
+    font-size: 1rem;
+    opacity: 0.4;
+    margin-bottom: 60px;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+}
+
+.unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+}
+
+.number {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #a855f7;
+    text-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    min-width: 2ch;   /* rezervuje místo pro 2 cifry */
+    text-align: center;
+}
+
+.label {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    opacity: 0.3;
+    margin-top: 14px;
+}
+
+.divider {
+    width: 1px;
+    height: 90px;
+    background: rgba(168, 85, 247, 0.2);
+}
+
+/* 📱 MOBILE MODE */
+@media (max-width: 768px) {
+
+    body {
+        height: auto;
+        padding: 60px 0;
+    }
+
+    h1 {
+        margin-bottom: 40px;
+    }
+
+    .time {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .number {
+        font-size: 3.5rem;
+    }
+
+    .unit {
+        min-width: unset;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+    <h1>Since she left</h1>
+
+    <div class="time">
+        <div class="unit">
+            <div class="number" id="days">00</div>
+            <div class="label">DAYS</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="unit">
+            <div class="number" id="hours">00</div>
+            <div class="label">HOURS</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="unit">
+            <div class="number" id="minutes">00</div>
+            <div class="label">MINUTES</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="unit">
+            <div class="number" id="seconds">00</div>
+            <div class="label">SECONDS</div>
+        </div>
+    </div>
+</div>
+
+<script>
+function getStartDate() {
+    const now = new Date();
+    const yesterday = new Date(now);
+    yesterday.setDate(now.getDate() - 1);
+    yesterday.setHours(17, 0, 0, 0);
+    return yesterday;
+}
+
+const startDate = getStartDate();
+
+function pad(n) {
+    return n.toString().padStart(2, '0');
+}
+
+function updateTimer() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    const seconds = Math.floor(diff / 1000) % 60;
+    const minutes = Math.floor(diff / (1000 * 60)) % 60;
+    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+}
+
+updateTimer();
+setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
