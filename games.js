@@ -81,3 +81,17 @@ gameBoxes.forEach(box => {
         }
     });
 });
+// Zakázání PiP a dalších otravných funkcí u všech videí
+document.addEventListener("DOMContentLoaded", () => {
+    const allVideos = document.querySelectorAll('.video-wrapper video');
+    allVideos.forEach(video => {
+        video.setAttribute('disablePictureInPicture', 'true');
+        video.setAttribute('controlsList', 'nodownload noplaybackrate');
+    });
+
+    // Pro YouTube iframy (vypnutí kontextového menu)
+    const allIframes = document.querySelectorAll('.video-wrapper iframe');
+    allIframes.forEach(iframe => {
+        iframe.setAttribute('disablepictureinpicture', 'true');
+    });
+});

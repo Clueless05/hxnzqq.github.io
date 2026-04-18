@@ -313,3 +313,10 @@ body {
     /* Pro úplně malinké telefony raději 1 sloupec */
     .games-grid { grid-template-columns: 1fr; } 
 }
+/* Vypne systémové overlay ikony a menu u všech videí a iframů v boxech */
+.video-wrapper video,
+.video-wrapper iframe {
+    pointer-events: none; /* Prohlížeč ignoruje myš, ikony se nezobrazí */
+    user-select: none;
+    -webkit-user-drag: none;
+}
